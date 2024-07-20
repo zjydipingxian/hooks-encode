@@ -16,3 +16,5 @@ analyzer.html
 
 packages/*/dist
 packages/*/node_modules
+
+docs/.vitepress/cache/

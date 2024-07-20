@@ -13,7 +13,9 @@
     "pub:beta": "pnpm run build && pnpm -r --filter=./packages/* publish --tag beta",
     "format": "prettier --write packages/  --fix",
     "eslint": "eslint  --fix  ./packages/**/*.{js,ts} ",
-    "build-r": "rollup -c rollup.config.js --bundleConfigAsCjs"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "keywords": [
     "encode",
@@ -48,6 +50,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.1",
+    "vitepress": "^1.3.1",
     "vue": "3.4.32"
   }
 }
