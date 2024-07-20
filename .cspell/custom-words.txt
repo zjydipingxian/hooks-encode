@@ -1,0 +1,4 @@
+iife
+preinstall
+tseslint
+zhongjiayao

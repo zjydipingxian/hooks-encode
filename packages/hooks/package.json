@@ -1,0 +1,38 @@
+{
+  "name": "zhongjiayao_v3_hooks",
+  "version": "0.0.1",
+  "description": "vue3 业务 Hooks",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "unpkg": "./dist/zhongjiayao_v3_hooks",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build1": "rollup -c rollup.config.js --bundleConfigAsCjs",
+    "clearDist": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "a": "node a.mjs"
+  },
+  "keywords": [
+    "encode",
+    "vue3",
+    "vue",
+    "hooks"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "metadata.json",
+    "package.json",
+    "README.md"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.24.8",
+    "tslib": "^2.6.3"
+  }
+}

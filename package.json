@@ -1,0 +1,53 @@
+{
+  "name": "hooks-encode",
+  "version": "1.0.0",
+  "description": "前端vue3 hooks 编码",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "inits": "pnpm install",
+    "clean-dist": "rimraf 'packages/hooks/{lib,es,node_modules,dist}'",
+    "clean": "pnpm run clean-dist && rimraf node_modules",
+    "build": "pnpm -r --filter=./packages/* run build",
+    "pub": "pnpm run build && pnpm -r --filter=./packages/* publish --access=public",
+    "pub:beta": "pnpm run build && pnpm -r --filter=./packages/* publish --tag beta",
+    "format": "prettier --write packages/  --fix",
+    "eslint": "eslint  --fix  ./packages/**/*.{js,ts} ",
+    "build-r": "rollup -c rollup.config.js --bundleConfigAsCjs"
+  },
+  "keywords": [
+    "encode",
+    "hooks",
+    "hook",
+    "vue3",
+    "vue",
+    "Vue",
+    "Vue3"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/preset-env": "^7.24.8",
+    "@eslint/js": "^9.7.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.14.11",
+    "cspell": "^8.10.4",
+    "eslint": "^9.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.8.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.18.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.16.1",
+    "vue": "3.4.32"
+  }
+}
