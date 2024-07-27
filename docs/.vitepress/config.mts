@@ -44,10 +44,6 @@ export default defineConfig({
       {
         text: 'Examples',
         items: [
-          {
-            text: 'Button 按钮',
-            link: '/components/a'
-          },
           { text: 'Markdown Examples', link: '/markdown-examples/' },
           { text: 'Runtime API Examples', link: '/api-examples/' },
           ...getRouterConfig()
