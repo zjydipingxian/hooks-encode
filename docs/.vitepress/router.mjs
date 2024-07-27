@@ -1,24 +1,24 @@
 const Router = {
-  Request: ['useRequest', 'useAxios'],
+  // Request: ['useRequest', 'useAxios'],
   Dom: [
-    'useSize',
-    'useKeyPress',
-    'useFullscreen',
-    'useDocumentVisibility',
-    'useHover',
-    'useInViewport',
+    // 'useSize',
+    // 'useKeyPress',
+    // 'useFullscreen',
+    // 'useDocumentVisibility',
+    // 'useHover',
+    // 'useInViewport',
   ],
   State: [
-    'useUrlState',
-    'useToggle',
+    // 'useUrlState',
+    // 'useToggle',
     'useBoolean',
-    'useLocalStorageState',
+    // 'useLocalStorageState',
     // 'useLocalforage',
-    'useThrottle',
-    'useDebounce',
+    // 'useThrottle',
+    // 'useDebounce',
   ],
-  Data: ['useTable'],
-  Worker: ['useWorkerFunction'],
+  // Data: ['useTable'],
+  // Worker: ['useWorkerFunction'],
 };
 
 function getRouterConfig(langPrefix = '/') {
