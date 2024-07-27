@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chokidar = require('chokidar');
 
 // 获取 packages 下的文件目录地址
 const packagesDir = path.resolve(__dirname, 'packages/hooks/src');
@@ -23,3 +24,8 @@ fs.readdirSync(packagesDir).forEach((packageName) => {
     }
   }
 });
+
+// 当前目录
+// chokidar.watch('packages/hooks/src/**/index.md').on('all', (event, path) => {
+//   console.log('🚀 ~ chokidar.watch ~ event, path:', event, path);
+// });

@@ -1,12 +1,15 @@
 import { defineConfig } from 'vitepress'
 import path from 'path'
 import { getRouterConfig } from './router.mjs'
+import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+
 
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "ZhongJiaYao",
   description: "前端vue3 hooks 编码",
+  base: '/hooks-encode/',
   vite: {
     resolve: {
       alias: {
@@ -15,8 +18,18 @@ export default defineConfig({
     },
     server: {
       watch: {
-        ignored: ['!**/packages/**'] 
+        ignored: [
+          '!**/node_modules/**',
+          '!**/dist/**',
+          '**/packages/**'
+        ]
       }
+    },
+  },
+  markdown: {
+    config: (md) => {
+      md.use(containerPreview)
+      md.use(componentPreview)
     }
   },
  
@@ -31,6 +44,10 @@ export default defineConfig({
       {
         text: 'Examples',
         items: [
+          {
+            text: 'Button 按钮',
+            link: '/components/a'
+          },
           { text: 'Markdown Examples', link: '/markdown-examples/' },
           { text: 'Runtime API Examples', link: '/api-examples/' },
           ...getRouterConfig()

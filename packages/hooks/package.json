@@ -7,10 +7,8 @@
   "unpkg": "./dist/zhongjiayao_v3_hooks",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "build1": "rollup -c rollup.config.js --bundleConfigAsCjs",
     "clearDist": "rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "a": "node a.mjs"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "encode",
