@@ -16,15 +16,6 @@ export default defineConfig({
         "zhongjiayao_v3_hooks": path.resolve(__dirname, '../../packages/hooks/src/index.ts')
       }
     },
-    server: {
-      watch: {
-        ignored: [
-          '!**/node_modules/**',
-          '!**/dist/**',
-          '**/packages/**'
-        ]
-      }
-    },
   },
   markdown: {
     config: (md) => {

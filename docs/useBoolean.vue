@@ -1,7 +1,7 @@
 <template>
   <div>{{ useBooleanState }}</div>
 
-  <el-button @click="useBooleanToggle">toggle</el-button>
+  <button @click="useBooleanToggle">toggle</button>
   <button @click="setTrue">setTrue</button>
   <button @click="setFalse">setFalse</button>
   <router-view />
