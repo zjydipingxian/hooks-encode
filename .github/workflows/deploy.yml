@@ -42,7 +42,7 @@ jobs:
     steps:
       # 拉取代码
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # 保留 Git 信息
           fetch-depth: 0
@@ -71,6 +71,9 @@ jobs:
         run: |
           echo ${{ github.workspace }}
           pnpm build
+
+      - name: Setup Jekyll
+        uses: actions/configure-pages@v5
 
         # 资源拷贝
       - name: Build with Jekyll
