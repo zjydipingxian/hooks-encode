@@ -2,6 +2,8 @@
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import { AntDesignContainer } from '@vitepress-demo-preview/component'
+import '@vitepress-demo-preview/component/dist/style.css'
 import './style.css'
 
 export default {
@@ -13,5 +15,6 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     // ...
+    app.component('demo-preview', AntDesignContainer)
   }
 } satisfies Theme

@@ -2,6 +2,13 @@
 
 This page demonstrates some of the built-in markdown extensions provided by VitePress.
 
+
+
+第一个示例：
+
+<preview path="./hook-demo/index.vue" title="基本使用" description="测试使用 Element Plus 组件"></preview>
+
+
 ## Syntax Highlighting
 
 VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
