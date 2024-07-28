@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
-import path from 'path'
-import { getRouterConfig } from './router.mjs'
-import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+// import path from 'path'
+// import { getRouterConfig } from './router.mjs'
+// import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
 
 
 
@@ -10,19 +10,19 @@ export default defineConfig({
   title: "ZhongJiaYao",
   description: "前端vue3 hooks 编码",
   base: '/hooks-encode/',
-  vite: {
-    resolve: {
-      alias: {
-        "zhongjiayao_v3_hooks": path.resolve(__dirname, '../../packages/hooks/src/index.ts')
-      }
-    },
-  },
-  markdown: {
-    config: (md) => {
-      md.use(containerPreview)
-      md.use(componentPreview)
-    }
-  },
+  // vite: {
+  //   resolve: {
+  //     alias: {
+  //       "zhongjiayao_v3_hooks": path.resolve(__dirname, '../../packages/hooks/src/index.ts')
+  //     }
+  //   },
+  // },
+  // markdown: {
+  //   config: (md) => {
+  //     md.use(containerPreview)
+  //     md.use(componentPreview)
+  //   }
+  // },
  
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -37,7 +37,7 @@ export default defineConfig({
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples/' },
           { text: 'Runtime API Examples', link: '/api-examples/' },
-          ...getRouterConfig()
+          // ...getRouterConfig()
         ]
       },
       
