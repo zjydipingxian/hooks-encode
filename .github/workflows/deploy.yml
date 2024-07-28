@@ -27,5 +27,16 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           BRANCH: gh-pages
-          FOLDER: docs/.vitepress/dist
+          FOLDER: docs/.vuepress/dist
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  # 部署任务
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
