@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "My Awesome Project",
   description: "A VitePress Site",
-  base:"/hooks-encode/",
+  base:"/zhongjiayao-hooks-encode/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
