@@ -13,13 +13,12 @@
     "pub:beta": "pnpm run build && pnpm -r --filter=./packages/* publish --tag beta",
     "format": "prettier --write packages/  --fix",
     "eslint": "eslint  --fix  ./packages/**/*.{js,ts} ",
-    "docs:dev": "pnpm run build:file  && vitepress dev docs & node watch.js",
-    "vitepress:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
     "cli": "node cli/index.mjs init",
     "build:file": "node generate-docs.js",
-    "wt": "node watch.js"
+    "wt": "node watch.js",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "keywords": [
     "encode",
