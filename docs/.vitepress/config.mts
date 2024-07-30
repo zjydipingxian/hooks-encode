@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import path from 'path'
 import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+import { getRouterConfig } from './router.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -34,7 +35,9 @@ export default defineConfig({
         text: 'Examples',
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Runtime API Examples', link: '/api-examples' },
+          // { text: 'Dom', items: [{text: 'useHover', link: '/Dom/useHover/'}] },
+          ...getRouterConfig(),
         ]
       }
     ],

@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const chokidar = require('chokidar');
 
 // 获取 packages 下的文件目录地址
 const packagesDir = path.resolve(__dirname, 'packages/hooks/src');
@@ -15,17 +14,13 @@ fs.readdirSync(packagesDir).forEach((packageName) => {
   if (fs.statSync(packagePath).isDirectory()) {
     // 获取每个 hooks 文件夹下面的 index.md 内容
     const readmePath = path.join(packagePath, 'index.md');
+    const docPath = path.join(docsDir, packageName);
 
     if (fs.existsSync(readmePath)) {
-      if (!fs.existsSync(docsDir)) {
-        fs.mkdirSync(docsDir, { recursive: true });
+      if (!fs.existsSync(docPath)) {
+        fs.mkdirSync(docPath, { recursive: true });
       }
-      fs.copyFileSync(readmePath, path.join(docsDir, `${packageName}.md`));
+      // fs.copyFileSync(readmePath, path.join(docPath, `${packageName}.md`));
     }
   }
 });
-
-// 当前目录
-// chokidar.watch('packages/hooks/src/**/index.md').on('all', (event, path) => {
-//   console.log('🚀 ~ chokidar.watch ~ event, path:', event, path);
-// });

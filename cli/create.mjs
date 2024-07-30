@@ -1,14 +1,14 @@
-import { input } from '@inquirer/prompts';
+import { input, select } from '@inquirer/prompts';
 import fs from 'fs-extra';
-import { createRequire } from 'module';
-import { dirname, resolve, join } from 'path';
-import { fileURLToPath } from 'url';
-import buildEntry from './build-entry.mjs';
+import { join } from 'path';
+import { buildEntry } from './build-entry.mjs';
+import ora from 'ora';
+import generate from './generate.mjs';
 
 // 检查文件夹
-import { checkDirectories, packagesDir } from './util.mjs';
-// 创建模板
-import { createUseHooksTemplate } from './template.mjs';
+import { checkDirectories, packagesDir, createHooksDirectoryAndFiles } from './util.mjs';
+
+import { updateCreateRouterFile } from './route-map.mjs';
 
 export default async () => {
   // 输入 Hooks 名称  作为 Hooks 文件夹名称
@@ -39,22 +39,59 @@ export default async () => {
     },
   });
 
-  // 开始 向 packages/hooks/src 下  创建 Hooks目录 文件夹
-  fs.mkdirSync(join(packagesDir, folderName), { recursive: true });
+  // 请选择文件夹用途分类
+  const hooksType = await select({
+    message: '请选择Hooks用途分类：',
+    choices: [
+      { name: '通用', value: 'common', description: '通用' },
+      { name: '业务', value: 'business', description: '业务相关' },
+      { name: '状态', value: 'business', description: '操作状态相关' },
+      { name: '文档对象', value: 'Dom', description: '操作Dom相关' },
+      { name: '其他', value: 'other', description: '其他杂项' },
+    ],
+  });
 
-  // 在创建好的 Hooks目录 文件夹 下 创建 index.ts 文件
-  fs.writeFileSync(join(packagesDir, folderName, 'index.ts'), createUseHooksTemplate(folderName));
+  const routerOra = ora();
+  routerOra.start(`路由映射关系正在注入`);
+  // 创建路由映射关系表
+  const router = await updateCreateRouterFile(hooksType, folderName);
+  routerOra.succeed(`路由映射关系注入成功`);
 
-  // 最后需要将  在创建好的 Hooks目录 文件夹 下 创建 index.ts 文件 向 packages/hooks/src/index.ts 追加内容
-  // 获取 packages/hooks/src/index.ts 文件的路径
-  const indexFilePath = join(packagesDir, 'index.ts');
+  const folderNameOra = ora();
+  folderNameOra.start(`${folderName} 正在创建中！！！`);
 
-  // 读取现有的 index.ts 文件内容
-  // console.log('🚀 ~ indexContent:', indexContent);
-  const hooksDirs = await checkDirectories();
-  const template = buildEntry(hooksDirs);
-  fs.writeFileSync(indexFilePath, template);
+  await generate(packagesDir, folderName);
+
+  folderNameOra.succeed(`${folderName} 创建成功！！！`);
 
   //  打印 创建成功信息
   console.log(`\nHooks ${folderName} 创建成功！`);
 };
+
+// // 创建目录 以及 目录对应需要的内容
+// await createHooksDirectoryAndFiles(packagesDir, folderName);
+
+// // 获取 packages/hooks/src/index.ts 文件的路径
+// const indexFilePath = join(packagesDir, 'index.ts');
+
+// // 读取现有的 index.ts 文件内容
+// const hooksDirs = await checkDirectories();
+// const template = buildEntry(hooksDirs);
+// fs.writeFileSync(indexFilePath, template);
+// folderNameOra.succeed(`${folderName} 创建成功！！！`);
+
+// const sourceDir = join(packagesDir, folderName);
+// const targetDir = join('docs', folderName);
+
+// const copyOra = ora();
+// copyOra.start(`${folderName} 正在拷贝到 docs 目录中！！！`);
+
+// // 确保目标目录存在
+// await fs.ensureDir(targetDir);
+
+// // 复制目录内容，排除 index.ts
+// await fs.copy(sourceDir, targetDir, {
+//   filter: (src) => !src.endsWith('index.ts'),
+// });
+
+// copyOra.succeed(`${folderName} 拷贝到 docs 目录成功！！！`);

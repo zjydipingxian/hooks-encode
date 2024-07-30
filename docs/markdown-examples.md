@@ -4,9 +4,7 @@ This page demonstrates some of the built-in markdown extensions provided by Vite
 
 
 
-第一个示例：
 
-<preview path="./hook-demo/index.vue" title="基本使用" description="测试使用 Element Plus 组件"></preview>
 
 
 ## Syntax Highlighting
