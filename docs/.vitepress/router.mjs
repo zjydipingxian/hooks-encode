@@ -19,7 +19,7 @@ const Router = {
     'useDebounce',
   ],
   Data: ['useTable'],
-  Worker: ['useWorkerFunction'],
+  Worker: ['useCountDown','useWorkerFunction'],
 };
 
 function getRouterConfig(langPrefix = '/') {
