@@ -2,6 +2,7 @@ const Router = {
   // Request: ['useRequest', 'useAxios'],
   Dom: [
     'useEventListener',
+    'useWindowSize',
     // 'useSize',
     'useRect',
     // 'useKeyPress',
