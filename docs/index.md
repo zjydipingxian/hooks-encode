@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: alt
       text: 指南
-      link: /markdown-examples
+      link: /guide
     - theme: brand
       text: Hooks API
-      link: /api-examples
+      link: /useEventListener
 
 # features:
 #   - title: ✨ 特性
