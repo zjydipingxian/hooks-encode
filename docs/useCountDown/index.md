@@ -4,7 +4,7 @@
 
 ## 基本用法
 
-<preview path="./demo/index.vue" title="基本使用" ></preview>
+<preview path="./demo/index.vue"  title="基本使用" ></preview>
 
 ## 毫秒级渲染
 
@@ -13,6 +13,10 @@
 ## 开始 / 暂停
 
 <preview path="./demo/index2.vue" title="开始 / 暂停" ></preview>
+
+## 事件 onChange / onFinish
+
+<preview path="./demo/event.vue" title="事件 onChange / onFinish" ></preview>
 
 ## API
 

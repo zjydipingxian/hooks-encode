@@ -1,6 +1,4 @@
 <template>
-  <a-button @click="countDown.start()">开始倒计时</a-button>
-
   <div style="margin-top: 10px">
     <div>总时间：{{ current.total }}</div>
     <div>剩余天数：{{ current.days }}</div>
@@ -16,7 +14,15 @@
   const countDown = useCountDown({
     time: 5000,
     millisecond: true,
+    onChange(current) {
+      console.log('onChange', current);
+    },
+    onFinish() {
+      console.log('onFinish');
+    },
   });
+
+  countDown.start();
 
   const current = countDown.current;
 </script>

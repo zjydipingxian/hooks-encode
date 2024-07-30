@@ -70,21 +70,6 @@ function useCountDown(options: UseCountDownOptions) {
     cancelRaf(rafId);
   };
 
-  // 开始
-  const start = () => {
-    if (!counting) {
-      endTime = Date.now() + remain.value;
-      counting = true;
-      tick();
-    }
-  };
-
-  // 重置
-  const reset = (totalTime: number = options.time) => {
-    pause();
-    remain.value = totalTime;
-  };
-
   // 获取剩余时间， 默认为毫秒 超过结束时间 返回 0
   const getCurrentRemain = () => Math.max(endTime - Date.now(), 0);
 
@@ -143,6 +128,21 @@ function useCountDown(options: UseCountDownOptions) {
     } else {
       macroTick();
     }
+  };
+
+  // 开始
+  const start = () => {
+    if (!counting) {
+      endTime = Date.now() + remain.value;
+      counting = true;
+      tick();
+    }
+  };
+
+  // 重置
+  const reset = (totalTime: number = options.time) => {
+    pause();
+    remain.value = totalTime;
   };
 
   onBeforeUnmount(pause);
