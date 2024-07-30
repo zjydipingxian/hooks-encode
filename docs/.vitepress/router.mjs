@@ -1,32 +1,34 @@
 const Router = {
-  Request: ['useRequest', 'useAxios'],
+  // Request: ['useRequest', 'useAxios'],
   Dom: [
-    'useSize',
+    'useEventListener',
+    // 'useSize',
     'useRect',
-    'useKeyPress',
-    'useFullscreen',
-    'useDocumentVisibility',
-    'useHover',
-    'useInViewport',
+    // 'useKeyPress',
+    // 'useFullscreen',
+    // 'useDocumentVisibility',
+    // 'useHover',
+    // 'useInViewport',
   ],
   State: [
-    'useUrlState',
+    // 'useUrlState',
     'useToggle',
     'useBoolean',
-    'useLocalStorageState',
-    'useLocalforage',
-    'useThrottle',
-    'useDebounce',
+    // 'useLocalStorageState',
+    // 'useLocalforage',
+    // 'useThrottle',
+    // 'useDebounce',
   ],
-  Data: ['useTable'],
-  Worker: ['useCountDown','useWorkerFunction'],
+  // Data: ['useTable'],
+  Worker: ['useCountDown'],
+  // 'useWorkerFunction'
 };
 
 function getRouterConfig(langPrefix = '/') {
   return [
     {
       text: '介绍',
-      link: `${langPrefix}`,
+      link: `${langPrefix}introduce`,
     },
     ...Object.entries(Router).map(([text, children]) => ({
       text,

@@ -32,11 +32,8 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '指南',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-          // { text: 'Dom', items: [{text: 'useHover', link: '/Dom/useHover/'}] },
           ...getRouterConfig(),
         ]
       }

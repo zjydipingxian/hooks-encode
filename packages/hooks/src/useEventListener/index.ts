@@ -1,0 +1,90 @@
+import { inBrowser, onMountedOrActivated } from '../utils';
+import { isRef, onDeactivated, onUnmounted, Ref, unref, watch, type WatchStopHandle } from 'vue';
+
+type TargetRef = EventTarget | Ref<EventTarget | undefined>;
+
+export type UseEventListenerOptions = {
+  // 目标元素
+  target?: TargetRef;
+  // 是否捕获
+  capture?: boolean;
+  // 监听器是否应该以被动模式运行。被动监听器不会阻止事件的默认行为，这意味着它们不会调用 preventDefault()
+  passive?: boolean;
+};
+
+/**
+ * 使用自定义hook来添加事件监听器到文档对象上。
+ *
+ * 它通过使用typescript的泛型来确保传入的事件类型是DocumentEventMap中定义的合法事件类型。
+ *
+ * @param type 事件类型，必须是DocumentEventMap中定义的事件类型。
+ * @param listener 事件处理函数，它将被绑定到指定的事件类型上。
+ * @param options 可选的事件监听器选项，如是否在捕获阶段触发事件等。
+ */
+function useEventListener<K extends keyof DocumentEventMap>(
+  type: K,
+  listener: (event: DocumentEventMap[K]) => void,
+  options?: UseEventListenerOptions,
+): () => void;
+
+function useEventListener(type: string, listener: EventListener, options?: UseEventListenerOptions) {
+  if (!inBrowser) {
+    return;
+  }
+
+  const { target = window ?? options?.target, capture = false, passive = false } = {};
+
+  // 是否已经清理过事件监听器。
+  let cleaned = false;
+  // 事件监听器是否已经添加。
+  let attached: boolean;
+
+  const add = (target?: TargetRef) => {
+    if (cleaned) {
+      return;
+    }
+    const element = unref(target);
+
+    // 如果元素存在且尚未附加监听器，则进行添加
+    if (element && !attached) {
+      console.log('434343');
+      element.addEventListener(type, listener, {
+        capture,
+        passive,
+      });
+      attached = true;
+    }
+  };
+
+  const remove = (target?: TargetRef) => {
+    if (cleaned) {
+      return;
+    }
+    const element = unref(target);
+
+    if (element && attached) {
+      element.removeEventListener(type, listener, capture);
+      attached = false;
+    }
+  };
+
+  onUnmounted(() => remove(target));
+  onDeactivated(() => remove(target));
+
+  let stopWatch: WatchStopHandle;
+
+  if (isRef(target)) {
+    stopWatch = watch(target, (val, oldVal) => {
+      remove(oldVal as TargetRef);
+      add(val as TargetRef);
+    });
+  }
+
+  return () => {
+    stopWatch?.();
+    remove(target);
+    cleaned = true;
+  };
+}
+
+export default useEventListener;

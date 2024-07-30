@@ -1,6 +1,6 @@
 // 路由映射表
 const Router = {
-  Dom: ['useRect'],
-  Worker: ['useCountDown'],
+  Dom: ['useRect', "useEventListener"],
+  Worker: ['useCountDown']
 };
 export default Router;
