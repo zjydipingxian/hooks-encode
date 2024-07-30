@@ -1,12 +1,14 @@
 <template>
-  <div class="mb-10" @click="countDown.start()">开始倒计时</div>
+  <a-button class="mb-10" @click="countDown.start()">开始倒计时</a-button>
 
-  <div>总时间：{{ current.total }}</div>
-  <div>剩余天数：{{ current.days }}</div>
-  <div>剩余小时：{{ current.hours }}</div>
-  <div>剩余分钟：{{ current.minutes }}</div>
-  <div>剩余秒数：{{ current.seconds }}</div>
-  <div>剩余毫秒：{{ current.milliseconds }}</div>
+  <div style="margin-top: 10px">
+    <div>总时间：{{ current.total }}</div>
+    <div>剩余天数：{{ current.days }}</div>
+    <div>剩余小时：{{ current.hours }}</div>
+    <div>剩余分钟：{{ current.minutes }}</div>
+    <div>剩余秒数：{{ current.seconds }}</div>
+    <div>剩余毫秒：{{ current.milliseconds }}</div>
+  </div>
 </template>
 
 <script setup>
