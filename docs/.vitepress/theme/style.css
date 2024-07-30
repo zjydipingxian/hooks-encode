@@ -137,3 +137,48 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+
+
+/* 针对Webkit核心的浏览器（如Chrome和Safari） */
+::-webkit-scrollbar {
+  width: 0px; /* 横向滚动条的宽度 */
+  height: 0px; /* 纵向滚动条的高度 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0; /* 滚动条滑块的背景颜色 */
+  border-radius: 6px; /* 滑块的圆角 */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 滚动条轨道的背景颜色 */
+}
+
+/* 针对Firefox浏览器 */
+scrollbar {
+  -moz-appearance: none;
+  width: 12px;
+  height: 12px;
+}
+
+scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 6px;
+}
+
+scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0; /* 滑块悬停时的背景颜色 */
+}
+
+scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+
+.mb10 {
+  margin-bottom: 10px
+}

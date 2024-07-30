@@ -31,19 +31,43 @@ export async function checkDirectories() {
 export async function createHooksDirectoryAndFiles(packagesDir, folderName) {
   const path = join(packagesDir, folderName);
 
-  // 创建 Hooks 目录
-  await fs.ensureDir(join(packagesDir, folderName));
+  // 检查目录是否存在
+  const exists = await fs.pathExists(path);
+  if (!exists) {
+    // 创建 Hooks 目录
+    await fs.ensureDir(join(packagesDir, folderName));
+  }
 
   // 在 Hooks 目录下创建 demo 目录和 index.vue 文件
   createDemo(path, folderName);
 
   // 在 Hooks 目录下创建 index.ts 以及 index.md 文件
-  await fs.writeFile(join(path, 'index.md'), createUseHooksMd(folderName));
-  await fs.writeFile(join(path, 'index.ts'), createUseHooksTemplate(folderName));
+
+  // 检查并创建 index.md 文件
+  await ensureFile(join(path, 'index.md'), () => createUseHooksMd(folderName));
+  // 检查并创建 index.ts 文件
+  await ensureFile(join(path, 'index.ts'), () => createUseHooksTemplate(folderName));
 }
 
 // 目录下创建 demo 目录和 index.vue 文件
 export async function createDemo(path, folderName) {
-  await fs.ensureDir(join(path, 'demo'));
+  const demoPath = join(path, 'demo');
+
+  // 检查 demo 目录是否存在
+  const demoExists = await fs.pathExists(demoPath);
+  if (!demoExists) {
+    await fs.ensureDir(join(path, 'demo'));
+  }
+
   await fs.writeFile(join(path, 'demo', 'index.vue'), createUseHooksDemo(folderName));
+}
+
+// 通用的检查和创建文件的方法
+async function ensureFile(filePath, contentGenerator) {
+  const exists = await fs.pathExists(filePath);
+  if (!exists) {
+    await fs.writeFile(filePath, contentGenerator());
+  } else {
+    console.log(`File ${filePath} already exists. Skipping creation.`);
+  }
 }
