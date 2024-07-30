@@ -47,7 +47,6 @@ function useEventListener(type: string, listener: EventListener, options?: UseEv
 
     // 如果元素存在且尚未附加监听器，则进行添加
     if (element && !attached) {
-      console.log('434343');
       element.addEventListener(type, listener, {
         capture,
         passive,
@@ -70,6 +69,7 @@ function useEventListener(type: string, listener: EventListener, options?: UseEv
 
   onUnmounted(() => remove(target));
   onDeactivated(() => remove(target));
+  onMountedOrActivated(() => add(target));
 
   let stopWatch: WatchStopHandle;
 
