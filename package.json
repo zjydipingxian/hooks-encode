@@ -16,7 +16,7 @@
     "cli": "node cli/index.mjs init",
     "build:file": "node cli/generate-docs.mjs",
     "wt": "node watch.js",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "pnpm run build &&  vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },

@@ -32,5 +32,8 @@
   "dependencies": {
     "@babel/runtime": "^7.24.8",
     "tslib": "^2.6.3"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   }
 }

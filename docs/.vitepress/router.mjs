@@ -2,6 +2,7 @@ const Router = {
   Request: ['useRequest', 'useAxios'],
   Dom: [
     'useSize',
+    'useRect',
     'useKeyPress',
     'useFullscreen',
     'useDocumentVisibility',

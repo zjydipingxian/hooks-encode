@@ -1,3 +1,8 @@
 import useBoolean from './useBoolean';
 import useToggle from './useToggle';
-export { useBoolean, useToggle };
+import useRect from "./useRect";
+export {
+  useBoolean,
+  useToggle,
+  useRect
+};
