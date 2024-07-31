@@ -1,7 +1,7 @@
 import { isRef, ref, Ref, watch as vueWatch } from 'vue';
-import { getValueType, TypeSerializers } from '../utils';
+import { getValueType, inBrowser, TypeSerializers } from '../utils';
 
-const storage = localStorage;
+const storage = inBrowser ? localStorage : null;
 
 interface Options {
   watch: boolean;
@@ -20,7 +20,7 @@ function useLocalStorage<T = any>(key: string, initialValue?: T | Ref<T>, option
     if (initialValue !== undefined) {
       data.value = isRef(initialValue) ? initialValue.value : initialValue;
     } else {
-      data.value = JSON.parse(storage.getItem(key) || '{}');
+      data.value = JSON.parse(storage?.getItem(key) || '{}');
     }
   } catch (error) {
     console.log(error, 'useLocalStorage初始化失败');
@@ -31,10 +31,10 @@ function useLocalStorage<T = any>(key: string, initialValue?: T | Ref<T>, option
   // 判断类型取格式化方法
   let serializer = TypeSerializers[type];
 
-  const setStorage = () => storage.setItem(key, serializer.write(data.value));
+  const setStorage = () => storage?.setItem(key, serializer.write(data.value));
 
   // 状态监听
-  if (watch) {
+  if (watch && storage) {
     vueWatch(
       data,
       (newValue) => {

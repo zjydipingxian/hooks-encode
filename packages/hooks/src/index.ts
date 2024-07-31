@@ -8,6 +8,7 @@ import useClickAway from './useClickAway';
 import useHover from './useHover';
 import useFullscreen from "./useFullscreen";
 import useLocalStorage from "./useLocalStorage";
+import useDebounce from "./useDebounce";
 export {
   useBoolean,
   useToggle,
@@ -18,5 +19,6 @@ export {
   useClickAway,
   useHover,
   useFullscreen,
-  useLocalStorage
+  useLocalStorage,
+  useDebounce
 };
