@@ -19,7 +19,9 @@
     "docs:dev": "pnpm run build &&  vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "commit": "git-cz"
+    "prepare": "husky install",
+    "commit": "git-cz",
+    "changelog": "conventional-changelog -p angular -r 2 -i CHANGELOG.md -s"
   },
   "config": {
     "commitizen": {
@@ -61,12 +63,14 @@
     "chokidar": "^3.6.0",
     "commander": "^12.1.0",
     "commitizen": "^4.3.0",
+    "conventional-changelog-cli": "^5.0.0",
     "cspell": "^8.10.4",
     "cz-git": "^1.9.4",
     "eslint": "^9.6.0",
     "eslint-config-prettier": "^9.1.0",
     "fs-extra": "^11.2.0",
     "globals": "^15.8.0",
+    "husky": "8.0.3",
     "json-templater": "^1.2.0",
     "nodemon": "^3.1.4",
     "ora": "^8.0.1",
