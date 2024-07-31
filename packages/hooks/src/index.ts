@@ -10,6 +10,8 @@ import useFullscreen from "./useFullscreen";
 import useLocalStorage from "./useLocalStorage";
 import useDebounce from "./useDebounce";
 import useDebounceFn from "./useDebounceFn";
+import useThrottle from "./useThrottle";
+import useThrottleFn from "./useThrottleFn";
 export {
   useBoolean,
   useToggle,
@@ -22,5 +24,7 @@ export {
   useFullscreen,
   useLocalStorage,
   useDebounce,
-  useDebounceFn
+  useDebounceFn,
+  useThrottle,
+  useThrottleFn
 };
