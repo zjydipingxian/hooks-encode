@@ -3,6 +3,7 @@ const Router = {
   Dom: [
     'useEventListener',
     'useWindowSize',
+    'useClickAway',
     // 'useSize',
     'useRect',
     // 'useKeyPress',
