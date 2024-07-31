@@ -1,6 +1,6 @@
 {
   "name": "zhongjiayao_v3_hooks",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "vue3 业务 Hooks",
   "main": "./lib/index.js",
   "module": "./es/index.js",
