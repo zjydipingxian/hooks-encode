@@ -1,31 +1,4 @@
-const Router = {
-  // Request: ['useRequest', 'useAxios'],
-  Dom: [
-    'useEventListener',
-    'useWindowSize',
-    'useClickAway',
-    'useHover',
-    // 'useSize',
-    'useRect',
-    // 'useKeyPress',
-    // 'useFullscreen',
-    // 'useDocumentVisibility',
-    // 'useHover',
-    // 'useInViewport',
-  ],
-  State: [
-    // 'useUrlState',
-    'useToggle',
-    'useBoolean',
-    // 'useLocalStorageState',
-    // 'useLocalforage',
-    // 'useThrottle',
-    // 'useDebounce',
-  ],
-  // Data: ['useTable'],
-  Worker: ['useCountDown'],
-  // 'useWorkerFunction'
-};
+import Router from './generate-router.js'
 
 function getRouterConfig(langPrefix = '/') {
   return [
@@ -40,7 +13,6 @@ function getRouterConfig(langPrefix = '/') {
 }
 
 
-getRouterConfig()
 
 
 export {

@@ -1,18 +1,18 @@
 // 路由映射关系。 用于输入文件目录，以及选择归类的时候，自动创建路由关系
 import fs from 'fs-extra';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import _generate from '@babel/generator';
 import * as parser from '@babel/parser';
 import _traverse from '@babel/traverse';
 import * as t from '@babel/types';
+import { __dirname } from './util.mjs';
 
-import { packagesDir } from './util.mjs';
 const traverse = _traverse.default;
 const generate = _generate.default;
-
+const docsDir = resolve(__dirname, '../docs');
 export async function updateCreateRouterFile(hooksType, folderName) {
   return new Promise((resolve, reject) => {
-    const routerFilePath = join(packagesDir, 'router.js');
+    const routerFilePath = join(docsDir, '.vitepress', 'generate-router.js');
 
     // 读取现有的 Router.js 文件内容
     if (fs.existsSync(routerFilePath)) {
