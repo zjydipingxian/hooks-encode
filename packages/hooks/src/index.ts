@@ -6,12 +6,12 @@ import useEventListener from './useEventListener';
 import useWindowSize from './useWindowSize';
 import useClickAway from './useClickAway';
 import useHover from './useHover';
-import useFullscreen from "./useFullscreen";
-import useLocalStorage from "./useLocalStorage";
-import useDebounce from "./useDebounce";
-import useDebounceFn from "./useDebounceFn";
-import useThrottle from "./useThrottle";
-import useThrottleFn from "./useThrottleFn";
+import useFullscreen from './useFullscreen';
+import useLocalStorage from './useLocalStorage';
+import useDebounce from './useDebounce';
+import useDebounceFn from './useDebounceFn';
+import useThrottle from './useThrottle';
+import useThrottleFn from './useThrottleFn';
 export {
   useBoolean,
   useToggle,
@@ -26,5 +26,6 @@ export {
   useDebounce,
   useDebounceFn,
   useThrottle,
-  useThrottleFn
+  useThrottleFn,
+  useFDF,
 };

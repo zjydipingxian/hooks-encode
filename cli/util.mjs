@@ -57,9 +57,8 @@ export async function createDemo(path, folderName) {
   const demoExists = await fs.pathExists(demoPath);
   if (!demoExists) {
     await fs.ensureDir(join(path, 'demo'));
+    await fs.writeFile(join(path, 'demo', 'index.vue'), createUseHooksDemo(folderName));
   }
-
-  await fs.writeFile(join(path, 'demo', 'index.vue'), createUseHooksDemo(folderName));
 }
 
 // 通用的检查和创建文件的方法
@@ -68,6 +67,6 @@ async function ensureFile(filePath, contentGenerator) {
   if (!exists) {
     await fs.writeFile(filePath, contentGenerator());
   } else {
-    console.log(`File ${filePath} already exists. Skipping creation.`);
+    // console.log(`File ${filePath} already exists. Skipping creation.`);
   }
 }
