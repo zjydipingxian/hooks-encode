@@ -14,9 +14,9 @@ module.exports = {
       subject: '填写简短精炼的变更描述 :\n',
       body: '填写更加详细的变更描述（可选）。使用 "|" 换行 :\n',
       breaking: '列举非兼容性重大的变更（可选）。使用 "|" 换行 :\n',
-      footerPrefixesSelect: '选择关联issue前缀（可选）:',
-      customFooterPrefix: '输入自定义issue前缀 :',
-      footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
+      // footerPrefixesSelect: '选择关联issue前缀（可选）:',
+      // customFooterPrefix: '输入自定义issue前缀 :',
+      // footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
       confirmCommit: '是否提交或修改commit ?',
     },
     types: [
@@ -49,11 +49,11 @@ module.exports = {
     breaklineNumber: 100,
     breaklineChar: '|',
     skipQuestions: [],
-    issuePrefixes: [
-      // 如果使用 gitee 作为开发管理
-      { value: 'link', name: 'link:     链接 ISSUES 进行中' },
-      { value: 'closed', name: 'closed:   标记 ISSUES 已完成' },
-    ],
+    // issuePrefixes: [
+    //   // 如果使用 gitee 作为开发管理
+    //   { value: 'link', name: 'link:     链接 ISSUES 进行中' },
+    //   { value: 'closed', name: 'closed:   标记 ISSUES 已完成' },
+    // ],
     customIssuePrefixAlign: 'top',
     emptyIssuePrefixAlias: 'skip',
     customIssuePrefixAlias: 'custom',
