@@ -21,6 +21,7 @@
     "docs:preview": "vitepress preview docs",
     "prepare": "husky install",
     "commit": "git-cz",
+    "commitlint": "commitlint --edit",
     "changelog": "conventional-changelog -p angular -r 2 -i CHANGELOG.md -s"
   },
   "config": {
