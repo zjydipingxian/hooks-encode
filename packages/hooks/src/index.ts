@@ -7,6 +7,7 @@ import useWindowSize from './useWindowSize';
 import useClickAway from './useClickAway';
 import useHover from './useHover';
 import useFullscreen from "./useFullscreen";
+import useLocalStorage from "./useLocalStorage";
 export {
   useBoolean,
   useToggle,
@@ -16,5 +17,6 @@ export {
   useWindowSize,
   useClickAway,
   useHover,
-  useFullscreen
+  useFullscreen,
+  useLocalStorage
 };
