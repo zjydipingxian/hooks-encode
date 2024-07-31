@@ -27,10 +27,6 @@ const Router = {
 
 function getRouterConfig(langPrefix = '/') {
   return [
-    {
-      text: '介绍',
-      link: `${langPrefix}introduce`,
-    },
     ...Object.entries(Router).map(([text, children]) => ({
       text,
       items: children.map(hookName => ({
@@ -42,7 +38,7 @@ function getRouterConfig(langPrefix = '/') {
 }
 
 
-
+getRouterConfig()
 
 
 export {

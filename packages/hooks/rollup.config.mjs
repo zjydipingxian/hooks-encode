@@ -4,6 +4,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'; // 查找和打包nod
 import typescript from '@rollup/plugin-typescript'; // 解析TypeScript
 import { babel, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import del from 'rollup-plugin-delete';
+import terser from '@rollup/plugin-terser';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
@@ -24,6 +25,7 @@ const tsPlugins = [
   nodeResolve(), // 允许你使用 'import' 语句来导入
   commonJS(), // 允许你导入 CommonJS 模块
   babel({ babelHelpers: 'bundled' }),
+  terser(),
 ];
 
 // ES 模块构建配置
