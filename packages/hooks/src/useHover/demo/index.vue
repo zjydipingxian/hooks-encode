@@ -4,7 +4,7 @@
 
 <script setup>
   import { useHover } from 'zhongjiayao_v3_hooks';
-  import { ref, nextTick } from 'vue';
+  import { ref } from 'vue';
 
   const isHovering = ref(false);
   const root = ref();
