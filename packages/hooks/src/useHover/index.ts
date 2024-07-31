@@ -1,5 +1,5 @@
 import { Ref, unref } from 'vue';
-import useBoolean from '../../es/useBoolean/index';
+import useBoolean from '../useBoolean/index';
 import useEventListener from '../useEventListener';
 
 export interface Options {
