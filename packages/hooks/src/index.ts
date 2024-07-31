@@ -9,6 +9,7 @@ import useHover from './useHover';
 import useFullscreen from "./useFullscreen";
 import useLocalStorage from "./useLocalStorage";
 import useDebounce from "./useDebounce";
+import useDebounceFn from "./useDebounceFn";
 export {
   useBoolean,
   useToggle,
@@ -20,5 +21,6 @@ export {
   useHover,
   useFullscreen,
   useLocalStorage,
-  useDebounce
+  useDebounce,
+  useDebounceFn
 };

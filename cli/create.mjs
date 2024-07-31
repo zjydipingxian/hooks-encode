@@ -45,6 +45,7 @@ export default async () => {
     choices: [
       { name: '通用', value: 'Common', description: '通用' },
       { name: '业务', value: 'Worker', description: '业务相关' },
+      { name: '效果', value: 'Effect', description: '作用，影响相关' },
       { name: '状态', value: 'State', description: '操作状态相关' },
       { name: '文档对象', value: 'Dom', description: '操作Dom相关' },
       { name: '其他', value: 'Other', description: '其他杂项' },
