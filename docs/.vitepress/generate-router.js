@@ -1,5 +1,5 @@
 const Router = {
-  Dom: ['useEventListener', 'useWindowSize', 'useClickAway', 'useHover', 'useRect'],
+  Dom: ['useEventListener', 'useWindowSize', 'useClickAway', 'useHover', 'useRect', "useFullscreen"],
   State: ['useToggle', 'useBoolean'],
   Worker: ['useCountDown']
 };
