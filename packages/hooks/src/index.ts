@@ -5,6 +5,7 @@ import useCountDown from "./useCountDown";
 import useEventListener from "./useEventListener";
 import useWindowSize from "./useWindowSize";
 import useClickAway from "./useClickAway";
+import useHover from "./useHover";
 export {
   useBoolean,
   useToggle,
@@ -12,5 +13,6 @@ export {
   useCountDown,
   useEventListener,
   useWindowSize,
-  useClickAway
+  useClickAway,
+  useHover
 };

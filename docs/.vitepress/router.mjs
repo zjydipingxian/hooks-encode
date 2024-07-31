@@ -4,6 +4,7 @@ const Router = {
     'useEventListener',
     'useWindowSize',
     'useClickAway',
+    'useHover',
     // 'useSize',
     'useRect',
     // 'useKeyPress',

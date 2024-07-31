@@ -32,7 +32,7 @@ function useEventListener(type: string, listener: EventListener, options?: UseEv
     return;
   }
 
-  const { target = window ?? options?.target, capture = false, passive = false } = {};
+  const { target = options?.target ? options.target : window, capture = false, passive = false } = {};
 
   // 是否已经清理过事件监听器。
   let cleaned = false;
