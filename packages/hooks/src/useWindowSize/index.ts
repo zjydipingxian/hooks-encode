@@ -1,5 +1,5 @@
 import { ref, Ref } from 'vue';
-import { inBrowser } from '../utils';
+import { isBrowser } from '../utils';
 import useEventListener from '../useEventListener';
 
 let width: Ref<number>;
@@ -10,7 +10,7 @@ function useWindowSize() {
     width = ref(0);
     height = ref(0);
 
-    if (inBrowser) {
+    if (isBrowser) {
       const update = () => {
         width.value = window.innerWidth;
         height.value = window.innerHeight;

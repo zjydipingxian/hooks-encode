@@ -1,7 +1,7 @@
 import { isRef, ref, Ref, watch as vueWatch } from 'vue';
-import { getValueType, inBrowser, TypeSerializers } from '../utils';
+import { getValueType, isBrowser, TypeSerializers } from '../utils';
 
-const storage = inBrowser ? localStorage : null;
+const storage = isBrowser ? localStorage : null;
 
 interface Options {
   watch: boolean;

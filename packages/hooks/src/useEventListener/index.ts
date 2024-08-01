@@ -1,4 +1,4 @@
-import { inBrowser, onMountedOrActivated } from '../utils';
+import { isBrowser, onMountedOrActivated } from '../utils';
 import { isRef, onDeactivated, onUnmounted, Ref, unref, watch, type WatchStopHandle } from 'vue';
 
 type TargetRef = EventTarget | Ref<EventTarget | undefined>;
@@ -28,7 +28,7 @@ function useEventListener<K extends keyof DocumentEventMap>(
 ): () => void;
 
 function useEventListener(type: string, listener: EventListener, options?: UseEventListenerOptions) {
-  if (!inBrowser) {
+  if (!isBrowser) {
     return;
   }
 

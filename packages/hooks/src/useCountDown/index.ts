@@ -1,5 +1,5 @@
 import { computed, onActivated, onBeforeUnmount, onDeactivated, ref } from 'vue';
-import { cancelRaf, inBrowser, raf } from '../utils';
+import { cancelRaf, isBrowser, raf } from '../utils';
 
 export type CurrentTime = {
   days: number;
@@ -118,7 +118,7 @@ function useCountDown(options: UseCountDownOptions) {
 
   const tick = () => {
     // 检查是否在浏览器环境中，
-    if (!inBrowser) {
+    if (!isBrowser) {
       return;
     }
 

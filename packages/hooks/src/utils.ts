@@ -1,17 +1,17 @@
 import { nextTick, onMounted, onActivated } from 'vue';
 
-export const inBrowser = typeof window !== 'undefined';
+export const isBrowser = typeof window !== 'undefined';
 
 export type Fn = (...[]: any[]) => any;
 
 export const supportsPassive = true;
 
 export function raf(fn: FrameRequestCallback): number {
-  return inBrowser ? requestAnimationFrame(fn) : -1;
+  return isBrowser ? requestAnimationFrame(fn) : -1;
 }
 
 export function cancelRaf(id: number) {
-  if (inBrowser) {
+  if (isBrowser) {
     cancelAnimationFrame(id);
   }
 }

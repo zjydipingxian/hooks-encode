@@ -1,15 +1,17 @@
 import { nextTick, onMounted, onActivated } from 'vue';
 
-export const inBrowser = typeof window !== 'undefined';
+export const isBrowser = typeof window !== 'undefined';
+
+export type Fn = (...[]: any[]) => any;
 
 export const supportsPassive = true;
 
 export function raf(fn: FrameRequestCallback): number {
-  return inBrowser ? requestAnimationFrame(fn) : -1;
+  return isBrowser ? requestAnimationFrame(fn) : -1;
 }
 
 export function cancelRaf(id: number) {
-  if (inBrowser) {
+  if (isBrowser) {
     cancelAnimationFrame(id);
   }
 }
@@ -98,4 +100,38 @@ export const TypeSerializers: Record<'boolean' | 'object' | 'number' | 'any' | '
     read: (v: any) => (v != null ? v : null),
     write: (v: any) => String(v),
   },
+};
+
+/**
+ * 防抖
+ * @param fn
+ * @param delay
+ * @returns
+ */
+export const debounce = (fn: Fn, delay: number) => {
+  let timer: NodeJS.Timeout | null = null;
+  return function (...args: []) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      // @ts-ignore
+      fn.call(this, ...args);
+    }, delay);
+  };
+};
+
+/**
+ * 节流
+ * @param fn
+ * @param delay
+ * @returns
+ */
+export const throttle = (fn: Fn, delay: number) => {
+  let oldNow = Date.now();
+  return function (...args: []) {
+    const currNow = Date.now();
+    if (currNow - oldNow < delay) return;
+    oldNow = currNow;
+    // @ts-ignore
+    fn.call(this, ...args);
+  };
 };

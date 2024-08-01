@@ -1,6 +1,6 @@
 import { Ref, unref } from 'vue';
 import useEventListener from '../useEventListener';
-import { inBrowser } from '../utils';
+import { isBrowser } from '../utils';
 
 export type UseClickAwayOptions = {
   eventName?: keyof DocumentEventMap | Array<keyof DocumentEventMap>;
@@ -11,7 +11,7 @@ function useClickAway(
   listener: EventListener,
   options: UseClickAwayOptions = {},
 ) {
-  if (!inBrowser) {
+  if (!isBrowser) {
     return;
   }
 
