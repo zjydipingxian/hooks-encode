@@ -24,6 +24,16 @@ export default defineConfig({
   description: "Web Vue3 Hooks Code",
   base:"/hooks-encode/",
   themeConfig: {
+    search: {
+      provider: 'local'
+    },
+    lastUpdated: {
+      text: '最近更新',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
     logo: '/logo.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
