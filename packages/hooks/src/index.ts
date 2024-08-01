@@ -26,6 +26,5 @@ export {
   useDebounce,
   useDebounceFn,
   useThrottle,
-  useThrottleFn,
-  useFDF,
+  useThrottleFn
 };

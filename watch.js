@@ -5,7 +5,6 @@ const chokidar = require('chokidar');
 const templates = path.resolve(process.cwd(), './packages/hooks/src/**/');
 // 获取 docs 下的文件目录地址
 const docsDir = path.resolve(__dirname, 'docs');
-console.log('🚀 ~ docsDir:', docsDir);
 
 let watcher = chokidar.watch([templates], {
   persistent: true,
