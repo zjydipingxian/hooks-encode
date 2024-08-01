@@ -3,9 +3,11 @@
 layout: home
 
 hero:
-  name: "ZhongJiaYao"
-  text: "Vue3 Hooks Code"
+  name: "Vue3 Hooks Code"
   tagline: 冲冲冲！！！
+  image:
+    src: /logo@2x.png
+    alt: VitePress
   actions:
     - theme: alt
       text: 指南

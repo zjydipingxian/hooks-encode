@@ -6,7 +6,7 @@ import { getRouterConfig } from './router.mjs'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "ZhongJiaYao",
-
+  
   vite: {
     resolve: {
       alias: {
@@ -24,8 +24,10 @@ export default defineConfig({
   description: "Web Vue3 Hooks Code",
   base:"/hooks-encode/",
   themeConfig: {
+    logo: '/logo.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
+      
       { text: '指南', link: '/guide' },
       { text: 'Hooks', link: '/useEventListener' }
     ],
