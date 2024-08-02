@@ -1,7 +1,7 @@
 const Router = {
-  Dom: ['useEventListener', 'useWindowSize', 'useClickAway', 'useHover', 'useRect', "useFullscreen", "useTitle"],
-  State: ['useToggle', 'useBoolean', "useLocalStorage", "useDebounce", "useThrottle"],
+  Dom: ['useClickAway', 'useEventListener', "useFullscreen", 'useHover', 'useRect', "useTitle", 'useWindowSize'],
+  State: ["useBoolean", "useDebounce", "useLocalStorage", "useThrottle", 'useToggle'],
   Worker: ['useCountDown'],
-  Effect: ["useDebounceFn", "useThrottleFn"]
+  Effect: ["useDebounceFn", "useThrottleFn"],
 };
 export default Router;

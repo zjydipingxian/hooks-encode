@@ -28,5 +28,5 @@ export {
   useDebounceFn,
   useThrottle,
   useThrottleFn,
-  useTitle,
+  useTitle
 };
