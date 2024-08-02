@@ -15,7 +15,7 @@
     "eslint": "eslint  --fix  ./packages/**/*.{js,ts} ",
     "cli": "node cli/index.mjs init",
     "build:file": "node cli/generate-docs.mjs",
-    "wt": "node watch.js",
+    "wt": "node cli/watch.mjs",
     "docs:dev": "node cli/start.mjs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",

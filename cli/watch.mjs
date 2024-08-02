@@ -1,10 +1,11 @@
-const path = require('path');
-const fs = require('fs');
-const chokidar = require('chokidar');
+import path from 'path';
+import fs from 'fs-extra';
+import chokidar from 'chokidar';
+import { __dirname } from './util.mjs';
 
 const templates = path.resolve(process.cwd(), './packages/hooks/src/**/');
 // 获取 docs 下的文件目录地址
-const docsDir = path.resolve(__dirname, 'docs');
+const docsDir = path.resolve(__dirname, '../docs');
 
 let watcher = chokidar.watch([templates], {
   persistent: true,
@@ -14,23 +15,22 @@ let watcher = chokidar.watch([templates], {
 watcher.on('ready', function () {
   // 添加
   watcher.on('add', function (filePath) {
+    console.log('add', filePath);
     syncFile(filePath, 'add');
   });
 
   // 改变
   watcher.on('change', function (filePath) {
+    console.log('change', filePath);
     syncFile(filePath, 'change');
   });
 
   // 删除
   watcher.on('unlink', function (filePath) {
+    console.log('unlink', filePath);
     syncFile(filePath, 'unlink');
   });
 });
-
-function exec(cmd) {
-  return require('child_process').execSync(cmd).toString().trim();
-}
 
 // 文件的增删查改
 function syncFile(filePath, action) {
