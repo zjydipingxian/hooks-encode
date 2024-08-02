@@ -35,6 +35,12 @@ function exec(cmd) {
 // 文件的增删查改
 function syncFile(filePath, action) {
   const relativePath = path.relative(path.resolve(process.cwd(), './packages/hooks/src'), filePath);
+
+  // meta.json 不处理 但处理其他事情 比如 修改 里面的type内容时候， 要更新 generate-router.js的东西
+  if (relativePath.indexOf('meta.json') > -1) {
+    return;
+  }
+
   const targetPath = path.join(docsDir, relativePath);
   if (action === 'add' || action === 'change') {
     fs.copyFileSync(filePath, targetPath);

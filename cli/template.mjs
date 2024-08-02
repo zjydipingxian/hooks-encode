@@ -25,3 +25,10 @@ export const createUseHooksMd = (name) => `\
 
 <preview path="./demo/index.vue" title="基本使用" description='${name}'></preview>
 `;
+
+// 创建 meta.json 模板
+export const createMeta = (type) => `\
+{
+  "type": "${type}",
+}
+  `;

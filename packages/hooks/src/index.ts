@@ -12,7 +12,7 @@ import useDebounce from './useDebounce';
 import useDebounceFn from './useDebounceFn';
 import useThrottle from './useThrottle';
 import useThrottleFn from './useThrottleFn';
-import useTitle from "./useTitle";
+import useTitle from './useTitle';
 export {
   useBoolean,
   useToggle,
@@ -28,5 +28,5 @@ export {
   useDebounceFn,
   useThrottle,
   useThrottleFn,
-  useTitle
+  useTitle,
 };

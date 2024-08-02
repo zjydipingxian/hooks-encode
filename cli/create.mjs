@@ -43,12 +43,11 @@ export default async () => {
   const hooksType = await select({
     message: '请选择Hooks用途分类：',
     choices: [
-      { name: '通用', value: 'Common', description: '通用' },
-      { name: '业务', value: 'Worker', description: '业务相关' },
-      { name: '效果', value: 'Effect', description: '作用，影响相关' },
-      { name: '状态', value: 'State', description: '操作状态相关' },
-      { name: '文档对象', value: 'Dom', description: '操作Dom相关' },
-      { name: '其他', value: 'Other', description: '其他杂项' },
+      { name: '业务:      业务相关的分类', value: 'Worker' },
+      { name: '效果:      作用，影响相关', value: 'Effect' },
+      { name: '状态:      操作状态相关', value: 'State' },
+      { name: '文档对象:  操作Dom相关', value: 'Dom' },
+      { name: '其他:      其他杂项', value: 'Other' },
     ],
   });
 
@@ -61,7 +60,7 @@ export default async () => {
   const folderNameOra = ora();
   folderNameOra.start(`${folderName} 正在创建中！！！`);
 
-  await generate(packagesDir, folderName);
+  await generate(packagesDir, folderName, hooksType);
 
   folderNameOra.succeed(`${folderName} 创建成功！！！`);
 

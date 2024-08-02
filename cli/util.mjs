@@ -2,13 +2,16 @@ import fs from 'fs-extra';
 import { createRequire } from 'module';
 import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { format } from 'prettier';
+
 // 创建模板
-import { createUseHooksTemplate, createUseHooksDemo, createUseHooksMd } from './template.mjs';
+import { createUseHooksTemplate, createUseHooksDemo, createUseHooksMd, createMeta } from './template.mjs';
 
 export const __dirname = dirname(fileURLToPath(import.meta.url));
 export const require = createRequire(import.meta.url);
 
 export const packagesDir = resolve(__dirname, '../packages/hooks/src');
+export const prettierConfig = fs.readFileSync(resolve(__dirname, '../', '.prettierrc.json'), 'utf-8');
 
 // 检查文件夹是否存在过
 export async function checkDirectories() {
@@ -28,7 +31,7 @@ export async function checkDirectories() {
 }
 
 // 创建 hooks 目录和文件夹
-export async function createHooksDirectoryAndFiles(packagesDir, folderName) {
+export async function createHooksDirectoryAndFiles(packagesDir, folderName, hooksType) {
   const path = join(packagesDir, folderName);
 
   // 检查目录是否存在
@@ -47,6 +50,12 @@ export async function createHooksDirectoryAndFiles(packagesDir, folderName) {
   await ensureFile(join(path, 'index.md'), () => createUseHooksMd(folderName));
   // 检查并创建 index.ts 文件
   await ensureFile(join(path, 'index.ts'), () => createUseHooksTemplate(folderName));
+
+  // 检查并创建 meta.json 文件
+  const formatMeta = await format(createMeta(hooksType), { ...prettierConfig, parser: 'json' });
+  await ensureFile(join(path, 'meta.json'), () => {
+    return formatMeta;
+  });
 }
 
 // 目录下创建 demo 目录和 index.vue 文件
@@ -65,7 +74,7 @@ export async function createDemo(path, folderName) {
 async function ensureFile(filePath, contentGenerator) {
   const exists = await fs.pathExists(filePath);
   if (!exists) {
-    await fs.writeFile(filePath, contentGenerator());
+    await fs.writeFileSync(filePath, contentGenerator());
   } else {
     // console.log(`File ${filePath} already exists. Skipping creation.`);
   }

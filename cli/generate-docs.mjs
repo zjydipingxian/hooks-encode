@@ -10,7 +10,7 @@ const docsDir = resolve(__dirname, '../docs');
 fs.readdirSync(packagesDir).forEach(async (packageName) => {
   const packagePath = join(packagesDir, packageName);
   if (fs.statSync(packagePath).isDirectory()) {
-    generate(packagesDir, packageName);
+    generate(packagesDir, packageName, 'Other');
     // console.log('🚀 ~ fs.readdirSync ~ packagesDir, packageName:', packagesDir, packageName);
   }
 });
