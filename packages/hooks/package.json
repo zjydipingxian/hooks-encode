@@ -6,9 +6,9 @@
   "module": "./es/index.js",
   "unpkg": "./dist/zhongjiayao_v3_hooks",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "clearDist": "rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf node_modules",
+    "clearDist": "rimraf dist lib es",
+    "build": "node scripts/build.mjs"
   },
   "keywords": [
     "encode",
