@@ -15,6 +15,7 @@ import useThrottleFn from './useThrottleFn';
 import useTitle from './useTitle';
 import useDocumentVisibility from "./useDocumentVisibility";
 import useVirtualList from "./useVirtualList";
+import useResizeObserver from "./useResizeObserver";
 export {
   useBoolean,
   useToggle,
@@ -32,5 +33,6 @@ export {
   useThrottleFn,
   useTitle,
   useDocumentVisibility,
-  useVirtualList
+  useVirtualList,
+  useResizeObserver
 };
