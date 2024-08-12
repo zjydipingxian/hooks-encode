@@ -16,6 +16,7 @@ import useTitle from './useTitle';
 import useDocumentVisibility from "./useDocumentVisibility";
 import useVirtualList from "./useVirtualList";
 import useResizeObserver from "./useResizeObserver";
+import useElementBounding from "./useElementBounding";
 export {
   useBoolean,
   useToggle,
@@ -34,5 +35,6 @@ export {
   useTitle,
   useDocumentVisibility,
   useVirtualList,
-  useResizeObserver
+  useResizeObserver,
+  useElementBounding
 };
