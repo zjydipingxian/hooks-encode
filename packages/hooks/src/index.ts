@@ -13,6 +13,7 @@ import useDebounceFn from './useDebounceFn';
 import useThrottle from './useThrottle';
 import useThrottleFn from './useThrottleFn';
 import useTitle from './useTitle';
+import useDocumentVisibility from "./useDocumentVisibility";
 export {
   useBoolean,
   useToggle,
@@ -28,5 +29,6 @@ export {
   useDebounceFn,
   useThrottle,
   useThrottleFn,
-  useTitle
+  useTitle,
+  useDocumentVisibility
 };
