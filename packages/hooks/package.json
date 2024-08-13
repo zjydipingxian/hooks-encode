@@ -8,7 +8,8 @@
   "scripts": {
     "clean": "rimraf node_modules",
     "clearDist": "rimraf dist lib es",
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "prepublish": "pnpm run build"
   },
   "keywords": [
     "encode",
