@@ -11,8 +11,8 @@
     "build": "pnpm -r --filter=./packages/* run build",
     "pub": "pnpm run clean-dist &&  pnpm run build && pnpm -r --filter=./packages/*  publish --access=public",
     "pub:beta": "pnpm run build && pnpm -r --filter=./packages/* publish --tag beta",
-    "format": "prettier --write packages/  --fix",
-    "eslint": "eslint  --fix  ./packages/**/*.{js,ts} ",
+    "format": "prettier --write ./packages/**/*.{js,ts}  --fix",
+    "eslint": "eslint  --fix  ./packages/**/*.{js,ts}",
     "cli": "node cli/index.mjs init",
     "build:file": "node cli/generate-docs.mjs",
     "wt": "node cli/watch.mjs",
@@ -22,7 +22,7 @@
     "prepare": "husky install",
     "commit": "git-cz",
     "commitlint": "commitlint --edit",
-    "changelog": "conventional-changelog -p angular -r 2 -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "config": {
     "commitizen": {
