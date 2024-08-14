@@ -6,6 +6,7 @@
 
 ### Bug Fixes
 
+* **husky:** 修复pre-push脚本换行符问题并更新changelog ([5693021](https://github.com/zjydipingxian/hooks-encode/commit/56930211dd71dccc5e19ba7eb2f5fab50cc1d5c6))
 * **husky:** 修复pre-push脚本中换行符问题 ([c04501e](https://github.com/zjydipingxian/hooks-encode/commit/c04501e60778585426a170c7cd1002b56f32fbe3))
 
 
