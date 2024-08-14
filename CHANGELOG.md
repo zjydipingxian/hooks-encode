@@ -37,6 +37,7 @@
 * **useThrottle:** 添加节流功能的Hook及文档 ([00de81a](https://github.com/zjydipingxian/hooks-encode/commit/00de81a15af00ff76c01367be9603b148d18ea42))
 * **useTitle:** 添加 useTitle 钩子并进行文档更新 ([199f50e](https://github.com/zjydipingxian/hooks-encode/commit/199f50ea98ac4e23a54f35d6b54df53228888738))
 * **useVirtualList:** 添加虚拟列表钩子以处理大型数据集 ([7292b7c](https://github.com/zjydipingxian/hooks-encode/commit/7292b7c9816ccf6aaa140ce662b281434d3ec0f0))
+* **zhongjiayao_v3_hooks:** 新增 useOnline Hook 以检查浏览器在线状态 ([37af4bc](https://github.com/zjydipingxian/hooks-encode/commit/37af4bc092affa0336b084c7bac8bfdbb07c5ae1))
 
 
 ### BREAKING CHANGES
