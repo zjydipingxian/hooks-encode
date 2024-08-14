@@ -4,6 +4,11 @@
 * 移除文档中未使用的插件和示例，并注释掉Router配置中的弃用功能 ([b17534b](https://github.com/zjydipingxian/hooks-encode/commit/b17534b62da08a54ffe733aafdaae88e7edea2da))
 
 
+### Bug Fixes
+
+* **husky:** 修复pre-push脚本中换行符问题 ([c04501e](https://github.com/zjydipingxian/hooks-encode/commit/c04501e60778585426a170c7cd1002b56f32fbe3))
+
+
 ### Features
 
 * 发布`zhongjiayao_v3_hooks`的`1.0.0`版本，设置访问级别为public并更新内部依赖性。移除直接发布命令，使用changeset进行发布 ([6ed8ddf](https://github.com/zjydipingxian/hooks-encode/commit/6ed8ddf17fac46ae1a96bf71ca15b14f9b41189c))
