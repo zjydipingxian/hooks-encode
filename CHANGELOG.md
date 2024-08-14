@@ -27,6 +27,7 @@
 * **hooks:** 添加 useWindowSize 钩子并更新相关路由 ([1166b6b](https://github.com/zjydipingxian/hooks-encode/commit/1166b6b286999584f1521ac11ec0f20226604e8a))
 * **hooks:** hooks包版本更新至0.0.8 ([7f1ccc7](https://github.com/zjydipingxian/hooks-encode/commit/7f1ccc7f4a69872d13526c2bf1abc31c87f3299f))
 * **husky:** 提交钩子中的 changelog 生成命令 ([0950815](https://github.com/zjydipingxian/hooks-encode/commit/0950815f74f79c26386edc1fdc3f7d1005d607f7))
+* **husky:** 添加更新changelog的预提交和预推送钩子 ([7e50f4d](https://github.com/zjydipingxian/hooks-encode/commit/7e50f4d5e96abe44cba606c8378f8f4be721b439))
 * **husky:** 添加changelog生成和预提交钩子 ([100fa9e](https://github.com/zjydipingxian/hooks-encode/commit/100fa9e1b83d30fece5de7be319c1d8cb276fd72))
 * **readme:** 添加项目特性、安装及使用说明 ([33e569d](https://github.com/zjydipingxian/hooks-encode/commit/33e569da0b7cd622688d5d291107f5079ff3c059))
 * **repo:** 初始化changeset系统以支持多包版本管理和发布" ([75ece67](https://github.com/zjydipingxian/hooks-encode/commit/75ece6709949760a0b11b5be1857330d9f891ccb))
