@@ -17,6 +17,7 @@ import useDocumentVisibility from "./useDocumentVisibility";
 import useVirtualList from "./useVirtualList";
 import useResizeObserver from "./useResizeObserver";
 import useElementBounding from "./useElementBounding";
+import useOnline from "./useOnline";
 export {
   useBoolean,
   useToggle,
@@ -36,5 +37,6 @@ export {
   useDocumentVisibility,
   useVirtualList,
   useResizeObserver,
-  useElementBounding
+  useElementBounding,
+  useOnline
 };
