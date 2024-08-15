@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 
-git add CHANGELOG.md && git commit -m "chore: update changelog" && git pull  origin master
+git add CHANGELOG.md && git commit -m "chore: update changelog" && git push origin master
