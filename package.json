@@ -82,6 +82,7 @@
     "rollup": "^4.18.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.1",
+    "standard-version": "^9.5.0",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.1",
