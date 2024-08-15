@@ -42,10 +42,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install # 安装依赖
 
-      - name: Set Git user identity
-        run: |
-          git config --global user.email "1036432890@qq.com"
-          git config --global user.name "zhongjiayao"
+      
 
       - name: Generate Changelog
         run: pnpm changelog
