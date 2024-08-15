@@ -11,6 +11,7 @@
 * **husky:** 修复pre-push脚本换行符问题并更新changelog ([5693021](https://github.com/zjydipingxian/hooks-encode/commit/56930211dd71dccc5e19ba7eb2f5fab50cc1d5c6))
 * **husky:** 修复pre-push脚本中换行符问题 ([c04501e](https://github.com/zjydipingxian/hooks-encode/commit/c04501e60778585426a170c7cd1002b56f32fbe3))
 * **husky:** 移除pre-push钩子中的自动推送 ([8026db4](https://github.com/zjydipingxian/hooks-encode/commit/8026db4b9336fae1e32ca10200996d9242503f04))
+* **husky:** 重构changelog更新流程 ([ec33bb5](https://github.com/zjydipingxian/hooks-encode/commit/ec33bb554bd8783700633d5921e1aa0aecf56ea2))
 
 
 ### Features

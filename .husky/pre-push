@@ -2,3 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 
+pnpm run changelog && git add CHANGELOG.md && git commit -m "chore: update changelog" && git push origin master
+
+
+console.log('111111')
