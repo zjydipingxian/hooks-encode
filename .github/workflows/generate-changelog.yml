@@ -1,0 +1,27 @@
+name: Generate Changelog on Push
+
+on:
+  push:
+    branches:
+      - main # 你可以替换成你的目标分支
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.2.0 # 可以根据需要调整 pnpm 版本
+
+      - name: Generate Changelog
+        run: pnpm changelog
+
+      - name: Commit and push Changelog
+        run: |
+          git add CHANGELOG.md
+          git commit -m "Update Changelog"
+          git push origin HEAD:${{ github.ref }}
