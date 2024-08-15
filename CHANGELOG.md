@@ -13,6 +13,7 @@
 * **husky:** 移除pre-push钩子中的自动推送 ([8026db4](https://github.com/zjydipingxian/hooks-encode/commit/8026db4b9336fae1e32ca10200996d9242503f04))
 * **husky:** 重构changelog更新流程 ([ec33bb5](https://github.com/zjydipingxian/hooks-encode/commit/ec33bb554bd8783700633d5921e1aa0aecf56ea2))
 * **husky:** 自动更新changelog并提交 ([68e5706](https://github.com/zjydipingxian/hooks-encode/commit/68e5706cf75e0c87f9401a67893aa8374b3d8272))
+* **pre-push:** 确保changelog更新正确推送到origin master ([df552fd](https://github.com/zjydipingxian/hooks-encode/commit/df552fde9b47d20493bb1476d6c2a07bf47d6030))
 
 
 ### Features
