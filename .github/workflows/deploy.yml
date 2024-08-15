@@ -41,6 +41,15 @@ jobs:
         uses: actions/configure-pages@v3 # 在工作流程自动配置GithubPages
       - name: Install dependencies
         run: pnpm install # 安装依赖
+
+      - name: Generate Changelog
+        run: pnpm changelog
+
+      - name: Commit and push Changelog
+        run: |
+          git add CHANGELOG.md
+          git commit -m "Update Changelog"
+          git push origin HEAD:${{ github.ref }}
       - name: Build with VitePress
         run: |
           pnpm run docs:build # 启动项目
