@@ -3,7 +3,6 @@ import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve'; // 查找和打包node_modules中的第三方模
 import typescript from '@rollup/plugin-typescript'; // 解析TypeScript
 import { babel, getBabelOutputPlugin } from '@rollup/plugin-babel';
-import del from 'rollup-plugin-delete';
 import terser from '@rollup/plugin-terser';
 import { fileURLToPath } from 'url';
 import path from 'path';
