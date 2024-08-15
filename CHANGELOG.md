@@ -1,4 +1,4 @@
-# 1.0.0 (2024-08-14)
+# 1.0.0 (2024-08-15)
 
 
 * 移除文档中未使用的插件和示例，并注释掉Router配置中的弃用功能 ([b17534b](https://github.com/zjydipingxian/hooks-encode/commit/b17534b62da08a54ffe733aafdaae88e7edea2da))
@@ -23,6 +23,7 @@
 * **docs:** 添加文档生成和路由配置 ([8545084](https://github.com/zjydipingxian/hooks-encode/commit/85450846c2dc5de3e1827d28c0cf72733b95a289))
 * **docs:** 重构部署脚本和更新文档配置 ([2e8f613](https://github.com/zjydipingxian/hooks-encode/commit/2e8f613853be2d7e8a00661131df94d05947c47c))
 * **docs:** docs生成器更新 & meta.json类型修改 ([eb25ad3](https://github.com/zjydipingxian/hooks-encode/commit/eb25ad39cdee9a9444aec92cac11a539946219ac))
+* **hook:** 新增 useSessionStorage Hook ([7509674](https://github.com/zjydipingxian/hooks-encode/commit/7509674dcce0698f3bd2815090f7f06cccdcfc21))
 * **hooks:** "新增useDocumentVisibility钩子以检测页面可见性" ([970adda](https://github.com/zjydipingxian/hooks-encode/commit/970adda308a0759c24c379b9459e206873e91c0f))
 * **hooks:** 添加 useResizeObserver 钩子以监听元素尺寸变化 ([9d71b99](https://github.com/zjydipingxian/hooks-encode/commit/9d71b99aaa172ee5d0583d4023865e599c24263c))
 * **hooks:** 添加 useWindowSize 钩子并更新相关路由 ([1166b6b](https://github.com/zjydipingxian/hooks-encode/commit/1166b6b286999584f1521ac11ec0f20226604e8a))
