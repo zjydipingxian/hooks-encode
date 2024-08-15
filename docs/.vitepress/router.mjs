@@ -12,9 +12,6 @@ function getRouterConfig(langPrefix = '/') {
   ];
 }
 
-
-
-
 export {
   getRouterConfig
 }

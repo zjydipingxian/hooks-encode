@@ -1,10 +1,10 @@
 import fs from 'fs-extra';
-import { resolve, join } from 'path';
-import { packagesDir, __dirname } from './util.mjs';
+import { join } from 'path';
+import { packagesDir } from './util.mjs';
 import generate from './generate.mjs';
 
 // 获取 docs 下的文件目录地址
-const docsDir = resolve(__dirname, '../docs');
+// const docsDir = resolve(__dirname, '../docs');
 // import { createUseHooksDemo, createUseHooksMd } from './template.mjs';
 
 fs.readdirSync(packagesDir).forEach(async (packageName) => {

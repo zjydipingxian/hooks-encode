@@ -13,12 +13,12 @@ import useDebounceFn from './useDebounceFn';
 import useThrottle from './useThrottle';
 import useThrottleFn from './useThrottleFn';
 import useTitle from './useTitle';
-import useDocumentVisibility from "./useDocumentVisibility";
-import useVirtualList from "./useVirtualList";
-import useResizeObserver from "./useResizeObserver";
-import useElementBounding from "./useElementBounding";
-import useOnline from "./useOnline";
-import useSessionStorage from "./useSessionStorage";
+import useDocumentVisibility from './useDocumentVisibility';
+import useVirtualList from './useVirtualList';
+import useResizeObserver from './useResizeObserver';
+import useElementBounding from './useElementBounding';
+import useOnline from './useOnline';
+import useSessionStorage from './useSessionStorage';
 export {
   useBoolean,
   useToggle,
@@ -40,5 +40,5 @@ export {
   useResizeObserver,
   useElementBounding,
   useOnline,
-  useSessionStorage
+  useSessionStorage,
 };

@@ -10,10 +10,10 @@ const vitepress = execa('vitepress', ['dev', 'docs'], { stdio: 'inherit' });
 const watch = execa('pnpm', ['run', 'wt'], { stdio: 'inherit' });
 
 // 捕获错误
-// generateDocs.catch((error) => {
-//   console.error('generate-docs 脚本失败:', error);
-//   process.exit(1);
-// });
+generateDocs.catch((error) => {
+  console.error('generate-docs 脚本失败:', error);
+  process.exit(1);
+});
 
 vitepress.catch((error) => {
   console.error('VitePress 启动失败:', error);

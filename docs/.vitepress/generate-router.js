@@ -1,7 +1,7 @@
 const Router = {
-  Dom: ['useClickAway', 'useEventListener', "useFullscreen", 'useHover', 'useRect', "useTitle", 'useWindowSize', "useDocumentVisibility", "useVirtualList", "useResizeObserver", "useElementBounding"],
-  State: ["useBoolean", "useDebounce", "useLocalStorage", "useThrottle", 'useToggle', "useOnline", "useSessionStorage"],
+  Dom: ['useClickAway', 'useDocumentVisibility', 'useElementBounding', 'useEventListener', 'useFullscreen', 'useHover', 'useRect', 'useResizeObserver', 'useTitle', 'useVirtualList', 'useWindowSize'],
+  State: ['useBoolean', 'useDebounce', 'useLocalStorage', 'useOnline', 'useSessionStorage', 'useThrottle', 'useToggle'],
   Worker: ['useCountDown'],
-  Effect: ["useDebounceFn", "useThrottleFn"]
+  Effect: ['useDebounceFn', 'useThrottleFn']
 };
 export default Router;

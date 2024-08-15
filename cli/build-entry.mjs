@@ -1,14 +1,15 @@
-import { packagesDir } from './util.mjs';
+import { packagesDir, prettierConfig } from './util.mjs';
 import { join } from 'path';
 import fs from 'fs-extra';
 import _generate from '@babel/generator';
 import * as parser from '@babel/parser';
-import _traverse from '@babel/traverse';
+// import _traverse from '@babel/traverse';
 import * as t from '@babel/types';
 import { object as render } from 'json-templater';
 import { EOL } from 'os';
+import { format, resolveConfig } from 'prettier';
 
-const traverse = _traverse.default;
+// const traverse = _traverse.default;
 const generate = _generate.default;
 
 var IMPORT_TEMPLATE = "import {{name}} from './{{name}}';";
@@ -47,7 +48,8 @@ export function buildEntry(packagesDir) {
 const indexFile = join(packagesDir, 'index.ts');
 // ast 方式 注入 import 以及  export
 export const buildImportExport = async (dir, packageName) => {
-  new Promise((resolve, reject) => {
+  // eslint-disable-next-line no-async-promise-executor
+  new Promise(async (resolve) => {
     let code = fs.readFileSync(indexFile, 'utf-8');
 
     // 解析成 AST
@@ -97,13 +99,18 @@ export const buildImportExport = async (dir, packageName) => {
     // 生成新的代码
     const output = generate(ast, {}, code);
 
-    const formattedCode = output.code.replace(/export \{([^}]+)\}/g, (match, p1) => {
+    let formattedCode = output.code.replace(/export \{([^}]+)\}/g, (match, p1) => {
       const exports = p1
         .split(',')
         .map((e) => e.trim())
         .join(`,${EOL}  `);
       return `export {${EOL}  ${exports}${EOL}}`;
     });
+
+    const options = await resolveConfig(prettierConfig);
+
+    // 使用 Prettier 格式化代码
+    formattedCode = await format(formattedCode, { parser: 'babel', ...options });
 
     // 写回 index.js 文件
     fs.writeFileSync(indexFile, formattedCode);
