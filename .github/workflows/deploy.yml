@@ -41,7 +41,6 @@ jobs:
         uses: actions/configure-pages@v3 # 在工作流程自动配置GithubPages
       - name: Install dependencies
         run: pnpm install # 安装依赖
-
       - name: Build with VitePress
         run: |
           pnpm run docs:build # 启动项目
