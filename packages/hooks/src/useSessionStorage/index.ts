@@ -1,4 +1,5 @@
-import { isRef, ref, Ref, watch as vueWatch } from 'vue';
+import { ref, Ref, isRef, watch as vueWatch } from 'vue';
+
 import { getValueType, isBrowser, TypeSerializers } from '../utils';
 
 const storage = isBrowser ? localStorage : null;
@@ -11,11 +12,10 @@ const defaultOptions = {
   watch: true,
 };
 
-function useLocalStorage<T = unknown>(key: string, initialValue?: T | Ref<T>, options?: Options) {
+function useSessionStorage<T = unknown>(key: string, initialValue?: T | Ref<T>, options?: Options) {
   const { watch } = { ...defaultOptions, ...options };
 
   const data = ref() as Ref<T | undefined | null>;
-
   try {
     if (initialValue !== undefined) {
       data.value = isRef(initialValue) ? initialValue.value : initialValue;
@@ -23,7 +23,7 @@ function useLocalStorage<T = unknown>(key: string, initialValue?: T | Ref<T>, op
       data.value = JSON.parse(storage?.getItem(key) || '{}');
     }
   } catch (error) {
-    console.log(error, 'useLocalStorage初始化失败');
+    console.log(error, 'sessionStorage初始化失败');
   }
 
   const type = getValueType(data.value);
@@ -34,12 +34,12 @@ function useLocalStorage<T = unknown>(key: string, initialValue?: T | Ref<T>, op
   const setStorage = () => storage?.setItem(key, serializer.write(data.value));
 
   // 状态监听
-  if (watch && storage) {
+  if (watch) {
     vueWatch(
       data,
       (newValue) => {
         if (newValue === undefined || newValue === null) {
-          storage.removeItem(key);
+          storage?.removeItem(key);
           return;
         }
         setStorage();
@@ -54,4 +54,4 @@ function useLocalStorage<T = unknown>(key: string, initialValue?: T | Ref<T>, op
 
   return data;
 }
-export default useLocalStorage;
+export default useSessionStorage;

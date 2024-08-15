@@ -18,6 +18,7 @@ import useVirtualList from "./useVirtualList";
 import useResizeObserver from "./useResizeObserver";
 import useElementBounding from "./useElementBounding";
 import useOnline from "./useOnline";
+import useSessionStorage from "./useSessionStorage";
 export {
   useBoolean,
   useToggle,
@@ -38,5 +39,6 @@ export {
   useVirtualList,
   useResizeObserver,
   useElementBounding,
-  useOnline
+  useOnline,
+  useSessionStorage
 };
