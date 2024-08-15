@@ -4,6 +4,9 @@ on:
   push:
     branches: [master]
 
+  repository_dispatch:
+    types: [deploy_site]
+
 # 权限设置
 permissions:
   # 允许读取仓库内容的权限。
