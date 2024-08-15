@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.2.0
+
+### Minor Changes
+
+- 新增 useSessionStorage 将状态存储在 sessionStorage 中的 Hook
+
 ## 1.1.0
 
 ### Minor Changes
