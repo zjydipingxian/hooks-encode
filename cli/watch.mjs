@@ -59,6 +59,8 @@ function syncFile(filePath, action) {
   if (action === 'unlink') {
     if (fs.existsSync(targetPath)) {
       fs.unlinkSync(targetPath);
+      // 检查文件夹是否为空
+      checkAndRemoveEmptyDirectory(path.dirname(targetPath));
     }
   }
 }
@@ -111,4 +113,18 @@ async function handleMetaJsonChange(filePath) {
   const output = generate(ast, {}, code);
   console.log('🚀 ~ handleMetaJsonChange ~ output:', output);
   await fs.writeFile(routerFilePath, output.code, 'utf-8');
+}
+
+function checkAndRemoveEmptyDirectory(dirPath) {
+  fs.readdir(dirPath, (err, files) => {
+    if (err) throw err;
+
+    // 如果文件夹为空，则删除
+    if (files.length === 0) {
+      fs.rmdir(dirPath, (err) => {
+        if (err) throw err;
+        console.log(`Directory ${dirPath} has been removed.`);
+      });
+    }
+  });
 }
