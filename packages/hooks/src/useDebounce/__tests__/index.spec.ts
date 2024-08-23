@@ -1,11 +1,11 @@
 import { jest, describe, expect, it } from '@jest/globals';
 import { ref } from 'vue';
-import useThrottle from '../index';
+import useDebounce from '../index';
 
-describe('useThrottle', () => {
+describe('useDebounce', () => {
   it('should return the initial value immediately', () => {
     const value = ref('initial');
-    const throttledValue = useThrottle(value);
+    const throttledValue = useDebounce(value);
 
     expect(throttledValue.value).toBe('initial');
   });
@@ -14,7 +14,7 @@ describe('useThrottle', () => {
     jest.useFakeTimers();
     const value = ref('initial');
     const delay = 1000;
-    const throttledValue = useThrottle(value, delay);
+    const throttledValue = useDebounce(value, delay);
 
     throttledValue.value = 'updated';
     jest.advanceTimersByTime(delay);
@@ -25,7 +25,7 @@ describe('useThrottle', () => {
   it('should use the default delay if no delay is provided', async () => {
     jest.useFakeTimers();
     const value = ref('initial');
-    const throttledValue = await useThrottle(value);
+    const throttledValue = await useDebounce(value);
 
     throttledValue.value = 'updated';
     await jest.advanceTimersByTime(1000); // default delay
