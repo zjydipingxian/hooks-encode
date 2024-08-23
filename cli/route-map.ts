@@ -5,7 +5,7 @@ import _generate from '@babel/generator';
 import * as parser from '@babel/parser';
 import _traverse from '@babel/traverse';
 import * as t from '@babel/types';
-import { __dirname, prettierConfig } from './util.mjs';
+import { __dirname, prettierConfig } from './util.ts';
 import { format, resolveConfig } from 'prettier';
 
 const traverse = _traverse.default;

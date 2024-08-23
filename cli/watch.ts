@@ -5,7 +5,7 @@ import _generate from '@babel/generator';
 import * as parser from '@babel/parser';
 import _traverse from '@babel/traverse';
 import * as t from '@babel/types';
-import { __dirname } from './util.mjs';
+import { __dirname } from './util.ts';
 
 const traverse = _traverse.default;
 const generate = _generate.default;
@@ -16,7 +16,7 @@ const docsDir = path.resolve(__dirname, '../docs');
 
 const routerFilePath = path.resolve(docsDir, '.vitepress/generate-router.js');
 
-let watcher = chokidar.watch([templates], {
+const watcher = chokidar.watch([templates], {
   persistent: true,
   ignored: [path.join(templates, '/index.ts'), path.join(templates, '/router.js')],
 });

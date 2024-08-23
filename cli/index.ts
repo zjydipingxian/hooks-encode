@@ -2,7 +2,7 @@
 import { program } from 'commander';
 
 // 执行创建模板
-import create from './create.mjs';
+import create from './create.ts';
 
 program
   .command('init')

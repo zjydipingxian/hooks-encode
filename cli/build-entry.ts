@@ -1,4 +1,4 @@
-import { packagesDir, prettierConfig } from './util.mjs';
+import { packagesDir, prettierConfig } from './util.ts';
 import { join } from 'path';
 import fs from 'fs-extra';
 import _generate from '@babel/generator';
@@ -12,8 +12,8 @@ import { format, resolveConfig } from 'prettier';
 // const traverse = _traverse.default;
 const generate = _generate.default;
 
-var IMPORT_TEMPLATE = "import {{name}} from './{{name}}';";
-var MAIN_TEMPLATE = `
+const IMPORT_TEMPLATE = "import {{name}} from './{{name}}';";
+const MAIN_TEMPLATE = `
 {{imports}}
 
 export{
@@ -21,7 +21,7 @@ export{
 }
 `;
 
-var includeHooksTemplate = [];
+const includeHooksTemplate = [];
 /**
  * @param {Array} packagesDir  包的名字，
  * @param {String} name 新加的包名
@@ -50,7 +50,7 @@ const indexFile = join(packagesDir, 'index.ts');
 export const buildImportExport = async (dir, packageName) => {
   // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve) => {
-    let code = fs.readFileSync(indexFile, 'utf-8');
+    const code = fs.readFileSync(indexFile, 'utf-8');
 
     // 解析成 AST
     const ast = parser.parse(code, {

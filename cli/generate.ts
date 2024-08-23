@@ -1,8 +1,8 @@
 // 用来 创建 基本 每个 hooksXXX 需要的 模板 以及准备工作 模板
 import fs from 'fs-extra';
 import { join } from 'path';
-import { createHooksDirectoryAndFiles } from './util.mjs';
-import { buildImportExport } from './build-entry.mjs';
+import { createHooksDirectoryAndFiles } from './util.ts';
+import { buildImportExport } from './build-entry.ts';
 
 // 获取 docs 下的文件目录地址
 // const docsDir = resolve(__dirname, '../docs');

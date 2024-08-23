@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import { format } from 'prettier';
 
 // 创建模板
-import { createUseHooksTemplate, createUseHooksDemo, createUseHooksMd, createMeta } from './template.mjs';
+import { createUseHooksTemplate, createUseHooksDemo, createUseHooksMd, createMeta } from './template.ts';
 
 export const __dirname = dirname(fileURLToPath(import.meta.url));
 export const require = createRequire(import.meta.url);

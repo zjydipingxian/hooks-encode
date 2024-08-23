@@ -1,14 +1,11 @@
 import { input, select } from '@inquirer/prompts';
-import fs from 'fs-extra';
-import { join } from 'path';
-import { buildEntry } from './build-entry.mjs';
 import ora from 'ora';
-import generate from './generate.mjs';
+import generate from './generate';
 
 // 检查文件夹
-import { checkDirectories, packagesDir, createHooksDirectoryAndFiles } from './util.mjs';
+import { checkDirectories, packagesDir } from './util.ts';
 
-import { updateCreateRouterFile } from './route-map.mjs';
+import { updateCreateRouterFile } from './route-map.ts';
 
 export default async () => {
   // 输入 Hooks 名称  作为 Hooks 文件夹名称
@@ -54,7 +51,7 @@ export default async () => {
   const routerOra = ora();
   routerOra.start(`路由映射关系正在注入`);
   // 创建路由映射关系表
-  const router = await updateCreateRouterFile(hooksType, folderName);
+  await updateCreateRouterFile(hooksType, folderName);
   routerOra.succeed(`路由映射关系注入成功`);
 
   const folderNameOra = ora();
