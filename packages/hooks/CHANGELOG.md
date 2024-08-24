@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.3.0
+
+### Minor Changes
+
+- 添加 usePermission, useMounted 和 useSupported 钩子
+
 ## 1.2.0
 
 ### Minor Changes
