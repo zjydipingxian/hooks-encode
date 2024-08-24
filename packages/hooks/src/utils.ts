@@ -1,11 +1,10 @@
 import { nextTick, onMounted, onActivated } from 'vue';
 
-export const isBrowser = typeof window !== 'undefined';
+export const isBrowser = typeof window !== 'undefined' ? window : 0;
 
 export function getGlobal<T>() {
-  if (isBrowser) return window as unknown as T;
+  if (isBrowser) return window as T;
 }
-export const _global = getGlobal<Window>();
 
 export type Fn = (...[]: any[]) => any;
 
@@ -40,6 +39,10 @@ export function onMountedOrActivated(hook: () => any) {
       hook();
     }
   });
+
+  return () => {
+    mounted = true;
+  };
 }
 
 export const getValueType = (defaultValue: unknown): string => {
@@ -140,3 +143,28 @@ export const throttle = (fn: Fn, delay: number) => {
     fn.call(this, ...args);
   };
 };
+
+export interface SingletonPromiseReturn<T> {
+  (): Promise<T>;
+  /**
+   * Reset current staled promise.
+   * await it to have proper shutdown.
+   */
+  reset: () => Promise<void>;
+}
+
+export function createSingletonPromise<T>(fn: () => Promise<T>): SingletonPromiseReturn<T> {
+  let _promise: Promise<T> | undefined;
+
+  function wrapper() {
+    if (!_promise) _promise = fn();
+    return _promise;
+  }
+  wrapper.reset = async () => {
+    const _prev = _promise;
+    _promise = undefined;
+    if (_prev) await _prev;
+  };
+
+  return wrapper;
+}

@@ -13,6 +13,7 @@
 * feat(hooks): "新增useDocumentVisibility钩子以检测页面可见性" ([970adda](https://github.com/zjydipingxian/hooks-encode/commit/970adda))
 * feat(hooks): 添加 useResizeObserver 钩子以监听元素尺寸变化 ([9d71b99](https://github.com/zjydipingxian/hooks-encode/commit/9d71b99))
 * feat(hooks): 添加 useWindowSize 钩子并更新相关路由 ([1166b6b](https://github.com/zjydipingxian/hooks-encode/commit/1166b6b))
+* feat(hooks): 新增useClipboard钩子以支持剪贴板操作 ([ec0fe1a](https://github.com/zjydipingxian/hooks-encode/commit/ec0fe1a))
 * feat(hooks): hooks包版本更新至0.0.8 ([7f1ccc7](https://github.com/zjydipingxian/hooks-encode/commit/7f1ccc7))
 * feat(husky): 提交钩子中的 changelog 生成命令 ([0950815](https://github.com/zjydipingxian/hooks-encode/commit/0950815))
 * feat(husky): 添加更新changelog的预提交和预推送钩子 ([7e50f4d](https://github.com/zjydipingxian/hooks-encode/commit/7e50f4d))

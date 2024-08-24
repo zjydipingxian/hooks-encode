@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { isBrowser, onMountedOrActivated } from '../utils';
 import { isRef, onDeactivated, onUnmounted, Ref, unref, watch, type WatchStopHandle } from 'vue';
 
@@ -24,6 +25,18 @@ export type UseEventListenerOptions = {
 function useEventListener<K extends keyof DocumentEventMap>(
   type: K,
   listener: (event: DocumentEventMap[K]) => void,
+  options?: UseEventListenerOptions,
+): () => void;
+
+function useEventListener<K extends keyof WindowEventMap>(
+  type: K,
+  listener: (event: WindowEventMap[K]) => void,
+  options?: UseEventListenerOptions,
+): () => void;
+
+function useEventListener<K extends keyof HTMLElementEventMap>(
+  type: K,
+  listener: (event: HTMLElementEventMap[K]) => void,
   options?: UseEventListenerOptions,
 ): () => void;
 

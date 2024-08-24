@@ -20,6 +20,9 @@ import useElementBounding from './useElementBounding';
 import useOnline from './useOnline';
 import useSessionStorage from './useSessionStorage';
 import useClipboard from './useClipboard';
+import usePermission from './usePermission';
+import useMounted from './useMounted';
+import useSupported from './useSupported';
 export {
   useBoolean,
   useToggle,
@@ -43,4 +46,7 @@ export {
   useOnline,
   useSessionStorage,
   useClipboard,
+  usePermission,
+  useMounted,
+  useSupported,
 };
