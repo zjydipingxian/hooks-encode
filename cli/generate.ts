@@ -26,12 +26,12 @@ export default async function generate(packagesDir, folderName, hooksType) {
   await fs.ensureDir(targetDir);
 
   // 复制目录内容，排除 index.ts
-  const exclusions = ['index.ts', 'meta.json'];
+  const exclusions = ['index.ts', 'meta.json', '__tests__'];
   await fs.copy(sourceDir, targetDir, {
     filter: (src) => {
       // 遍历排除列表，检查文件路径是否匹配其中任何一个
       for (const exclusion of exclusions) {
-        if (src.endsWith(exclusion) || src.includes(exclusion)) {
+        if (src.endsWith(exclusion) || src.includes(exclusion + '/')) {
           return false; // 匹配到排除项，过滤该文件
         }
       }

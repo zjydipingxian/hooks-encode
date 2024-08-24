@@ -18,7 +18,7 @@ const routerFilePath = path.resolve(docsDir, '.vitepress/generate-router.js');
 
 const watcher = chokidar.watch([templates], {
   persistent: true,
-  ignored: [path.join(templates, '/index.ts'), path.join(templates, '/router.js')],
+  ignored: [path.join(templates, '/index.ts'), path.join(templates, '/router.js'), path.join(templates, '/**/__tests__/**')],
 });
 
 watcher.on('ready', function () {
