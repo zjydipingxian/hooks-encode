@@ -1,5 +1,4 @@
 import { ref, onMounted, onUnmounted } from 'vue';
-import useEventListener from '../useEventListener';
 
 /**
  * @description 用户网络是否可用

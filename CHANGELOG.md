@@ -1,6 +1,7 @@
-## 1.0.0 (2024-08-23)
+## 1.0.0 (2024-08-24)
 
 * test(hooks): 添加对useBoolean和useToggle和useTitle的单元测试 ([8951ad9](https://github.com/zjydipingxian/hooks-encode/commit/8951ad9))
+* test(hooks): 添加useDebounce和useThrottle的测试 ([2d5539a](https://github.com/zjydipingxian/hooks-encode/commit/2d5539a))
 * test(hooks): 新增useThrottle的测试用例 ([8288fd3](https://github.com/zjydipingxian/hooks-encode/commit/8288fd3))
 * refactor(cli): 将CLI入口文件和实用程序模块转换为TypeScript ([e2243be](https://github.com/zjydipingxian/hooks-encode/commit/e2243be))
 * refactor(cli): 使用 prettier 格式化代码并更新导入逻辑 ([b626f83](https://github.com/zjydipingxian/hooks-encode/commit/b626f83))
