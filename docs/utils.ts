@@ -2,6 +2,11 @@ import { nextTick, onMounted, onActivated } from 'vue';
 
 export const isBrowser = typeof window !== 'undefined';
 
+export function getGlobal<T>() {
+  if (isBrowser) return window as unknown as T;
+}
+export const _global = getGlobal<Window>();
+
 export type Fn = (...[]: any[]) => any;
 
 export const supportsPassive = true;

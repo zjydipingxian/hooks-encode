@@ -19,6 +19,7 @@ import useResizeObserver from './useResizeObserver';
 import useElementBounding from './useElementBounding';
 import useOnline from './useOnline';
 import useSessionStorage from './useSessionStorage';
+import useClipboard from './useClipboard';
 export {
   useBoolean,
   useToggle,
@@ -41,4 +42,5 @@ export {
   useElementBounding,
   useOnline,
   useSessionStorage,
+  useClipboard,
 };
