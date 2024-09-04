@@ -25,7 +25,7 @@ const Router = {
     'useThrottle',
     'useToggle',
   ],
-  Worker: ['useCountDown'],
+  Worker: ['useCountDown', 'usePick'],
   Effect: ['useDebounceFn', 'useThrottleFn'],
 };
 export default Router;

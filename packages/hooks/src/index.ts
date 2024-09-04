@@ -23,6 +23,7 @@ import useClipboard from './useClipboard';
 import usePermission from './usePermission';
 import useMounted from './useMounted';
 import useSupported from './useSupported';
+import usePick from './usePick';
 export {
   useBoolean,
   useToggle,
@@ -49,4 +50,5 @@ export {
   usePermission,
   useMounted,
   useSupported,
+  usePick,
 };
