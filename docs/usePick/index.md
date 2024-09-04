@@ -1,5 +1,7 @@
 # usePick
 
+通俗的说法就是：在已经定义的对象中选取一些
+
 ## 基本使用
 
 <preview path="./demo/index.vue" title="基本使用" description='usePick'></preview>

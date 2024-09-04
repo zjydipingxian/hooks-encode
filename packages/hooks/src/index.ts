@@ -24,6 +24,7 @@ import usePermission from './usePermission';
 import useMounted from './useMounted';
 import useSupported from './useSupported';
 import usePick from './usePick';
+import useOmit from './useOmit';
 export {
   useBoolean,
   useToggle,
@@ -51,4 +52,5 @@ export {
   useMounted,
   useSupported,
   usePick,
+  useOmit,
 };
