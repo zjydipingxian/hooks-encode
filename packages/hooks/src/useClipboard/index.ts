@@ -9,7 +9,6 @@ export type clipboardOptions = {
 
 function useClipboard(defaultValue: Ref<string> | string): clipboardOptions {
   const clipboardContent = ref(unref(defaultValue));
-  console.log('🚀 ~ useClipboard ~ clipboardContent:', clipboardContent);
 
   const copyToClipboard = async (text: string) => {
     try {

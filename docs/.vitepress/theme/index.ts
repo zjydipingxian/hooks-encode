@@ -15,7 +15,7 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
     })
   },
-  enhanceApp({ app, router, siteData }) {
+  enhanceApp({ app }) {
     // ...
     app.component('demo-preview', AntDesignContainer)
     app.use(Button).use(Space).use(Input).use(Card)
