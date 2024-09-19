@@ -49,7 +49,7 @@ const indexFile = join(packagesDir, 'index.ts');
 // ast 方式 注入 import 以及  export
 export const buildImportExport = async (dir, packageName) => {
   // eslint-disable-next-line no-async-promise-executor
-  new Promise(async (resolve) => {
+  return new Promise(async (resolve) => {
     const code = fs.readFileSync(indexFile, 'utf-8');
 
     // 解析成 AST
@@ -113,7 +113,7 @@ export const buildImportExport = async (dir, packageName) => {
     formattedCode = await format(formattedCode, { parser: 'babel', ...options });
 
     // 写回 index.js 文件
-    fs.writeFileSync(indexFile, formattedCode);
+    await fs.writeFile(indexFile, formattedCode);
 
     resolve(true);
   });
