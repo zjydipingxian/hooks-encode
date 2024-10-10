@@ -10,8 +10,17 @@ export default defineConfig({
   head: [
     [
       'script',
-      { src: 'https://cnzztv.com/pixel/xhQ15x6R0yHhJeMN' },
-    ]
+      {
+        charset: 'UTF-8',
+        id: 'LA_COLLECT',
+        src: '//sdk.51.la/js-sdk-pro.min.js',
+      },
+    ],
+    [
+      'script',
+      {},
+      `LA.init({id:"3Jx6Kflqb6AXQY85",ck:"3Jx6Kflqb6AXQY85"})`,
+    ],
   ],
   
   vite: {
