@@ -1,4 +1,4 @@
-## 1.0.0 (2024-09-04)
+## 1.0.0 (2024-10-10)
 
 * ，对`package.json`和相关Rollup配置文件进行了更新，添加了`terser`插件以优化代码压缩。 ([24b2a2a](https://github.com/zjydipingxian/hooks-encode/commit/24b2a2a))
 * 初始化 ([1f192fd](https://github.com/zjydipingxian/hooks-encode/commit/1f192fd))
@@ -55,6 +55,9 @@
 * test ([000c559](https://github.com/zjydipingxian/hooks-encode/commit/000c559))
 * test ([bc9e845](https://github.com/zjydipingxian/hooks-encode/commit/bc9e845))
 * test ([39b77c1](https://github.com/zjydipingxian/hooks-encode/commit/39b77c1))
+* updata ([e6073d0](https://github.com/zjydipingxian/hooks-encode/commit/e6073d0))
+* updata ([c569a4f](https://github.com/zjydipingxian/hooks-encode/commit/c569a4f))
+* updata ([7b03825](https://github.com/zjydipingxian/hooks-encode/commit/7b03825))
 * updata ([0dc220a](https://github.com/zjydipingxian/hooks-encode/commit/0dc220a))
 * Update deploy.yml ([8f9bcd8](https://github.com/zjydipingxian/hooks-encode/commit/8f9bcd8))
 * Update deploy.yml ([0c1cb16](https://github.com/zjydipingxian/hooks-encode/commit/0c1cb16))
@@ -85,6 +88,7 @@
 * feat(hooks): 添加 useResizeObserver 钩子以监听元素尺寸变化 ([9d71b99](https://github.com/zjydipingxian/hooks-encode/commit/9d71b99))
 * feat(hooks): 添加 useWindowSize 钩子并更新相关路由 ([1166b6b](https://github.com/zjydipingxian/hooks-encode/commit/1166b6b))
 * feat(hooks): 添加usePick钩子 ([b158567](https://github.com/zjydipingxian/hooks-encode/commit/b158567))
+* feat(hooks): 新钩子useMedia 媒体查询 ([e41f657](https://github.com/zjydipingxian/hooks-encode/commit/e41f657))
 * feat(hooks): 新添加`useOmit`钩子 ([36ff0e4](https://github.com/zjydipingxian/hooks-encode/commit/36ff0e4))
 * feat(hooks): 新增useClipboard钩子以支持剪贴板操作 ([ec0fe1a](https://github.com/zjydipingxian/hooks-encode/commit/ec0fe1a))
 * feat(hooks): hooks包版本更新至0.0.8 ([7f1ccc7](https://github.com/zjydipingxian/hooks-encode/commit/7f1ccc7))

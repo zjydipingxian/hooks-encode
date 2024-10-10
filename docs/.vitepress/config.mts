@@ -6,6 +6,13 @@ import { getRouterConfig } from './router.mjs'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "ZhongJiaYao",
+
+  head: [
+    [
+      'script',
+      { src: 'https://cnzztv.com/pixel/xhQ15x6R0yHhJeMN' },
+    ]
+  ],
   
   vite: {
     resolve: {
