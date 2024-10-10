@@ -19,7 +19,7 @@ export default defineConfig({
     [
       'script',
       {},
-      `LA.init({id:"3Jx6Kflqb6AXQY85",ck:"3Jx6Kflqb6AXQY85"})`,
+      `LA.init({id:"3Jx6Kflqb6AXQY85",ck:"3Jx6Kflqb6AXQY85",autoTrack:true,hashMode:true})`,
     ],
   ],
   
