@@ -7,11 +7,12 @@ import { Button, Space, Input, Card } from 'ant-design-vue';
 import '@vitepress-demo-preview/component/dist/style.css'
 import './style.css'
 import 'ant-design-vue/dist/reset.css';
+import NullLayout from './NullLayout.vue'
 
 export default {
   extends: DefaultTheme,
   Layout: () => {
-    return h(DefaultTheme.Layout, null, {
+    return h(NullLayout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
     })
   },
