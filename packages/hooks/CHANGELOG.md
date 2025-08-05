@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.3.5
+
+### Patch Changes
+
+- 更新 hooks 构建步骤
+
 ## 1.3.4
 
 ### Patch Changes

@@ -13,6 +13,8 @@ const pubBefore = async () => {
     // TODO: 构建
     execSync('pnpm run clean-dist &&  pnpm run build', { stdio: 'inherit' });
 
+    execSync('pnpm run changeset', { stdio: 'inherit' });
+
     // 创建版本并更新依赖
     execSync('pnpm changeset version', { stdio: 'inherit' });
 
