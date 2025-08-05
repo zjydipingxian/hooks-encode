@@ -27,6 +27,7 @@ import usePick from './usePick';
 import useOmit from './useOmit';
 import useMedia from './useMedia';
 import useFavicon from './useFavicon';
+import useFocusWithin from './useFocusWithin';
 export {
   useBoolean,
   useToggle,
@@ -57,4 +58,5 @@ export {
   useOmit,
   useMedia,
   useFavicon,
+  useFocusWithin,
 };
