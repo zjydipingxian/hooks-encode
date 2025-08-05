@@ -31,7 +31,7 @@ export async function checkDirectories() {
 }
 
 // 创建 hooks 目录和文件夹
-export async function createHooksDirectoryAndFiles(packagesDir, folderName, hooksType) {
+export async function createHooksDirectoryAndFiles(packagesDir, folderName, hooksType, description) {
   const path = join(packagesDir, folderName);
 
   // 检查目录是否存在
@@ -47,7 +47,7 @@ export async function createHooksDirectoryAndFiles(packagesDir, folderName, hook
   // 在 Hooks 目录下创建 index.ts 以及 index.md 文件
 
   // 检查并创建 index.md 文件
-  await ensureFile(join(path, 'index.md'), () => createUseHooksMd(folderName));
+  await ensureFile(join(path, 'index.md'), () => createUseHooksMd(folderName, description));
   // 检查并创建 index.ts 文件
   await ensureFile(join(path, 'index.ts'), () => createUseHooksTemplate(folderName));
 

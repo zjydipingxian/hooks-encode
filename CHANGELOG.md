@@ -1,5 +1,6 @@
-## 1.0.0 (2024-10-18)
+## 1.0.0 (2025-08-05)
 
+* style: 使用 View Transitions API ([6abc184](https://github.com/zjydipingxian/hooks-encode/commit/6abc184))
 * ，对`package.json`和相关Rollup配置文件进行了更新，添加了`terser`插件以优化代码压缩。 ([24b2a2a](https://github.com/zjydipingxian/hooks-encode/commit/24b2a2a))
 * 初始化 ([1f192fd](https://github.com/zjydipingxian/hooks-encode/commit/1f192fd))
 * 初始化 ([048ac56](https://github.com/zjydipingxian/hooks-encode/commit/048ac56))

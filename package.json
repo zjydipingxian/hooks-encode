@@ -24,6 +24,8 @@
     "commit": "git-cz",
     "commitlint": "commitlint --edit",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "changeset": "changeset",
+    "packages-version": "pnpm run changelog && changeset version",
     "test": "jest"
   },
   "config": {

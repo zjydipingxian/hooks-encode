@@ -19,9 +19,9 @@ import { ${name} } from 'zhongjiayao_v3_hooks'
 `;
 
 // 创建 md 文档
-export const createUseHooksMd = (name) => `\
+export const createUseHooksMd = (name, description) => `\
 # ${name}
-
+${description}
 
 <preview path="./demo/index.vue" title="基本使用" description='${name}'></preview>
 `;

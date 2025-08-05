@@ -36,6 +36,18 @@ export default async () => {
     },
   });
 
+  // 这个Hooks 文件夹 的 描述
+  const description = await input({
+    message: '（必填）请输入Hooks 描述：',
+    validate: async (value) => {
+      if (value.trim() === '') {
+        return 'Hooks 描述 是必填项！';
+      }
+
+      return true;
+    },
+  });
+
   // 请选择文件夹用途分类
   const hooksType = await select({
     message: '请选择Hooks用途分类：',
@@ -57,7 +69,7 @@ export default async () => {
   const folderNameOra = ora();
   folderNameOra.start(`${folderName} 正在创建中！！！`);
 
-  await generate(packagesDir, folderName, hooksType);
+  await generate(packagesDir, folderName, hooksType, description);
 
   folderNameOra.succeed(`${folderName} 创建成功！！！`);
 
