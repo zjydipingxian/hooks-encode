@@ -4,7 +4,6 @@ on:
   push:
     branches: [master]
 
-# 权限设置
 permissions:
   contents: read
   pages: write
@@ -15,38 +14,56 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # 构建工作
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # 更新到最新版本
         with:
           fetch-depth: 0
+          
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3  # 更新到最新版本
         with:
           version: 9.2.0
+          
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # 更新到最新版本
         with:
-          node-version: 18
+          node-version: 20  # 使用较新的Node版本可能减少构建问题
           cache: pnpm
+          
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4  # 更新到最新版本
+          
       - name: Install dependencies
         run: pnpm install
+        
       - name: Build with VitePress
         run: |
           pnpm run docs:build
-          touch .nojekyll
+          # 检查并移除可能的符号链接和硬链接
+          find ./docs/.vitepress/dist -type l -delete  # 删除符号链接
+          find ./docs/.vitepress/dist -type f -links +1 -delete  # 删除硬链接
+          touch ./docs/.vitepress/dist/.nojekyll  # 确保.nojekyll在正确位置
+          
+      - name: Check build size
+        run: |
+          echo "Build directory size:"
+          du -sh ./docs/.vitepress/dist  # 显示构建目录大小，帮助排查过大问题
+          
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages # 明确指定artifacts名称
+          name: github-pages
           path: ./docs/.vitepress/dist
+          # 添加过滤，排除可能引起问题的文件类型
+          exclude: |
+            **/*.lnk
+            **/*.symlink
+            **/.git/**
+            **/node_modules/**
 
-  # 部署工作
   deploy:
     environment:
       name: github-pages
@@ -57,4 +74,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # 可以使用最新版本v4
+        uses: actions/deploy-pages@v4
