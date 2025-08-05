@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.3.4
+
+### Patch Changes
+
+- 添加 useFormatResult hook | useFocusWithin | useFavicon
+
 ## 1.3.3
 
 ### Patch Changes

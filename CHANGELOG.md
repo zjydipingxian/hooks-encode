@@ -1,5 +1,10 @@
 ## 1.0.0 (2025-08-05)
 
+* docs: 移除 husky 配置中不必要的 changelog 生成命令 ([1f4aeb5](https://github.com/zjydipingxian/hooks-encode/commit/1f4aeb5))
+* docs(config.mts): 启用本地搜索和最近更新时间显示 ([549b91f](https://github.com/zjydipingxian/hooks-encode/commit/549b91f))
+* docs(guide): 更新项目简介与功能说明，优化文档结构 ([64cbeb8](https://github.com/zjydipingxian/hooks-encode/commit/64cbeb8))
+* docs(hooks-encode): 优化文档搜索功能并更新部署配置 ([002be24](https://github.com/zjydipingxian/hooks-encode/commit/002be24))
+* docs(vitepress): 更新配置和导航, 添加新logo ([9058d49](https://github.com/zjydipingxian/hooks-encode/commit/9058d49))
 * ci(deploy): 更新 GitHub Pages 部署工作流 ([7b2d0ae](https://github.com/zjydipingxian/hooks-encode/commit/7b2d0ae))
 * ci(husky): 重构changelog更新流程 ([42b3cb7](https://github.com/zjydipingxian/hooks-encode/commit/42b3cb7))
 * feat: 发布`zhongjiayao_v3_hooks`的`1.0.0`版本，设置访问级别为public并更新内部依赖性。移除直接发布命令，使用changeset进行发布 ([6ed8ddf](https://github.com/zjydipingxian/hooks-encode/commit/6ed8ddf))
@@ -155,10 +160,6 @@
 * fix(husky): 重构changelog更新流程 ([ec33bb5](https://github.com/zjydipingxian/hooks-encode/commit/ec33bb5))
 * fix(husky): 自动更新changelog并提交 ([68e5706](https://github.com/zjydipingxian/hooks-encode/commit/68e5706))
 * fix(pre-push): 确保changelog更新正确推送到origin master ([df552fd](https://github.com/zjydipingxian/hooks-encode/commit/df552fd))
-* docs: 移除 husky 配置中不必要的 changelog 生成命令 ([1f4aeb5](https://github.com/zjydipingxian/hooks-encode/commit/1f4aeb5))
-* docs(config.mts): 启用本地搜索和最近更新时间显示 ([549b91f](https://github.com/zjydipingxian/hooks-encode/commit/549b91f))
-* docs(guide): 更新项目简介与功能说明，优化文档结构 ([64cbeb8](https://github.com/zjydipingxian/hooks-encode/commit/64cbeb8))
-* docs(vitepress): 更新配置和导航, 添加新logo ([9058d49](https://github.com/zjydipingxian/hooks-encode/commit/9058d49))
 
 
 ### BREAKING CHANGE
