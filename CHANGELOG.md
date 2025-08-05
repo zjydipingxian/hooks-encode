@@ -13,6 +13,7 @@
 * feat(hook): 新增 useSessionStorage Hook ([7509674](https://github.com/zjydipingxian/hooks-encode/commit/7509674))
 * feat(hooks): "新增useDocumentVisibility钩子以检测页面可见性" ([970adda](https://github.com/zjydipingxian/hooks-encode/commit/970adda))
 * feat(hooks): 添加 useFavicon Hook ([d16a45e](https://github.com/zjydipingxian/hooks-encode/commit/d16a45e))
+* feat(hooks): 添加 useFocusWithin 钩子 ([520f4a7](https://github.com/zjydipingxian/hooks-encode/commit/520f4a7))
 * feat(hooks): 添加 usePermission, useMounted 和 useSupported 钩子 ([e42dda9](https://github.com/zjydipingxian/hooks-encode/commit/e42dda9))
 * feat(hooks): 添加 useResizeObserver 钩子以监听元素尺寸变化 ([9d71b99](https://github.com/zjydipingxian/hooks-encode/commit/9d71b99))
 * feat(hooks): 添加 useWindowSize 钩子并更新相关路由 ([1166b6b](https://github.com/zjydipingxian/hooks-encode/commit/1166b6b))

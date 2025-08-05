@@ -28,6 +28,7 @@ import useOmit from './useOmit';
 import useMedia from './useMedia';
 import useFavicon from './useFavicon';
 import useFocusWithin from './useFocusWithin';
+import useFormatResult from './useFormatResult';
 export {
   useBoolean,
   useToggle,
@@ -59,4 +60,5 @@ export {
   useMedia,
   useFavicon,
   useFocusWithin,
+  useFormatResult,
 };
