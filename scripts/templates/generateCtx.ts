@@ -5,7 +5,7 @@ function ${name}() {
 export default ${name};
 `;
 
-// 创建 vueHooks 示例文档
+// Demo目录下的index.vue  (示例文件)
 export const createUseHooksDemo = (name) => `\
 <template>
   <div>${name}</div>
@@ -19,6 +19,7 @@ import { ${name} } from 'zhongjiayao_v3_hooks'
 `;
 
 // 创建 md 文档
+
 export const createUseHooksMd = (name, description) => `\
 # ${name}
 ${description}
