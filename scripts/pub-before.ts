@@ -10,21 +10,26 @@ const pubBefore = async () => {
       throw new Error('只允许在 master 分支上发布');
     }
 
-    // TODO: 构建
-    execSync('pnpm run clean-dist &&  pnpm run build', { stdio: 'inherit' });
+    // 按顺序执行命令
+    const commands = [
+      'pnpm run clean-dist &&  pnpm run build',
+      'pnpm run changeset',
+      'pnpm changeset version',
+      'git add .',
+      'git commit -m "chore: publish packages"',
+      'git push',
+    ];
 
-    execSync('pnpm run changeset', { stdio: 'inherit' });
-
-    // 创建版本并更新依赖
-    execSync('pnpm changeset version', { stdio: 'inherit' });
-
-    // TODO: 发布包
-    // execSync('pnpm changeset publish', { stdio: 'inherit' })
-
-    // 提交变更
-    execSync('git add .');
-    execSync('git commit -m "chore: publish packages"');
-    execSync('git push');
+    for (const command of commands) {
+      try {
+        console.log(chalk.blue(`执行命令: ${command}`));
+        execSync(command, { stdio: 'inherit' });
+        console.log(chalk.green(`命令执行成功: ${command}`));
+      } catch (error) {
+        console.error(chalk.red(`命令执行失败: ${command}`), error);
+        process.exit(1);
+      }
+    }
 
     console.log(chalk.green('预构建成功'));
   } catch (error) {
