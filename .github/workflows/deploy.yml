@@ -4,74 +4,61 @@ on:
   push:
     branches: [master]
 
+# 权限设置
 permissions:
+  # 允许读取仓库内容的权限。
   contents: read
+  # 允许写入 GitHub Pages 的权限。
   pages: write
+  # 允许写入 id-token 的权限。
   id-token: write
 
+# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
+  # 构建工作
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # 更新到最新版本
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3  # 更新到最新版本
+        uses: pnpm/action-setup@v2 # 安装pnpm并添加到环境变量
         with:
-          version: 9.2.0
-          
+          version: 9.2.0 # 指定需要的 pnpm 版本
       - name: Setup Node
-        uses: actions/setup-node@v4  # 更新到最新版本
+        uses: actions/setup-node@v3
         with:
-          node-version: 20  # 使用较新的Node版本可能减少构建问题
-          cache: pnpm
-          
+          node-version: 18
+          cache: pnpm # 设置缓存
       - name: Setup Pages
-        uses: actions/configure-pages@v4  # 更新到最新版本
-          
+        uses: actions/configure-pages@v3 # 在工作流程自动配置GithubPages
       - name: Install dependencies
-        run: pnpm install
-        
+        run: pnpm install # 安装依赖
       - name: Build with VitePress
         run: |
-          pnpm run docs:build
-          # 检查并移除可能的符号链接和硬链接
-          find ./docs/.vitepress/dist -type l -delete  # 删除符号链接
-          find ./docs/.vitepress/dist -type f -links +1 -delete  # 删除硬链接
-          touch ./docs/.vitepress/dist/.nojekyll  # 确保.nojekyll在正确位置
-          
-      - name: Check build size
-        run: |
-          echo "Build directory size:"
-          du -sh ./docs/.vitepress/dist  # 显示构建目录大小，帮助排查过大问题
-          
+          pnpm run docs:build # 启动项目
+          touch .nojekyll  # 通知githubpages不要使用Jekyll处理这个站点，不知道为啥不生效，就手动搞了
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v2 # 上传构建产物
         with:
-          name: github-pages
-          path: ./docs/.vitepress/dist
-          # 添加过滤，排除可能引起问题的文件类型
-          exclude: |
-            **/*.lnk
-            **/*.symlink
-            **/.git/**
-            **/node_modules/**
+          path: ./docs/.vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
 
+  # 部署工作
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
+      url: ${{ steps.deployment.outputs.page_url }} # 从后续的输出中获取部署后的页面URL
+    needs: build # 在build后面完成
+    runs-on: ubuntu-latest # 运行在最新版本的ubuntu系统上
     name: Deploy
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        id: deployment # 指定id
+        uses: actions/deploy-pages@v2 # 将之前的构建产物部署到github pages中

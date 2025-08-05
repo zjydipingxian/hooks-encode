@@ -26,6 +26,7 @@ import useSupported from './useSupported';
 import usePick from './usePick';
 import useOmit from './useOmit';
 import useMedia from './useMedia';
+import useFavicon from './useFavicon';
 export {
   useBoolean,
   useToggle,
@@ -55,4 +56,5 @@ export {
   usePick,
   useOmit,
   useMedia,
+  useFavicon,
 };
