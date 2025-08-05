@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.3.3
+
+### Patch Changes
+
+- feat(cli): 创建 hooks 时添加描述并更新相关文件
+
 ## 1.3.0
 
 ### Minor Changes
