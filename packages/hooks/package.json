@@ -8,8 +8,7 @@
   "scripts": {
     "clean": "rimraf node_modules",
     "clearDist": "rimraf dist lib es",
-    "build": "node scripts/build.mjs",
-    "prepublish": "pnpm run build"
+    "build": "node scripts/build.mjs"
   },
   "keywords": [
     "encode",
@@ -28,7 +27,8 @@
     "es",
     "metadata.json",
     "package.json",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "author": "",
   "license": "ISC",
