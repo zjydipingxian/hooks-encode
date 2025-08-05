@@ -26,7 +26,7 @@ const pubBefore = async () => {
     execSync('git commit -m "chore: publish packages"');
     execSync('git push');
 
-    console.log(chalk.green('Successfully published packages'));
+    console.log(chalk.green('预构建成功'));
   } catch (error) {
     console.error(chalk.red('Failed to publish:'), error);
     process.exit(1);

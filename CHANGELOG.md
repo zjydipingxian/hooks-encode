@@ -1,5 +1,6 @@
 ## 1.0.0 (2025-08-05)
 
+* chore: publish packages ([082a551](https://github.com/zjydipingxian/hooks-encode/commit/082a551))
 * chore: publish packages ([4a56ace](https://github.com/zjydipingxian/hooks-encode/commit/4a56ace))
 * chore: update changelog ([b12d9fe](https://github.com/zjydipingxian/hooks-encode/commit/b12d9fe))
 * chore: update changelog ([1dddd5f](https://github.com/zjydipingxian/hooks-encode/commit/1dddd5f))
