@@ -41,7 +41,23 @@ export default defineConfig({
   base:"/hooks-encode/",
   themeConfig: {
     search: {
-      provider: 'local'
+      provider: 'local',
+      options: {
+        locales: {
+          zh: {
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档'
+              },
+              modal: {
+                  resetButtonTitle: '清除查询条件',
+              }
+            }
+          }
+          
+        }
+      }
     },
     lastUpdated: {
       text: '最近更新',
