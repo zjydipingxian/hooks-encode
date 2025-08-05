@@ -14,20 +14,13 @@ export const packagesDir = resolve(__dirname, '../packages/hooks/src');
 export const prettierConfig = fs.readFileSync(resolve(__dirname, '../', '.prettierrc.json'), 'utf-8');
 
 // 检查文件夹是否存在过
-export async function checkDirectories() {
-  try {
-    const files = await fs.readdir(packagesDir);
-    const dirs = await Promise.all(
-      files.map(async (file) => {
-        const stats = await fs.lstat(resolve(packagesDir, file));
-        return stats.isDirectory() ? file : null;
-      }),
-    );
-    const filteredDirs = dirs.filter(Boolean);
-    return filteredDirs;
-  } catch (error) {
-    console.log('🚀 ~ checkDirectories ~ error:', error);
+export async function checkDirectories(name: string) {
+  const componentDir = resolve(packagesDir, name);
+
+  if (await fs.pathExists(componentDir)) {
+    return `Hooks ${name} 已存在`;
   }
+  return true;
 }
 
 // 创建 hooks 目录和文件夹
@@ -78,4 +71,34 @@ async function ensureFile(filePath, contentGenerator) {
   } else {
     // console.log(`File ${filePath} already exists. Skipping creation.`);
   }
+}
+
+// hooks name
+
+/**
+ * 验证 hooks name 名称。
+ *
+ * @param {string} name - 要验证的 hooks name 名称。
+ * @returns {string|boolean} - 如果名称无效，则返回错误信息，否则返回 true。
+ */
+export function validateHooksName(name: string) {
+  if (name.trim() === '') {
+    return 'Hooks name 是必填项！';
+  }
+  // 检查是否以 use 开头
+  if (!name.startsWith('use')) {
+    return 'Hooks name 必须以 use 开头';
+  }
+
+  // 检查是否只包含字母
+  if (!/^[a-zA-Z]+$/.test(name)) {
+    return 'Hooks name 只能包含字母';
+  }
+
+  // 检查 Hooks name 是否 是 use 开头 必须小写
+  if (!name.startsWith('use') || name.substring(3).trim() === '') {
+    return `Hooks ${name} 必须以 use 开头，并且 use 后面必须有其他内容！`;
+  }
+
+  return true;
 }

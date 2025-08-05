@@ -7,7 +7,7 @@ import { buildImportExport } from './build-entry.ts';
 // 获取 docs 下的文件目录地址
 // const docsDir = resolve(__dirname, '../docs');
 
-export default async function generate(packagesDir, folderName, hooksType, description) {
+export default async function generate(packagesDir, folderName, hooksType, description?) {
   // 创建目录 以及 目录对应需要的内容
   await createHooksDirectoryAndFiles(packagesDir, folderName, hooksType, description);
 

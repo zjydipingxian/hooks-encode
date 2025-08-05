@@ -3,7 +3,7 @@ import ora from 'ora';
 import generate from './generate';
 
 // 检查文件夹
-import { checkDirectories, packagesDir } from './util.ts';
+import { checkDirectories, packagesDir, validateHooksName } from './util.ts';
 
 import { updateCreateRouterFile } from './route-map.ts';
 
@@ -12,25 +12,12 @@ export default async () => {
   const folderName = await input({
     message: '（必填）请输入Hooks name ，将用作目录及文件名：',
     validate: async (value) => {
-      if (value.trim() === '') {
-        return 'Hooks name 是必填项！';
-      }
+      const nameValidation = validateHooksName(value);
+      if (nameValidation !== true) return nameValidation; // 如果验证失败，返回错误信息
 
-      // 校验 Hooks name 是否合法
-      if (!/^[a-zA-Z]+$/.test(value)) {
-        return 'Hooks name 只能包含字母！';
-      }
-
-      // 检查 Hooks name 是否 是 use 开头 必须小写
-      if (!value.startsWith('use') || value.substring(3).trim() === '') {
-        return `Hooks ${value} 必须以 use 开头，并且 use 后面必须有其他内容！`;
-      }
-
-      // 获取 packages/hooks/src 目录下的文件夹名称
-      const hooksDirs = await checkDirectories();
-      if (hooksDirs.includes(value)) {
-        return 'Hooks name 文件夹已存在！';
-      }
+      // 检查组件是否已存在
+      const hooksDirs = await checkDirectories(value);
+      if (hooksDirs !== true) return hooksDirs; // 如果组件已存在，返回错误信息
 
       return true;
     },
@@ -76,31 +63,3 @@ export default async () => {
   //  打印 创建成功信息
   console.log(`\nHooks ${folderName} 创建成功！`);
 };
-
-// // 创建目录 以及 目录对应需要的内容
-// await createHooksDirectoryAndFiles(packagesDir, folderName);
-
-// // 获取 packages/hooks/src/index.ts 文件的路径
-// const indexFilePath = join(packagesDir, 'index.ts');
-
-// // 读取现有的 index.ts 文件内容
-// const hooksDirs = await checkDirectories();
-// const template = buildEntry(hooksDirs);
-// fs.writeFileSync(indexFilePath, template);
-// folderNameOra.succeed(`${folderName} 创建成功！！！`);
-
-// const sourceDir = join(packagesDir, folderName);
-// const targetDir = join('docs', folderName);
-
-// const copyOra = ora();
-// copyOra.start(`${folderName} 正在拷贝到 docs 目录中！！！`);
-
-// // 确保目标目录存在
-// await fs.ensureDir(targetDir);
-
-// // 复制目录内容，排除 index.ts
-// await fs.copy(sourceDir, targetDir, {
-//   filter: (src) => !src.endsWith('index.ts'),
-// });
-
-// copyOra.succeed(`${folderName} 拷贝到 docs 目录成功！！！`);
