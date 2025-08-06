@@ -8,7 +8,12 @@
   import { useDebounceFn } from 'zhongjiayao_v3_hooks';
 
   const debounceFnValue = ref(1);
-  const { run } = useDebounceFn(() => {
-    debounceFnValue.value++;
-  }, 500);
+  const { run } = useDebounceFn(
+    () => {
+      debounceFnValue.value++;
+    },
+    {
+      wait: 500,
+    },
+  );
 </script>

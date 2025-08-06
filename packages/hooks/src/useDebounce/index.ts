@@ -9,7 +9,7 @@ function useDebounce<T>(value: Ref<T>, delay?: number) {
   const res = ref<T>(value.value) as Ref<T>;
 
   // 利用useDebounceFn来简化处理值
-  const { run } = useDebounceFn(() => (res.value = value.value), delay);
+  const { run } = useDebounceFn(() => (res.value = value.value), { wait: delay });
 
   watch(value, () => run(), { deep: true });
 

@@ -1,6 +1,7 @@
 <template>
   <p class="mb10">count: {{ debounceFnValue }}</p>
-  <a-button @click="run">Click me</a-button>
+  <a-button @click="() => (wait = 3000)">Update time 3000ms</a-button>
+  <a-button style="margin-left: 10px" @click="run">Click me</a-button>
 </template>
 
 <script setup>
@@ -8,12 +9,13 @@
   import { useDebounceFn } from 'zhongjiayao_v3_hooks';
 
   const debounceFnValue = ref(1);
+  const wait = ref(1000);
   const { run } = useDebounceFn(
     () => {
       debounceFnValue.value++;
     },
     {
-      wait: 500,
+      wait: wait.value,
     },
   );
 </script>

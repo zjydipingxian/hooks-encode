@@ -121,7 +121,6 @@ export const debounce = (fn: Fn, delay: number) => {
   return function (...args: []) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      // @ts-ignore
       fn.call(this, ...args);
     }, delay);
   };
@@ -139,7 +138,6 @@ export const throttle = (fn: Fn, delay: number) => {
     const currNow = Date.now();
     if (currNow - oldNow < delay) return;
     oldNow = currNow;
-    // @ts-ignore
     fn.call(this, ...args);
   };
 };
