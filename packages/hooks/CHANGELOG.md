@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.3.7
+
+### Patch Changes
+
+- 新增 useMouse Hook，用于优雅地监听鼠标位置
+
 ## 1.3.6
 
 ### Patch Changes
