@@ -29,6 +29,7 @@ import useThrottleFn from './useThrottleFn';
 import useTitle from './useTitle';
 import useToggle from './useToggle';
 import useVirtualList from './useVirtualList';
+import useWinResize from './useWinResize';
 import useWindowSize from './useWindowSize';
 export {
   useBoolean,
@@ -62,5 +63,6 @@ export {
   useTitle,
   useToggle,
   useVirtualList,
+  useWinResize,
   useWindowSize,
 };

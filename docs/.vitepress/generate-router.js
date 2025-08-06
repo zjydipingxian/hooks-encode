@@ -17,6 +17,7 @@ const Router = {
     'useTitle',
     'useVirtualList',
     'useWindowSize',
+    'useWinResize',
   ],
   State: [
     'useBoolean',
