@@ -23,6 +23,7 @@ import usePick from './usePick';
 import useRect from './useRect';
 import useResizeObserver from './useResizeObserver';
 import useSessionStorage from './useSessionStorage';
+import useSize from './useSize';
 import useSupported from './useSupported';
 import useThrottle from './useThrottle';
 import useThrottleFn from './useThrottleFn';
@@ -57,6 +58,7 @@ export {
   useRect,
   useResizeObserver,
   useSessionStorage,
+  useSize,
   useSupported,
   useThrottle,
   useThrottleFn,

@@ -14,6 +14,7 @@ const Router = {
     'usePermission',
     'useRect',
     'useResizeObserver',
+    'useSize',
     'useTitle',
     'useVirtualList',
     'useWindowSize',
