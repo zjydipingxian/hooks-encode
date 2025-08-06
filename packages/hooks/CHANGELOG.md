@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.3.6
+
+### Patch Changes
+
+- 增加取消当前防抖功能并优化 API
+
 ## 1.3.5
 
 ### Patch Changes
