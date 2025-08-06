@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
+import { BasicTarget } from '../domTarget';
 import { isBrowser, onMountedOrActivated } from '../utils';
-import { isRef, onDeactivated, onUnmounted, Ref, unref, watch, type WatchStopHandle } from 'vue';
+import { isRef, onDeactivated, onUnmounted, unref, watch, type WatchStopHandle } from 'vue';
 
-type TargetRef = EventTarget | Ref<EventTarget | undefined>;
+export type UseEventListenerTarget = BasicTarget<HTMLElement | Element | Window | Document>;
 
-export type UseEventListenerOptions = {
+type noop = (...p: unknown[]) => void;
+
+export type UseEventListenerOptions<T extends UseEventListenerTarget = UseEventListenerTarget> = {
   // 目标元素
-  target?: TargetRef;
+  target?: T;
   // 是否捕获
   capture?: boolean;
   // 监听器是否应该以被动模式运行。被动监听器不会阻止事件的默认行为，这意味着它们不会调用 preventDefault()
@@ -22,23 +25,26 @@ export type UseEventListenerOptions = {
  * @param listener 事件处理函数，它将被绑定到指定的事件类型上。
  * @param options 可选的事件监听器选项，如是否在捕获阶段触发事件等。
  */
+
+function useEventListener<K extends keyof HTMLElementEventMap>(
+  type: K,
+  listener: (event: HTMLElementEventMap[K]) => void,
+  options?: UseEventListenerOptions<HTMLElement>,
+): () => void;
+
 function useEventListener<K extends keyof DocumentEventMap>(
   type: K,
   listener: (event: DocumentEventMap[K]) => void,
-  options?: UseEventListenerOptions,
+  options?: UseEventListenerOptions<Document>,
 ): () => void;
 
 function useEventListener<K extends keyof WindowEventMap>(
   type: K,
   listener: (event: WindowEventMap[K]) => void,
-  options?: UseEventListenerOptions,
+  options?: UseEventListenerOptions<Window>,
 ): () => void;
 
-function useEventListener<K extends keyof HTMLElementEventMap>(
-  type: K,
-  listener: (event: HTMLElementEventMap[K]) => void,
-  options?: UseEventListenerOptions,
-): () => void;
+function useEventListener(eventName: string, handler: noop, options: UseEventListenerOptions): void;
 
 function useEventListener(type: string, listener: EventListener, options?: UseEventListenerOptions) {
   if (!isBrowser) {
@@ -52,7 +58,7 @@ function useEventListener(type: string, listener: EventListener, options?: UseEv
   // 事件监听器是否已经添加。
   let attached: boolean;
 
-  const add = (target?: TargetRef) => {
+  const add = (target) => {
     if (cleaned) {
       return;
     }
@@ -68,7 +74,7 @@ function useEventListener(type: string, listener: EventListener, options?: UseEv
     }
   };
 
-  const remove = (target?: TargetRef) => {
+  const remove = (target?) => {
     if (cleaned) {
       return;
     }
@@ -88,8 +94,8 @@ function useEventListener(type: string, listener: EventListener, options?: UseEv
 
   if (isRef(target)) {
     stopWatch = watch(target, (val, oldVal) => {
-      remove(oldVal as TargetRef);
-      add(val as TargetRef);
+      remove(oldVal);
+      add(val);
     });
   }
 

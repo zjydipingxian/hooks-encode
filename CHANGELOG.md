@@ -1,5 +1,6 @@
 ## 1.0.0 (2025-08-06)
 
+* chore: publish packages ([52f94f8](https://github.com/zjydipingxian/hooks-encode/commit/52f94f8))
 * feat(useDebounceFn): 增加取消当前防抖功能并优化 API ([ddc2705](https://github.com/zjydipingxian/hooks-encode/commit/ddc2705))
 
 

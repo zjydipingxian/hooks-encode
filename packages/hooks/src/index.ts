@@ -15,6 +15,7 @@ import useHover from './useHover';
 import useLocalStorage from './useLocalStorage';
 import useMedia from './useMedia';
 import useMounted from './useMounted';
+import useMouse from './useMouse';
 import useOmit from './useOmit';
 import useOnline from './useOnline';
 import usePermission from './usePermission';
@@ -47,6 +48,7 @@ export {
   useLocalStorage,
   useMedia,
   useMounted,
+  useMouse,
   useOmit,
   useOnline,
   usePermission,

@@ -10,6 +10,7 @@ const Router = {
     'useFullscreen',
     'useHover',
     'useMedia',
+    'useMouse',
     'usePermission',
     'useRect',
     'useResizeObserver',
