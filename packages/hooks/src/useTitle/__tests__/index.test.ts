@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import useTitle from '../index';
 import { ref } from 'vue';
 import renderHook from '../../../test-utils/renderHook';

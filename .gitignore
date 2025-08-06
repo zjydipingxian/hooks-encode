@@ -3,6 +3,7 @@ node_modules
 yarn-error.log
 # test
 coverage
+html
 .idea
 # api-extractor
 temp
@@ -11,6 +12,7 @@ dist
 es
 lib
 .docz
+
 # analyzer
 analyzer.html
 

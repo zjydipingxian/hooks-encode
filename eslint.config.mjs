@@ -8,8 +8,13 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    // plugins: ['@typescript-eslint'],
     rules: {
-      // 声明的变量必须被使用
+      '@typescript-eslint/no-explicit-any': {
+        fixToUnknown: true,
+        ignoreRestArgs: true,
+      },
+      // 声明的变量必须被
       'no-unused-vars': [
         'error',
         {

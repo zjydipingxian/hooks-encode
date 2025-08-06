@@ -13,8 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 // 提取目录名
 const __dirname = path.dirname(__filename);
 const pkgPath = path.resolve(__dirname, 'package.json');
-const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 
+const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 const external = ['vue', 'tslib', 'Vue'];
 
 const tsPlugins = [

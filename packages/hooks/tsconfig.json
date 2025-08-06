@@ -2,8 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "src",
-    "importHelpers": true
+    "importHelpers": true,
+    "types": ["node", "vitest", "vitest/globals"]
     // "composite": true
   },
-  "exclude": ["node_modules", "lib", "es", "dist", "**/__tests__", "**/__test__", "**/demo", "example"]
+  "exclude": ["node_modules", "lib", "es", "dist", "**/__tests__", "**/__test__", "**/demo", "example", "test-utils/*.ts"]
 }
