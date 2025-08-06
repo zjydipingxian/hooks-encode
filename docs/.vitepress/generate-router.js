@@ -1,7 +1,35 @@
 const Router = {
-  Dom: ['useClickAway', 'useClipboard', 'useDocumentVisibility', 'useElementBounding', 'useEventListener', 'useFavicon', 'useFocusWithin', 'useFullscreen', 'useHover', 'useMedia', 'usePermission', 'useRect', 'useResizeObserver', 'useTitle', 'useVirtualList', 'useWindowSize'],
-  State: ['useBoolean', 'useDebounce', "useFormatResult", 'useLocalStorage', 'useMounted', 'useOnline', 'useSessionStorage', 'useSupported', 'useThrottle', 'useToggle'],
+  Dom: [
+    'useClickAway',
+    'useClipboard',
+    'useDocumentVisibility',
+    'useElementBounding',
+    'useEventListener',
+    'useFavicon',
+    'useFocusWithin',
+    'useFullscreen',
+    'useHover',
+    'useMedia',
+    'usePermission',
+    'useRect',
+    'useResizeObserver',
+    'useTitle',
+    'useVirtualList',
+    'useWindowSize',
+  ],
+  State: [
+    'useBoolean',
+    'useDebounce',
+    'useFormatResult',
+    'useLocalStorage',
+    'useMounted',
+    'useOnline',
+    'useSessionStorage',
+    'useSupported',
+    'useThrottle',
+    'useToggle',
+  ],
   Worker: ['useCountDown', 'useOmit', 'usePick'],
-  Effect: ['useDebounceFn', 'useThrottleFn']
+  Effect: ['useDebounceFn', 'useThrottleFn'],
 };
 export default Router;

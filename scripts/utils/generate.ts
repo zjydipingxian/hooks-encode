@@ -43,7 +43,7 @@ export const createHooksFile = async (name: string, description: string, type: s
     await copyFileDoc(hooksDir, name);
 
     // 更新路由映射关系表
-    await updateCreateRouterFile(type, name);
+    await updateCreateRouterFile(name, 'add', type);
 
     spinner.succeed(chalk.green(`hooks ${name} 创建成功！`));
   } catch (error) {
@@ -137,4 +137,56 @@ const copyFileDoc = async (hooksDir, name) => {
       return true; // 没有匹配到排除项，保留该文件
     },
   });
+};
+
+export const deleteHooks = async (name: string) => {
+  const spinner = ora('正在删除 hooks...').start();
+  const hookDir = resolve(PATHS.hooks, name);
+
+  try {
+    // 1. 删除组件目录
+    await fs.remove(hookDir);
+
+    // 2. 更新入口文件，移除该 hooks 的导出
+    await removeFromHooksEntry(name);
+
+    // 3. 更新 docs 目录
+    await removeFromDocsEntry(name);
+
+    spinner.succeed(`hooks${chalk.green(`${name} 删除成功！`)}`);
+  } catch (error) {
+    spinner.fail(`hooks${chalk.red(` ${name} 删除失败`)}`);
+    throw error;
+  }
+};
+
+// 从入口目录移除  packages\hooks\src\index.ts
+const removeFromHooksEntry = async (name: string) => {
+  try {
+    let content = await fs.readFile(PATHS.hooksEntry, 'utf-8');
+    const lines = content.split('\n');
+    const filteredLines = lines.filter((line) => !line.includes(`${name}`));
+
+    content = filteredLines.join('\n');
+    if (content.endsWith('\n\n')) {
+      content = content.slice(0, -1);
+    }
+
+    await fs.writeFile(PATHS.hooksEntry, await formatCode(content));
+  } catch (error) {
+    console.error(chalk.red('移除入口文件失败:'), error);
+    throw error;
+  }
+};
+
+// 从 docs 目录移除
+const removeFromDocsEntry = async (name) => {
+  const docsDir = resolve(PATHS.docsDir, name);
+  try {
+    await fs.remove(docsDir);
+    await updateCreateRouterFile(name, 'delete');
+  } catch (error) {
+    console.error(chalk.red(`${PATHS.docsDir}目录下删除 ${name} 目录失败:`), error);
+    throw error;
+  }
 };
