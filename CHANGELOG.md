@@ -1,5 +1,6 @@
-## 1.0.0 (2025-08-06)
+## 1.0.0 (2025-08-07)
 
+* test(hooks): 重构测试用例并添加新测试 ([4749581](https://github.com/zjydipingxian/hooks-encode/commit/4749581))
 * chore: publish packages ([4c63b0a](https://github.com/zjydipingxian/hooks-encode/commit/4c63b0a))
 * chore: publish packages ([02f9bc2](https://github.com/zjydipingxian/hooks-encode/commit/02f9bc2))
 * chore: publish packages ([52f94f8](https://github.com/zjydipingxian/hooks-encode/commit/52f94f8))

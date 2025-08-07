@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": "src",
     "importHelpers": true,
-    "types": ["node", "vitest", "vitest/globals"]
+    "types": ["node", "vitest", "vitest/globals"],
     // "composite": true
   },
   "exclude": ["node_modules", "lib", "es", "dist", "**/__tests__", "**/__test__", "**/demo", "example", "test-utils/*.ts"]
