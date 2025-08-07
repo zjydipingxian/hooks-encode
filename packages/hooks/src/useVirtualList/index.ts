@@ -5,7 +5,7 @@ export interface OptionType {
   overscan?: number;
 }
 
-const useVirtualList = <T = any>(state: T[], options: OptionType) => {
+const useVirtualList = <T = unknown>(state: T[], options: OptionType) => {
   let start = 0;
   let end = 10;
   const list = ref(state.slice(start, end)) as Ref<T[]>;

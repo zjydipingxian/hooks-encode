@@ -2,7 +2,7 @@ import { Ref, ref, unref } from 'vue';
 
 export type clipboardOptions = {
   clipboardContent: Ref<string>;
-  // eslint-disable-next-line no-unused-vars
+
   copyToClipboard: (text: string) => void;
   readFromClipboard: () => void;
 };

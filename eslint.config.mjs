@@ -66,6 +66,8 @@ export default [
       '**/__mocks__/**',
       '**/mock/**',
       '**/types/**',
+      '*.d.ts',
+      '**__tests__/**',
     ],
   },
 ];

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { ref, Ref, shallowRef, toRaw } from 'vue';
 import { createSingletonPromise, getGlobal } from '../utils';
 import useSupported from '../useSupported';

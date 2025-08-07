@@ -6,7 +6,7 @@ export function getGlobal<T>() {
   if (isBrowser) return window as T;
 }
 
-export type Fn = (...args: any[]) => any;
+export type Fn = (...args: any[]) => unknown;
 
 export const supportsPassive = true;
 
@@ -24,7 +24,7 @@ export function doubleRaf(fn: FrameRequestCallback): void {
   raf(() => raf(fn));
 }
 
-export function onMountedOrActivated(hook: () => any) {
+export function onMountedOrActivated(hook: () => unknown) {
   let mounted: boolean;
 
   onMounted(() => {
@@ -87,26 +87,26 @@ type Serializer<T> = {
 /**
  * 按照类型格式数据的常量Map
  */
-export const TypeSerializers: Record<'boolean' | 'object' | 'number' | 'any' | 'string', Serializer<any>> = {
+export const TypeSerializers: Record<'boolean' | 'object' | 'number' | 'any' | 'string', Serializer<unknown>> = {
   boolean: {
-    read: (v: any) => (v != null ? v === 'true' : null),
-    write: (v: any) => String(v),
+    read: (v: unknown) => (v != null ? v === 'true' : null),
+    write: (v: unknown) => String(v),
   },
   object: {
-    read: (v: any) => (v ? JSON.parse(v) : null),
-    write: (v: any) => JSON.stringify(v),
+    read: (v: unknown) => (v ? JSON.parse(v as string) : null),
+    write: (v: unknown) => JSON.stringify(v),
   },
   number: {
-    read: (v: any) => (v != null ? Number.parseFloat(v) : null),
-    write: (v: any) => String(v),
+    read: (v: unknown) => (v != null ? Number.parseFloat(v as string) : null),
+    write: (v: unknown) => String(v),
   },
   any: {
-    read: (v: any) => (v != null && v !== 'null' ? v : null),
-    write: (v: any) => String(v),
+    read: (v: unknown) => (v != null && v !== 'null' ? v : null),
+    write: (v: unknown) => String(v),
   },
   string: {
-    read: (v: any) => (v != null ? v : null),
-    write: (v: any) => String(v),
+    read: (v: unknown) => (v != null ? v : null),
+    write: (v: unknown) => String(v),
   },
 };
 

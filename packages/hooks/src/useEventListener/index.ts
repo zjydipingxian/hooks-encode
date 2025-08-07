@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { BasicTarget } from '../domTarget';
 import { isBrowser, onMountedOrActivated } from '../utils';
 import { isRef, onDeactivated, onUnmounted, unref, watch, type WatchStopHandle } from 'vue';

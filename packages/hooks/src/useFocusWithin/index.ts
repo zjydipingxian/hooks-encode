@@ -8,16 +8,14 @@ export interface UseFocusWithinOptions {
    * @default document
    */
 
-  // eslint-disable-next-line no-unused-vars
   onFocus?: (e: FocusEvent) => void;
   /**
    * 监听的元素
    * @default document
    */
-  // eslint-disable-next-line no-unused-vars
+
   onBlur?: (e: FocusEvent) => void;
 
-  // eslint-disable-next-line no-unused-vars
   onChange?: (isFocusWithin: boolean) => void;
 }
 
