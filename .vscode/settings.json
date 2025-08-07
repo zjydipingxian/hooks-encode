@@ -47,5 +47,30 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.words": ["commitlint", "stylelint"],
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/*.log": true,
+    "**/*.log*": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/elehukouben": true,
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.svn": true,
+    "**/.DS_Store": true,
+    "**/.idea": true,
+    "**/.vscode": false,
+    "**/pnpm i.lock": true,
+    "**/tmp": true,
+    "out": true,
+    "dist": true,
+    "node_modules": true,
+    "CHANGELOG.md": true,
+    "examples": true,
+    "res": true,
+    "screenshots": true,
+    "pnpm i-error.log": true,
+    "**/.pnpm i": true
+  }
 }

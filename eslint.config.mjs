@@ -8,20 +8,31 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    // plugins: ['@typescript-eslint'],
     rules: {
-      '@typescript-eslint/no-explicit-any': {
-        fixToUnknown: true,
-        ignoreRestArgs: true,
-      },
+      '@typescript-eslint/no-explicit-any': [
+        'warn',
+        {
+          fixToUnknown: false,
+          ignoreRestArgs: true,
+        },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          vars: 'all',
+          args: 'none',
+          caughtErrors: 'all',
+          ignoreRestSiblings: true,
+        },
+      ],
       // 声明的变量必须被
       'no-unused-vars': [
         'error',
         {
           vars: 'all',
-          args: 'after-used',
+          args: 'none',
           caughtErrors: 'all',
-          ignoreRestSiblings: false,
+          ignoreRestSiblings: true,
           reportUsedIgnorePattern: false,
         },
       ],
@@ -44,6 +55,8 @@ export default [
     ignores: [
       '**/node_modules/**',
       '**/dist/**',
+      '**/es/**',
+      '**/lib/**',
       '**/public/**',
       '**/build/**',
       '**/coverage/**',

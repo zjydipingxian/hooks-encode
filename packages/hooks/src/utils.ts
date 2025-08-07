@@ -6,7 +6,7 @@ export function getGlobal<T>() {
   if (isBrowser) return window as T;
 }
 
-export type Fn = (...[]: any[]) => any;
+export type Fn = (...args: any[]) => any;
 
 export const supportsPassive = true;
 
