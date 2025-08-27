@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.0
+
+### Minor Changes
+
+- 新增 useLockFn Hook
+
 ## 1.3.8
 
 ### Patch Changes
