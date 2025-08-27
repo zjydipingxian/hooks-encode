@@ -13,6 +13,7 @@ import useFormatResult from './useFormatResult';
 import useFullscreen from './useFullscreen';
 import useHover from './useHover';
 import useLocalStorage from './useLocalStorage';
+import useLockFn from './useLockFn';
 import useMedia from './useMedia';
 import useMounted from './useMounted';
 import useMouse from './useMouse';
@@ -48,6 +49,7 @@ export {
   useFullscreen,
   useHover,
   useLocalStorage,
+  useLockFn,
   useMedia,
   useMounted,
   useMouse,

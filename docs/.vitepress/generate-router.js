@@ -33,6 +33,6 @@ const Router = {
     'useToggle',
   ],
   Worker: ['useCountDown', 'useOmit', 'usePick'],
-  Effect: ['useDebounceFn', 'useThrottleFn'],
+  Effect: ['useDebounceFn', 'useLockFn', 'useThrottleFn'],
 };
 export default Router;
