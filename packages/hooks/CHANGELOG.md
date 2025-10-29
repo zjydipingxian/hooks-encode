@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.2
+
+### Patch Changes
+
+- 新增 useInterval hook 处理定时任务
+
 ## 1.4.1
 
 ### Patch Changes
