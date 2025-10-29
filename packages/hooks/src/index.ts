@@ -12,6 +12,7 @@ import useFocusWithin from './useFocusWithin';
 import useFormatResult from './useFormatResult';
 import useFullscreen from './useFullscreen';
 import useHover from './useHover';
+import useInterval from './useInterval';
 import useLocalStorage from './useLocalStorage';
 import useLockFn from './useLockFn';
 import useMedia from './useMedia';
@@ -49,6 +50,7 @@ export {
   useFormatResult,
   useFullscreen,
   useHover,
+  useInterval,
   useLocalStorage,
   useLockFn,
   useMedia,
