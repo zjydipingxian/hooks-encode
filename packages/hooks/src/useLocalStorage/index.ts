@@ -14,7 +14,7 @@ const defaultOptions = {
 function useLocalStorage<T = unknown>(key: string, initialValue?: T | Ref<T>, options?: Options) {
   const { watch } = { ...defaultOptions, ...options };
 
-  const data = ref() as Ref<T | undefined | null>;
+  const data = ref('') as Ref<T | undefined | null>;
 
   try {
     if (initialValue !== undefined) {
