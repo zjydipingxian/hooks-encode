@@ -28,6 +28,7 @@ import useSize from './useSize';
 import useSupported from './useSupported';
 import useThrottle from './useThrottle';
 import useThrottleFn from './useThrottleFn';
+import useTimeout from './useTimeout';
 import useTitle from './useTitle';
 import useToggle from './useToggle';
 import useVirtualList from './useVirtualList';
@@ -64,6 +65,7 @@ export {
   useSupported,
   useThrottle,
   useThrottleFn,
+  useTimeout,
   useTitle,
   useToggle,
   useVirtualList,
