@@ -1,8 +1,14 @@
 # zhongjiayao_v3_hooks
 
+<<<<<<< HEAD
 ## 1.4.1
 
 ### Patch Changes
+=======
+## 1.5.0
+
+### Minor Changes
+>>>>>>> 6bcea84a77808c7234d3b48fe3029b8ebf83f6a7
 
 - 新增 useTimeout 钩子用于处理延迟执行逻辑
 
