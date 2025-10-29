@@ -1,4 +1,4 @@
-import { watchEffect, ref, Ref, isRef, unref } from 'vue';
+import { watchEffect, ref, Ref, unref } from 'vue';
 
 interface UseIntervalReturn {
   clear: VoidFunction;
@@ -17,20 +17,17 @@ function useInterval(
   const timerRef = ref<ReturnType<typeof setInterval> | null>(null);
 
   const setupInterval = () => {
-    if (isRef(delay)) {
-      if (typeof delay.value !== 'number' || delay.value < 0) return;
-    } else {
-      if (typeof delay !== 'number' || delay < 0) return;
-    }
+    const delayUnref = unref(delay);
+
+    if (typeof delayUnref !== 'number' || delayUnref < 0) return;
 
     if (immediate) {
       fnRef.value();
     }
 
-    const _delay = unref(delay);
     timerRef.value = setInterval(() => {
       fnRef.value();
-    }, _delay);
+    }, delayUnref);
   };
 
   const clear = () => {
