@@ -33,3 +33,11 @@ export const createMeta = (type) => `\
   "type": "${type}",
 }
   `;
+
+// 创建测试用例模板
+export const createUseHooksTest = (name) => `\
+import { describe, expect, it } from 'vitest'
+import ${name} from '..';
+describe('${name}', () => { 
+});
+`;

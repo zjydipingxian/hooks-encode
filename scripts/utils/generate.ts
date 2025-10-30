@@ -3,7 +3,13 @@ import chalk from 'chalk';
 import { resolve, join } from 'path';
 import fs from 'fs-extra';
 import { PATHS } from './paths';
-import { createMeta, createUseHooksDemo, createUseHooksMd, createUseHooksTemplate } from '../templates/generateCtx';
+import {
+  createMeta,
+  createUseHooksDemo,
+  createUseHooksMd,
+  createUseHooksTemplate,
+  createUseHooksTest,
+} from '../templates/generateCtx';
 import { formatCode } from './format';
 import { updateCreateRouterFile } from './route-map';
 
@@ -23,11 +29,13 @@ export const createHooksFile = async (name: string, description: string, type: s
       [`${hooksDir}/index.md`]: createUseHooksMd(name, description),
       [`${hooksDir}/index.ts`]: await formatCode(createUseHooksTemplate(name), 'index.ts'),
       [`${hooksDir}/meta.json`]: createMeta(type),
+      '__tests__/index.test.ts': await formatCode(createUseHooksTest(name), 'index.test.ts'),
     };
 
     // 创建目录结构
     await fs.ensureDir(hooksDir);
     await fs.ensureDir(resolve(hooksDir, 'demo'));
+    await fs.ensureDir(resolve(hooksDir, '__tests__'));
 
     // 写入文件
     for (const [file, content] of Object.entries(files)) {

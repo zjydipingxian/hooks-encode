@@ -17,7 +17,7 @@
     "eslint": "eslint  --fix  ./packages/**/*.{js,ts}",
     "cli": "tsx scripts/commander.ts create",
     "hooks:del": "tsx scripts/commander.ts delete",
-    "wt": "tsx cli/watch.ts",
+    "wt": "tsx scripts/watch.ts",
     "docs:dev": "tsx scripts/start.ts",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
