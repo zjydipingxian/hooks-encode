@@ -31,6 +31,7 @@ const Router = {
     'useSupported',
     'useThrottle',
     'useToggle',
+    'useWebSocket',
   ],
   Worker: ['useCountDown', 'useOmit', 'usePick'],
   Effect: ['useDebounceFn', 'useInterval', 'useLockFn', 'useThrottleFn', 'useTimeout'],

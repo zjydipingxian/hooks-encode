@@ -33,6 +33,7 @@ import useTimeout from './useTimeout';
 import useTitle from './useTitle';
 import useToggle from './useToggle';
 import useVirtualList from './useVirtualList';
+import useWebSocket from './useWebSocket';
 import useWinResize from './useWinResize';
 import useWindowSize from './useWindowSize';
 export {
@@ -71,6 +72,7 @@ export {
   useTitle,
   useToggle,
   useVirtualList,
+  useWebSocket,
   useWinResize,
   useWindowSize,
 };

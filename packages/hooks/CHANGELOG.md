@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.3
+
+### Patch Changes
+
+- 新增 useWebSocket hook，提供 WebSocket 连接管理、自动重连、心跳检测等功能。
+
 ## 1.4.2
 
 ### Patch Changes
