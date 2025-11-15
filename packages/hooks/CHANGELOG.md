@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.4
+
+### Patch Changes
+
+- 新增 useKeyPress 钩子实现键盘事件监听
+
 ## 1.4.3
 
 ### Patch Changes
