@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-  import { watch } from 'fs';
   import { ref } from 'vue';
   import { useWebSocket } from 'zhongjiayao_v3_hooks';
 

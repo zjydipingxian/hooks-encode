@@ -12,6 +12,8 @@ dist
 es
 lib
 .docz
+.qoder
+.trae
 
 # analyzer
 analyzer.html
