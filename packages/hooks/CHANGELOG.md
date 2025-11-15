@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.6
+
+### Patch Changes
+
+- 新增分页状态管理 Hook usePagination
+
 ## 1.4.5
 
 ### Patch Changes

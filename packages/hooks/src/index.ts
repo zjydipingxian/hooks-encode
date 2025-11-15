@@ -22,6 +22,7 @@ import useMounted from './useMounted';
 import useMouse from './useMouse';
 import useOmit from './useOmit';
 import useOnline from './useOnline';
+import usePagination from './usePagination';
 import usePermission from './usePermission';
 import usePick from './usePick';
 import useRect from './useRect';
@@ -63,6 +64,7 @@ export {
   useMouse,
   useOmit,
   useOnline,
+  usePagination,
   usePermission,
   usePick,
   useRect,
