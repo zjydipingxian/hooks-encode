@@ -13,6 +13,7 @@ import useFormatResult from './useFormatResult';
 import useFullscreen from './useFullscreen';
 import useHover from './useHover';
 import useInterval from './useInterval';
+import useInViewport from './useInViewport';
 import useKeyPress from './useKeyPress';
 import useLocalStorage from './useLocalStorage';
 import useLockFn from './useLockFn';
@@ -53,6 +54,7 @@ export {
   useFullscreen,
   useHover,
   useInterval,
+  useInViewport,
   useKeyPress,
   useLocalStorage,
   useLockFn,

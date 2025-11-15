@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.5
+
+### Patch Changes
+
+- 新增 useInViewport 视口检测 Hook 及相关文档和示例
+
 ## 1.4.4
 
 ### Patch Changes
