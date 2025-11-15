@@ -1,4 +1,4 @@
-import { ref, Ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, Ref, onMounted, onBeforeUnmount, isRef } from 'vue';
 
 /**
  * 键盘按键类型
@@ -34,7 +34,7 @@ export interface UseKeyPressOptions {
    * 目标元素
    * @default window
    */
-  target?: HTMLElement | Window | Document | (() => HTMLElement | Window | Document | null);
+  target?: HTMLElement | Window | Document | Ref<HTMLElement | undefined | null> | (() => HTMLElement | Window | Document | null);
 
   /**
    * 是否完全匹配（需要所有修饰键都匹配）
@@ -154,7 +154,7 @@ function isKeyMatch(event: KeyboardEvent, keyFilter: KeyFilter, exactMatch: bool
  * 获取目标元素
  */
 function getTargetElement(
-  target?: HTMLElement | Window | Document | (() => HTMLElement | Window | Document | null),
+  target?: HTMLElement | Window | Document | Ref<HTMLElement | undefined | null> | (() => HTMLElement | Window | Document | null),
 ): HTMLElement | Window | Document {
   if (!target) {
     return window;
@@ -162,6 +162,16 @@ function getTargetElement(
 
   if (typeof target === 'function') {
     return target() || window;
+  }
+
+  // 处理 Vue Ref
+  if (isRef(target)) {
+    // 如果 ref.value 是 Vue 组件实例，获取其 $el
+    const element = target.value;
+    if (element && typeof element === 'object' && '$el' in element) {
+      return (element as any).$el || window;
+    }
+    return element || window;
   }
 
   return target;

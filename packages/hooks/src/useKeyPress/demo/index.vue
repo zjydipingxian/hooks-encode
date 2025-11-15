@@ -42,13 +42,23 @@
         <a-input v-model:value="textInput" placeholder="输入文本，按 Esc 清空" />
         <a-alert v-if="escPressed" message="按下 Esc 已清空输入" type="warning" style="margin-top: 8px" />
       </a-card>
+
+      <!-- 指定目标元素 -->
+      <a-card title="指定目标元素">
+        <p>只在下方输入框中监听 Enter 键（全局不监听）</p>
+        <a-input ref="targetInputRef" v-model:value="targetInput" placeholder="在此输入框按 Enter 提交" />
+        <p style="margin-top: 8px; color: #52c41a" v-if="submitMessage">
+          {{ submitMessage }}
+        </p>
+        <p style="margin-top: 8px; color: #999">提示：只有焦点在输入框内按 Enter 才会触发，其他地方按 Enter 不会触发</p>
+      </a-card>
     </a-space>
   </div>
 </template>
 
 <script setup>
   import { ref } from 'vue';
-  import useKeyPress from 'zhongjiayao_v3_hooks';
+  import { useKeyPress } from 'zhongjiayao_v3_hooks';
 
   // 1. 单键监听
   const enterPressed = useKeyPress('Enter');
@@ -108,6 +118,27 @@
       escPressed.value = false;
     }, 1000);
   });
+
+  // 6. 指定目标元素
+  const targetInputRef = ref();
+  const targetInput = ref('');
+  const submitMessage = ref('');
+
+  useKeyPress(
+    'Enter',
+    () => {
+      if (targetInput.value.trim()) {
+        submitMessage.value = `✅ 已提交: ${targetInput.value}`;
+        targetInput.value = '';
+        setTimeout(() => {
+          submitMessage.value = '';
+        }, 2000);
+      }
+    },
+    {
+      target: targetInputRef, // 只监听这个输入框
+    },
+  );
 </script>
 
 <style scoped>
