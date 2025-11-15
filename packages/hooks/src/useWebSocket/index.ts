@@ -1,4 +1,4 @@
-import { ref, Ref, onUnmounted } from 'vue';
+import { ref, Ref, onUnmounted, computed } from 'vue';
 
 interface UseWebSocketOptions {
   manual?: boolean; // 是否手动触发连接，默认自动连接
@@ -10,11 +10,14 @@ interface UseWebSocketOptions {
   onOpen?: (event: WebSocketEventMap['open']) => void; // 连接打开回调
   onClose?: (event: WebSocketEventMap['close']) => void; // 连接关闭回调
   onMessage?: (event: WebSocketEventMap['message']) => void; // 接收消息回调
-  onError?: (event: WebSocketEventMap['error']) => void; // 错误回
+  onError?: (event: WebSocketEventMap['error']) => void; // 错误回调
 }
 
-// eslint-disable-next-line no-unused-vars
-enum ReadyState {
+/**
+ * WebSocket 连接状态枚举（与原生 WebSocket.readyState 保持一致）
+ */
+
+export enum ReadyState {
   // eslint-disable-next-line no-unused-vars
   Connecting = 0, // 连接中
   // eslint-disable-next-line no-unused-vars
@@ -33,7 +36,7 @@ interface Result {
   sendMessage: (data: string | ArrayBufferLike | Blob | ArrayBufferView) => boolean; // 发送消息方法
   disconnect: () => void; // 断开连接方法
   connect: () => void; // 建立连接方法
-  readyState: Ref<ReadyState>; // 当前连接状态
+  readyState: Ref<ReadyState>; // 当前连接状态（直接映射原生 WebSocket.readyState）
   webSocketIns: Ref<WebSocket | undefined>; // WebSocket实例引用
 }
 
@@ -72,16 +75,21 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
   if (!socketUrl || typeof socketUrl !== 'string') {
     throw new Error('useWebSocket requires a string socketUrl');
   }
+
   // 响应式状态管理
-  const readyState = ref<ReadyState>(ReadyState.Closed);
-  const reconnectCount = ref<number>(0);
   const socket = ref<WebSocket>();
   const latestMessage = ref<WebSocketEventMap['message']>();
+  const reconnectCount = ref<number>(0);
   const isManualDisconnect = ref<boolean>(false); // 标记是否主动断开连接
 
-  // 定时器管理
-  const timeoutRef = ref<NodeJS.Timeout | null>(null);
-  const heartbeatTimer = ref<NodeJS.Timeout | null>(null);
+  // readyState 直接从原生 WebSocket 实例获取，保证状态同步
+  const readyState = computed<ReadyState>(() => {
+    return socket.value?.readyState ?? ReadyState.Closed;
+  });
+
+  // 定时器管理（使用通用类型）
+  const timeoutRef = ref<ReturnType<typeof setTimeout> | null>(null);
+  const heartbeatTimer = ref<ReturnType<typeof setInterval> | null>(null);
 
   /**
    * 启动心跳检测
@@ -109,7 +117,6 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    * 处理连接打开事件
    */
   const handleOpen = (event: WebSocketEventMap['open']) => {
-    readyState.value = ReadyState.Open;
     reconnectCount.value = 0; // 连接成功重置重连计数
     onOpen && onOpen(event);
     startHeartbeat(); // 连接成功后启动心跳
@@ -139,7 +146,6 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    * 处理连接关闭事件
    */
   const handleClose = (event: WebSocketEventMap['close']) => {
-    readyState.value = ReadyState.Closed;
     stopHeartbeat(); // 连接关闭时停止心跳
     onClose && onClose(event);
 
@@ -156,21 +162,16 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
   };
 
   /**
-   * 清理WebSocket实例及事件监听
+   * 清理WebSocket实例
+   * 注意：不移除事件监听器，确保 close 事件能正常触发回调
    */
   const cleanWebSocket = () => {
     if (socket.value) {
-      // 移除事件监听
-      socket.value.removeEventListener('open', handleOpen);
-      socket.value.removeEventListener('message', handleMessage);
-      socket.value.removeEventListener('error', handleError);
-      socket.value.removeEventListener('close', handleClose);
-
-      // 关闭连接
-      if (socket.value.readyState !== ReadyState.Closed) {
+      // 仅在连接未关闭时才执行 close
+      const currentState = socket.value.readyState;
+      if (currentState === WebSocket.CONNECTING || currentState === WebSocket.OPEN) {
         socket.value.close();
       }
-      socket.value = undefined;
     }
   };
 
@@ -179,14 +180,15 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
     cleanWebSocket();
 
     try {
-      readyState.value = ReadyState.Connecting;
-      socket.value = new WebSocket(socketUrl);
+      // 创建新的 WebSocket 实例
+      const ws = new WebSocket(socketUrl);
+      socket.value = ws;
 
-      // 绑定事件监听
-      socket.value.addEventListener('open', handleOpen);
-      socket.value.addEventListener('message', handleMessage);
-      socket.value.addEventListener('error', handleError);
-      socket.value.addEventListener('close', handleClose);
+      // 绑定事件监听（只在创建新实例时绑定一次）
+      ws.addEventListener('open', handleOpen);
+      ws.addEventListener('message', handleMessage);
+      ws.addEventListener('error', handleError);
+      ws.addEventListener('close', handleClose);
     } catch (error) {
       console.error('Failed to create WebSocket instance:', error);
       handleError(error as WebSocketEventMap['error']);
@@ -197,8 +199,9 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    * 手动建立连接方法
    */
   const connect = () => {
+    const currentState = readyState.value;
     // 已连接或正在连接时，不重复执行
-    if (readyState.value === ReadyState.Open || readyState.value === ReadyState.Connecting) {
+    if (currentState === ReadyState.Open || currentState === ReadyState.Connecting) {
       return;
     }
     isManualDisconnect.value = false; // 重置主动断开标记
@@ -231,9 +234,9 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    * 断开连接方法
    */
   const disconnect = () => {
-    if ((readyState.value === ReadyState.Connecting || readyState.value === ReadyState.Open) && socket.value) {
+    const currentState = readyState.value;
+    if ((currentState === ReadyState.Connecting || currentState === ReadyState.Open) && socket.value) {
       isManualDisconnect.value = true; // 标记为主动断开
-      readyState.value = ReadyState.Closing;
 
       if (timeoutRef.value) {
         clearTimeout(timeoutRef.value);
@@ -250,8 +253,7 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    * @returns 是否发送成功
    */
   const sendMessage = (data: string | ArrayBufferLike | Blob | ArrayBufferView): boolean => {
-    console.log('🚀 ~ sendMessage ~ data:', data);
-    if (!data) {
+    if (data == null || data === '') {
       console.warn('Cannot send empty message');
       return false;
     }
@@ -263,7 +265,6 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
 
     try {
       socket.value.send(data);
-      console.log('🚀 ~ sendMessage ~ socket.value:', socket.value);
       return true;
     } catch (error) {
       console.error('Failed to send message:', error);
@@ -283,7 +284,6 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
 
   // 非手动模式下自动连接
   if (!manual) {
-    console.log('非手动模式下自动连接');
     connect();
   }
 
