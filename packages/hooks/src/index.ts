@@ -12,8 +12,8 @@ import useFocusWithin from './useFocusWithin';
 import useFormatResult from './useFormatResult';
 import useFullscreen from './useFullscreen';
 import useHover from './useHover';
-import useInterval from './useInterval';
 import useInViewport from './useInViewport';
+import useInterval from './useInterval';
 import useKeyPress from './useKeyPress';
 import useLocalStorage from './useLocalStorage';
 import useLockFn from './useLockFn';
@@ -25,6 +25,7 @@ import useOnline from './useOnline';
 import usePagination from './usePagination';
 import usePermission from './usePermission';
 import usePick from './usePick';
+import usePolling from './usePolling';
 import useRect from './useRect';
 import useResizeObserver from './useResizeObserver';
 import useSessionStorage from './useSessionStorage';
@@ -54,8 +55,8 @@ export {
   useFormatResult,
   useFullscreen,
   useHover,
-  useInterval,
   useInViewport,
+  useInterval,
   useKeyPress,
   useLocalStorage,
   useLockFn,
@@ -67,6 +68,7 @@ export {
   usePagination,
   usePermission,
   usePick,
+  usePolling,
   useRect,
   useResizeObserver,
   useSessionStorage,

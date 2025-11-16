@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.7
+
+### Patch Changes
+
+- 新增 usePolling 实时轮询 Hook
+
 ## 1.4.6
 
 ### Patch Changes
