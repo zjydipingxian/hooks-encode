@@ -7,7 +7,7 @@
     </a-space>
     <a-space>
       <a-space>
-        <!-- <a-button @click="handleConnect" v-if="!connected">连接</a-button> -->
+        <a-button @click="handleConnect" v-if="!connected">连接</a-button>
         <a-button @click="handleDisconnect">断开</a-button>
       </a-space>
     </a-space>
@@ -51,6 +51,7 @@
     reconnectLimit: 2,
     reconnectInterval: 1000,
     heartbeatInterval: 3000,
+    manual: true,
   });
 
   // 发送消息
