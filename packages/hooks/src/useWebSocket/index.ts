@@ -1,4 +1,5 @@
 import { ref, Ref, onUnmounted } from 'vue';
+import { isBrowser } from '../utils';
 
 interface UseWebSocketOptions {
   manual?: boolean; // 是否手动触发连接，默认自动连接
@@ -74,6 +75,10 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
   // 验证连接地址有效性
   if (!socketUrl || typeof socketUrl !== 'string') {
     throw new Error('useWebSocket requires a string socketUrl');
+  }
+
+  if (!isBrowser) {
+    throw new Error('useWebSocket is not available in current environment');
   }
 
   // 响应式状态管理
@@ -286,7 +291,7 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
   });
 
   // 非手动模式下自动连接
-  if (!manual) {
+  if (!manual && isBrowser) {
     connect();
   }
 
