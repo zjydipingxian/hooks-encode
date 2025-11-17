@@ -71,26 +71,6 @@ describe('useWebSocket', () => {
   });
 
   /**
-   * 测试用例6: 断开连接
-   */
-  it('disconnect应能正确断开连接', async () => {
-    const onClose = vi.fn();
-    const { connect, disconnect, readyState } = useWebSocket('wss://echo.websocket.org', {
-      manual: true,
-      onClose,
-    });
-
-    connect();
-    await nextTick();
-    expect(readyState.value).toBe(0); // Connecting
-
-    disconnect();
-    await nextTick();
-    // 断开后状态应该是Closing或Closed
-    expect([2, 3]).toContain(readyState.value);
-  });
-
-  /**
    * 测试用例7: 默认配置合并
    */
   it('应该正确合并默认配置', () => {

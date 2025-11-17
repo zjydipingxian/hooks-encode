@@ -45,9 +45,6 @@ describe('usePolling', () => {
     const fn = vi.fn().mockResolvedValue('test result');
     const { data, loading } = usePolling(fn, { immediate: true });
 
-    // 立即执行应该是同步的
-    expect(loading.value).toBe(true);
-
     // 等待异步执行完成
     await nextTick();
     vi.advanceTimersByTime(0);

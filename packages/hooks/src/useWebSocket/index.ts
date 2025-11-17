@@ -1,4 +1,4 @@
-import { ref, Ref, onUnmounted, computed } from 'vue';
+import { ref, Ref, onUnmounted } from 'vue';
 
 interface UseWebSocketOptions {
   manual?: boolean; // 是否手动触发连接，默认自动连接
@@ -82,10 +82,8 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
   const reconnectCount = ref<number>(0);
   const isManualDisconnect = ref<boolean>(false); // 标记是否主动断开连接
 
-  // readyState 直接从原生 WebSocket 实例获取，保证状态同步
-  const readyState = computed<ReadyState>(() => {
-    return socket.value?.readyState ?? ReadyState.Closed;
-  });
+  // 使用 ref 来存储 readyState，确保状态同步
+  const readyState = ref<ReadyState>(ReadyState.Closed);
 
   // 定时器管理（使用通用类型）
   const timeoutRef = ref<ReturnType<typeof setTimeout> | null>(null);
@@ -118,6 +116,7 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    */
   const handleOpen = (event: WebSocketEventMap['open']) => {
     reconnectCount.value = 0; // 连接成功重置重连计数
+    readyState.value = ReadyState.Open; // 更新 readyState
     onOpen && onOpen(event);
     startHeartbeat(); // 连接成功后启动心跳
   };
@@ -135,6 +134,7 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    */
   const handleError = (event: WebSocketEventMap['error']) => {
     console.error('WebSocket error:', event);
+    readyState.value = ReadyState.Closed; // 更新 readyState
     onError && onError(event);
     // 非主动断开时尝试重连
     if (!isManualDisconnect.value) {
@@ -147,6 +147,7 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
    */
   const handleClose = (event: WebSocketEventMap['close']) => {
     stopHeartbeat(); // 连接关闭时停止心跳
+    readyState.value = ReadyState.Closed; // 更新 readyState
     onClose && onClose(event);
 
     // 非主动断开 + 未超过重连次数 + 非正常关闭时重连
@@ -183,6 +184,7 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
       // 创建新的 WebSocket 实例
       const ws = new WebSocket(socketUrl);
       socket.value = ws;
+      readyState.value = ReadyState.Connecting; // 设置初始状态为连接中
 
       // 绑定事件监听（只在创建新实例时绑定一次）
       ws.addEventListener('open', handleOpen);
@@ -191,6 +193,7 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
       ws.addEventListener('close', handleClose);
     } catch (error) {
       console.error('Failed to create WebSocket instance:', error);
+      readyState.value = ReadyState.Closed; // 更新 readyState
       handleError(error as WebSocketEventMap['error']);
     }
   };

@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-  import { watch } from 'fs';
   import { ref } from 'vue';
   import { useWebSocket } from 'zhongjiayao_v3_hooks';
 
@@ -56,8 +55,6 @@
 
   // 发送消息
   const handleSendMessage = () => {
-    console.log('🚀 ~ handleSendMessage ~ connected.value:', connected.value);
-    console.log('🚀 ~ handleSendMessage ~ message.value:', message.value);
     if (message.value && connected.value) {
       console.log('发送消息:', message.value);
       sendMessage(message.value);
