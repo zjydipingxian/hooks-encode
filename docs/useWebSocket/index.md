@@ -38,7 +38,7 @@ const { socket, sendMessage, disconnect, connect, reconnect, connected } = useWe
 
 | 参数          | 说明             | 类型                                                                   |
 | ------------- | ---------------- | ---------------------------------------------------------------------- |
-| socket        | WebSocket 实例   | `WebSocket \| null`                                                    |
+| socket        | WebSocket 实例   | null`                                                                  |
 | sendMessage   | 发送消息的函数   | `(data: string \| ArrayBufferLike \| Blob \| ArrayBufferView) => void` |
 | disconnect    | 断开连接的函数   | `() => void`                                                           |
 | connect       | 手动建立连接方法 | `() => void`                                                           |
