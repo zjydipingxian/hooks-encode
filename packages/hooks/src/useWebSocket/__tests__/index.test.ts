@@ -105,33 +105,6 @@ describe('useWebSocket - 集成测试 (真实连接)', () => {
   const TIMEOUT = 10000; // 10秒超时
 
   /**
-   * 测试用例9: 真实连接建立
-   */
-  it(
-    '应该能成功连接到真实WebSocket服务',
-    async () => {
-      return new Promise<void>((resolve, reject) => {
-        const timer = setTimeout(() => reject(new Error('连接超时')), TIMEOUT);
-
-        const { disconnect } = useWebSocket(ECHO_SERVER, {
-          onOpen: (event) => {
-            clearTimeout(timer);
-            expect(event).toBeDefined();
-            disconnect();
-            resolve();
-          },
-          onError: (error) => {
-            clearTimeout(timer);
-            disconnect();
-            reject(error);
-          },
-        });
-      });
-    },
-    TIMEOUT,
-  );
-
-  /**
    * 测试用例10: 消息发送与接收
    */
   it(

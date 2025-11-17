@@ -8,19 +8,19 @@ export default defineConfig({
   title: "ZhongJiaYao",
 
   head: [
-    [
-      'script',
-      {
-        charset: 'UTF-8',
-        id: 'LA_COLLECT',
-        src: '//sdk.51.la/js-sdk-pro.min.js',
-      },
-    ],
-    [
-      'script',
-      {},
-      `LA.init({id:"3Jx6Kflqb6AXQY85",ck:"3Jx6Kflqb6AXQY85",autoTrack:true,hashMode:true})`,
-    ],
+    // [
+    //   'script',
+    //   {
+    //     charset: 'UTF-8',
+    //     id: 'LA_COLLECT',
+    //     src: '//sdk.51.la/js-sdk-pro.min.js',
+    //   },
+    // ],
+    // [
+    //   'script',
+    //   {},
+    //   `LA.init({id:"3Jx6Kflqb6AXQY85",ck:"3Jx6Kflqb6AXQY85",autoTrack:true,hashMode:true})`,
+    // ],
   ],
   
   vite: {

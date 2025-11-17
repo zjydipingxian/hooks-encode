@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.8
+
+### Patch Changes
+
+- 新增 useRequest 异步请求管理 Hook
+
 ## 1.4.7
 
 ### Patch Changes

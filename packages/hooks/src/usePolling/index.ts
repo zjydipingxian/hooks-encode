@@ -160,7 +160,6 @@ function usePolling<T>(fn: () => Promise<T>, options: UsePollingOptions = {}): U
 
       // 检查是否达到最大重试次数
       const maxAttempts = retry.maxAttempts ?? Infinity;
-      console.log('🚀 ~ execute ~ maxAttempts:', retryCount.value);
       if (retryCount.value >= maxAttempts) {
         stop();
         return;
