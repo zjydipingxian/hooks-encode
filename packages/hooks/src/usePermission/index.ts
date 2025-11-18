@@ -3,7 +3,7 @@ import { createSingletonPromise, getGlobal } from '../utils';
 import useSupported from '../useSupported';
 import useEventListener from '../useEventListener';
 
-const _global = getGlobal<Window>();
+const _global = typeof window !== 'undefined' ? getGlobal<Window>() : undefined;
 
 /**
  * 定义了usePermission钩子函数的返回类型

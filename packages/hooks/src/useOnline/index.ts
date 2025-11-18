@@ -9,22 +9,27 @@ function useOnline() {
     online.value = typeof val == 'boolean' ? val : val.target.online;
   };
 
-  // 在页面加载后，设置正确的网络状态
-  navigator.onLine ? showStatus(true) : showStatus(false);
+  // 检查是否在浏览器环境中
+  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+    // 在页面加载后，设置正确的网络状态
+    navigator.onLine ? showStatus(true) : showStatus(false);
 
-  onMounted(() => {
-    // 开始监听网络状态的变化
-    window.addEventListener('online', showStatus);
+    onMounted(() => {
+      // 开始监听网络状态的变化
+      window.addEventListener('online', showStatus);
 
-    window.addEventListener('offline', showStatus);
-  });
-  onUnmounted(() => {
-    // 移除监听网络状态的变化
-    window.removeEventListener('online', showStatus);
+      window.addEventListener('offline', showStatus);
+    });
 
-    window.removeEventListener('offline', showStatus);
-  });
+    onUnmounted(() => {
+      // 移除监听网络状态的变化
+      window.removeEventListener('online', showStatus);
+
+      window.removeEventListener('offline', showStatus);
+    });
+  }
 
   return { online };
 }
+
 export default useOnline;

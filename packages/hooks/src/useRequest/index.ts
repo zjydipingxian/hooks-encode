@@ -197,22 +197,30 @@ function useRequest<T>(service: (...args: any[]) => Promise<T>, options: UseRequ
 
       // 处理轮询逻辑
       if (pollingInterval && !stopPollingFlag) {
-        // 如果需要在页面隐藏时继续轮询，或者页面可见，则继续轮询
-        if (pollingWhenHidden || document.visibilityState !== 'hidden') {
+        // 检查是否在浏览器环境中
+        if (typeof document !== 'undefined') {
+          // 如果需要在页面隐藏时继续轮询，或者页面可见，则继续轮询
+          if (pollingWhenHidden || document.visibilityState !== 'hidden') {
+            pollingTimer = setTimeout(() => {
+              run(...latestParams);
+            }, pollingInterval);
+          } else {
+            // 页面隐藏时，监听 visibilitychange 事件
+            const handleVisibilityChange = () => {
+              if (document.visibilityState === 'visible') {
+                pollingTimer = setTimeout(() => {
+                  run(...latestParams);
+                }, pollingInterval);
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
+              }
+            };
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+          }
+        } else {
+          // 在非浏览器环境中直接轮询
           pollingTimer = setTimeout(() => {
             run(...latestParams);
           }, pollingInterval);
-        } else {
-          // 页面隐藏时，监听 visibilitychange 事件
-          const handleVisibilityChange = () => {
-            if (document.visibilityState === 'visible') {
-              pollingTimer = setTimeout(() => {
-                run(...latestParams);
-              }, pollingInterval);
-              document.removeEventListener('visibilitychange', handleVisibilityChange);
-            }
-          };
-          document.addEventListener('visibilitychange', handleVisibilityChange);
         }
       }
     }
@@ -226,13 +234,16 @@ function useRequest<T>(service: (...args: any[]) => Promise<T>, options: UseRequ
   // 监听 visibilitychange 事件处理轮询
   const handleVisibilityChange = () => {
     if (pollingInterval && !stopPollingFlag) {
-      if (document.visibilityState === 'visible' && !loading.value) {
-        pollingTimer = setTimeout(() => {
-          refresh();
-        }, pollingInterval);
-      } else if (document.visibilityState === 'hidden' && pollingTimer) {
-        clearTimeout(pollingTimer);
-        pollingTimer = null;
+      // 检查是否在浏览器环境中
+      if (typeof document !== 'undefined') {
+        if (document.visibilityState === 'visible' && !loading.value) {
+          pollingTimer = setTimeout(() => {
+            refresh();
+          }, pollingInterval);
+        } else if (document.visibilityState === 'hidden' && pollingTimer) {
+          clearTimeout(pollingTimer);
+          pollingTimer = null;
+        }
       }
     }
   };
@@ -240,7 +251,10 @@ function useRequest<T>(service: (...args: any[]) => Promise<T>, options: UseRequ
   // 组件卸载时清理
   onUnmounted(() => {
     cancel();
-    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    // 检查是否在浏览器环境中
+    if (typeof document !== 'undefined') {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }
   });
 
   // 非手动模式下自动执行
@@ -253,7 +267,10 @@ function useRequest<T>(service: (...args: any[]) => Promise<T>, options: UseRequ
 
   // 如果启用了轮询且需要监听页面可见性，则添加事件监听器
   if (pollingInterval && !pollingWhenHidden) {
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    // 检查是否在浏览器环境中
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+    }
   }
 
   return {

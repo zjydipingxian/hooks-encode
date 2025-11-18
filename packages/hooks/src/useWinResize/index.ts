@@ -1,4 +1,5 @@
 import { onMounted, onBeforeUnmount, nextTick } from 'vue';
+
 function useWinResize(Action = () => {}) {
   const fn = () => {
     /**
@@ -9,11 +10,15 @@ function useWinResize(Action = () => {}) {
     });
   };
 
-  onMounted(() => {
-    window.addEventListener('resize', fn, false);
-  });
-  onBeforeUnmount(() => {
-    window.removeEventListener('resize', fn);
-  });
+  // 检查是否在浏览器环境中
+  if (typeof window !== 'undefined') {
+    onMounted(() => {
+      window.addEventListener('resize', fn, false);
+    });
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', fn);
+    });
+  }
 }
+
 export default useWinResize;

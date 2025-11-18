@@ -55,41 +55,45 @@ const initState: UseMouseCursorState = {
 function useMouse(target?: BasicTarget) {
   const state = ref(initState);
 
-  useEventListener(
-    'mousemove',
-    (event: MouseEvent) => {
-      const { screenX, screenY, clientX, clientY, pageX, pageY } = event;
-      const newState = {
-        screenX,
-        screenY,
-        clientX,
-        clientY,
-        pageX,
-        pageY,
-        elementX: NaN,
-        elementY: NaN,
-        elementH: NaN,
-        elementW: NaN,
-        elementPosX: NaN,
-        elementPosY: NaN,
-      };
-      const targetElement = getTargetElement(target);
-      if (targetElement) {
-        const { left, top, width, height } = targetElement.getBoundingClientRect();
-        newState.elementPosX = left + window.pageXOffset;
-        newState.elementPosY = top + window.pageYOffset;
-        newState.elementX = pageX - newState.elementPosX;
-        newState.elementY = pageY - newState.elementPosY;
-        newState.elementW = width;
-        newState.elementH = height;
-      }
-      state.value = newState;
-    },
-    {
-      target: document,
-    },
-  );
+  // 检查是否在浏览器环境中
+  if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+    useEventListener(
+      'mousemove',
+      (event: MouseEvent) => {
+        const { screenX, screenY, clientX, clientY, pageX, pageY } = event;
+        const newState = {
+          screenX,
+          screenY,
+          clientX,
+          clientY,
+          pageX,
+          pageY,
+          elementX: NaN,
+          elementY: NaN,
+          elementH: NaN,
+          elementW: NaN,
+          elementPosX: NaN,
+          elementPosY: NaN,
+        };
+        const targetElement = getTargetElement(target);
+        if (targetElement) {
+          const { left, top, width, height } = targetElement.getBoundingClientRect();
+          newState.elementPosX = left + window.pageXOffset;
+          newState.elementPosY = top + window.pageYOffset;
+          newState.elementX = pageX - newState.elementPosX;
+          newState.elementY = pageY - newState.elementPosY;
+          newState.elementW = width;
+          newState.elementH = height;
+        }
+        state.value = newState;
+      },
+      {
+        target: document,
+      },
+    );
+  }
 
   return readonly(state);
 }
+
 export default useMouse;

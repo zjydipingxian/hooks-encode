@@ -2,7 +2,9 @@ import { ref, watchEffect } from 'vue';
 import useSupported from '../useSupported';
 
 function useMedia(query: string) {
-  const isSupported = useSupported(() => window && 'matchMedia' in window && typeof window.matchMedia === 'function');
+  const isSupported = useSupported(
+    () => typeof window !== 'undefined' && 'matchMedia' in window && typeof window.matchMedia === 'function',
+  );
 
   if (!isSupported.value) return;
 
@@ -25,17 +27,21 @@ function useMedia(query: string) {
     if (!isSupported.value) return;
     cleanup();
 
-    mediaQuery = window!.matchMedia(query);
+    // 检查是否在浏览器环境中
+    if (typeof window !== 'undefined') {
+      mediaQuery = window.matchMedia(query);
 
-    if ('addEventListener' in mediaQuery) {
-      mediaQuery.addEventListener('change', handler);
-    } else {
-      // @ts-expect-error deprecated API
-      mediaQuery.addListener(handler);
+      if ('addEventListener' in mediaQuery) {
+        mediaQuery.addEventListener('change', handler);
+      } else {
+        // @ts-expect-error deprecated API
+        mediaQuery.addListener(handler);
+      }
+      matches.value = mediaQuery.matches;
     }
-    matches.value = mediaQuery.matches;
   });
 
   return matches;
 }
+
 export default useMedia;

@@ -21,7 +21,10 @@ function useDocumentVisibility(): VisibilityState {
     }
   };
 
-  useEventListener('visibilitychange', handleVisibilityChange, { target: document });
+  // 只在浏览器环境中添加事件监听器
+  if (typeof document !== 'undefined') {
+    useEventListener('visibilitychange', handleVisibilityChange, { target: document });
+  }
 
   return documentVisibility.value;
 }

@@ -4,6 +4,7 @@ import useWinResize from '../useWinResize';
 import { BasicTarget, getTargetElement } from '../domTarget';
 
 type Size = { width: Readonly<Ref<number>>; height: Readonly<Ref<number>> };
+
 function useSize(target: BasicTarget): Size {
   const size = reactive({
     width: 0,
@@ -11,9 +12,12 @@ function useSize(target: BasicTarget): Size {
   });
 
   const getSizeInfo = () => {
-    const targetDom = getTargetElement(target);
-    size.width = targetDom?.clientWidth ?? 0;
-    size.height = targetDom?.clientHeight ?? 0;
+    // 检查是否在浏览器环境中
+    if (typeof document !== 'undefined') {
+      const targetDom = getTargetElement(target);
+      size.width = targetDom?.clientWidth ?? 0;
+      size.height = targetDom?.clientHeight ?? 0;
+    }
   };
 
   useWinResize(getSizeInfo);
@@ -23,6 +27,8 @@ function useSize(target: BasicTarget): Size {
       getSizeInfo();
     }, 120);
   });
+
   return { ...toRefs(size) };
 }
+
 export default useSize;

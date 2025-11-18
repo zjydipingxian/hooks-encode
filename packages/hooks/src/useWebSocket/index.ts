@@ -77,10 +77,6 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
     throw new Error('useWebSocket requires a string socketUrl');
   }
 
-  if (!isBrowser) {
-    throw new Error('useWebSocket is not available in current environment');
-  }
-
   // 响应式状态管理
   const socket = ref<WebSocket>();
   const latestMessage = ref<WebSocketEventMap['message']>();
@@ -182,6 +178,11 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
   };
 
   const run = () => {
+    // 在非浏览器环境中直接返回
+    if (!isBrowser) {
+      return;
+    }
+
     // 先清理旧实例
     cleanWebSocket();
 
@@ -198,110 +199,80 @@ function useWebSocket(socketUrl: string, options: UseWebSocketOptions = defaultO
       ws.addEventListener('close', handleClose);
     } catch (error) {
       console.error('Failed to create WebSocket instance:', error);
-      readyState.value = ReadyState.Closed; // 更新 readyState
-      handleError(error as WebSocketEventMap['error']);
     }
   };
 
   /**
-   * 手动建立连接方法
-   */
-  const connect = () => {
-    const currentState = readyState.value;
-    // 已连接或正在连接时，不重复执行
-    if (currentState === ReadyState.Open || currentState === ReadyState.Connecting) {
-      return;
-    }
-    isManualDisconnect.value = false; // 重置主动断开标记
-    reconnectCount.value = 0;
-    run();
-  };
-
-  /**
-   * 重连方法
-   */
-  const reconnect = () => {
-    if (reconnectCount.value >= (reconnectLimit || 0)) {
-      console.warn('Reconnect limit reached, stopping attempts');
-      return;
-    }
-
-    // 清除上一次的超时定时器
-    if (timeoutRef.value) {
-      clearTimeout(timeoutRef.value);
-      timeoutRef.value = null;
-    }
-    timeoutRef.value = setTimeout(() => {
-      reconnectCount.value++;
-      console.log(`Reconnecting attempt ${reconnectCount.value}/${reconnectLimit}`);
-      run();
-    }, reconnectInterval || 0);
-  };
-
-  /**
-   * 断开连接方法
-   */
-  const disconnect = () => {
-    const currentState = readyState.value;
-    if ((currentState === ReadyState.Connecting || currentState === ReadyState.Open) && socket.value) {
-      isManualDisconnect.value = true; // 标记为主动断开
-
-      if (timeoutRef.value) {
-        clearTimeout(timeoutRef.value);
-        timeoutRef.value = null;
-      }
-      stopHeartbeat();
-      cleanWebSocket();
-    }
-  };
-
-  /**
-   * 发送消息方法
-   * @param data 要发送的数据
+   * 发送消息
+   * @param data 消息数据
    * @returns 是否发送成功
    */
   const sendMessage = (data: string | ArrayBufferLike | Blob | ArrayBufferView): boolean => {
-    if (data == null || data === '') {
-      console.warn('Cannot send empty message');
+    // 在非浏览器环境中直接返回
+    if (!isBrowser || !socket.value) {
       return false;
     }
 
-    if (!socket.value || readyState.value !== ReadyState.Open) {
-      console.warn('Cannot send message: WebSocket is not open');
-      return false;
-    }
-
-    try {
+    if (socket.value.readyState === WebSocket.OPEN) {
       socket.value.send(data);
       return true;
-    } catch (error) {
-      console.error('Failed to send message:', error);
-      return false;
+    }
+    return false;
+  };
+
+  /**
+   * 断开连接
+   */
+  const disconnect = () => {
+    // 在非浏览器环境中直接返回
+    if (!isBrowser) {
+      return;
+    }
+
+    isManualDisconnect.value = true;
+    stopHeartbeat();
+    cleanWebSocket();
+  };
+
+  /**
+   * 重连机制
+   */
+  const reconnect = () => {
+    // 在非浏览器环境中直接返回
+    if (!isBrowser) {
+      return;
+    }
+
+    if (reconnectCount.value < (reconnectLimit || 0)) {
+      reconnectCount.value++;
+      timeoutRef.value = setTimeout(() => {
+        run();
+      }, reconnectInterval);
     }
   };
 
   // 组件卸载时清理资源
   onUnmounted(() => {
-    disconnect();
     if (timeoutRef.value) {
       clearTimeout(timeoutRef.value);
-      timeoutRef.value = null;
     }
     stopHeartbeat();
+    cleanWebSocket();
   });
 
   // 非手动模式下自动连接
-  if (!manual && isBrowser) {
-    connect();
+  if (!manual) {
+    run();
   }
 
   return {
     latestMessage,
     sendMessage,
     disconnect,
-    connect,
+    connect: run,
     readyState,
     webSocketIns: socket,
   };
 }
+
 export default useWebSocket;

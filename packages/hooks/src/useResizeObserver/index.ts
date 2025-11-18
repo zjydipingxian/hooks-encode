@@ -26,7 +26,7 @@ function useResizeObserver(
   const { box = 'content-box', ...argsOptions } = options ?? {};
 
   // 判断浏览器是否支持 这个 ResizeObserver Api
-  const isSupported = ref(window && 'ResizeObserver' in window);
+  const isSupported = ref(typeof window !== 'undefined' && 'ResizeObserver' in window);
   let ob: ResizeObserver | null;
 
   const modelTargets = computed(() =>
@@ -46,7 +46,7 @@ function useResizeObserver(
     (elements) => {
       dispose();
 
-      if (isSupported.value && window) {
+      if (isSupported.value && typeof window !== 'undefined') {
         ob = new ResizeObserver(callback);
 
         elements.forEach((curr) => {
@@ -78,4 +78,5 @@ function useResizeObserver(
     stop,
   };
 }
+
 export default useResizeObserver;

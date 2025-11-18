@@ -46,8 +46,9 @@ function useEventListener<K extends keyof WindowEventMap>(
 function useEventListener(eventName: string, handler: noop, options: UseEventListenerOptions): void;
 
 function useEventListener(type: string, listener: EventListener, options?: UseEventListenerOptions) {
+  // 在非浏览器环境中直接返回
   if (!isBrowser) {
-    return;
+    return () => {};
   }
 
   const { target = options?.target ? options.target : window, capture = false, passive = false } = {};

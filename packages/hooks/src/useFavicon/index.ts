@@ -24,6 +24,9 @@ function useFavicon(href?: string | Ref<string | undefined>) {
     // 如果href为空则不执行
     if (!_href.value) return;
 
+    // 检查是否在浏览器环境中
+    if (typeof document === 'undefined') return;
+
     // 解析图片URL获取文件后缀
     const cutUrl = _href.value?.split('.');
     const imgSuffix = cutUrl[cutUrl.length - 1].toLocaleUpperCase() as UseFaviconImgTypes;
@@ -40,4 +43,5 @@ function useFavicon(href?: string | Ref<string | undefined>) {
     document.getElementsByTagName('head')[0].appendChild(link);
   });
 }
+
 export default useFavicon;
