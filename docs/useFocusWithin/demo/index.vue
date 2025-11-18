@@ -29,5 +29,4 @@
       console.log('change', isFocusWithin);
     },
   });
-  console.log('🚀 ~ isFocusWithin:', isFocusWithin);
 </script>

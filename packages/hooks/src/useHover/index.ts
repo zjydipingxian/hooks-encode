@@ -9,7 +9,6 @@ export interface Options {
 }
 
 function useHover(target: Element | Ref<Element | undefined>, options?: Options): Ref<boolean> {
-  console.log('🚀 ~ useHover ~ target:', target);
   const { onEnter, onLeave, onChange } = options || {};
 
   const [useBooleanState, { setTrue, setFalse }] = useBoolean(false);

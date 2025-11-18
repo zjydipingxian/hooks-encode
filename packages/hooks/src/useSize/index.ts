@@ -1,5 +1,6 @@
 import { onMounted, reactive, toRefs, Ref } from 'vue';
 import useWinResize from '../useWinResize';
+import { isBrowser } from '../utils';
 
 import { BasicTarget, getTargetElement } from '../domTarget';
 
@@ -12,20 +13,26 @@ function useSize(target: BasicTarget): Size {
   });
 
   const getSizeInfo = () => {
+    if (!isBrowser) return;
+
     // 检查是否在浏览器环境中
-    if (typeof document !== 'undefined') {
-      const targetDom = getTargetElement(target);
-      size.width = targetDom?.clientWidth ?? 0;
-      size.height = targetDom?.clientHeight ?? 0;
-    }
+    const targetDom = getTargetElement(target);
+    size.width = targetDom?.clientWidth ?? 0;
+    size.height = targetDom?.clientHeight ?? 0;
   };
 
-  useWinResize(getSizeInfo);
+  // 只在浏览器环境中使用 useWinResize
+  if (isBrowser) {
+    useWinResize(getSizeInfo);
+  }
 
   onMounted(() => {
-    setTimeout(() => {
-      getSizeInfo();
-    }, 120);
+    // 只在浏览器环境中执行
+    if (isBrowser) {
+      setTimeout(() => {
+        getSizeInfo();
+      }, 120);
+    }
   });
 
   return { ...toRefs(size) };

@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": "src",
     "importHelpers": true,
     "types": ["node", "vitest", "vitest/globals"]
     // "composite": true

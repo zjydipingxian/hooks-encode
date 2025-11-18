@@ -12,11 +12,14 @@
   });
 
   // 在 body 元素上绑定 click 事件
-  useEventListener(
-    'click',
-    () => {
-      console.log('click body');
-    },
-    { target: document.body },
-  );
+  // 修复SSR环境下的document未定义问题
+  if (typeof document !== 'undefined') {
+    useEventListener(
+      'click',
+      () => {
+        console.log('click body');
+      },
+      { target: document.body },
+    );
+  }
 </script>

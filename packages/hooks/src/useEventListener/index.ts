@@ -86,13 +86,16 @@ function useEventListener(type: string, listener: EventListener, options?: UseEv
     }
   };
 
-  onUnmounted(() => remove(target));
-  onDeactivated(() => remove(target));
-  onMountedOrActivated(() => add(target));
+  // 只在浏览器环境中添加事件监听器
+  if (isBrowser) {
+    onUnmounted(() => remove(target));
+    onDeactivated(() => remove(target));
+    onMountedOrActivated(() => add(target));
+  }
 
   let stopWatch: WatchStopHandle;
 
-  if (isRef(target)) {
+  if (isRef(target) && isBrowser) {
     stopWatch = watch(target, (val, oldVal) => {
       remove(oldVal);
       add(val);

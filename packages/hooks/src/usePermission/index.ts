@@ -74,7 +74,10 @@ function usePermission(
     state.value = permissionStatus.value?.state ?? 'prompt';
   };
 
-  useEventListener('change', update);
+  // 只在浏览器环境中添加事件监听器
+  if (typeof window !== 'undefined') {
+    useEventListener('change', update);
+  }
 
   // 创建一个单例Promise对象，用于处理权限查询逻辑
   // https://developer.mozilla.org/zh-CN/docs/Web/API/Permissions/query
@@ -84,7 +87,10 @@ function usePermission(
 
     if (!permissionStatus.value) {
       try {
-        permissionStatus.value = await navigator!.permissions.query(desc);
+        // 确保在浏览器环境中才调用查询方法
+        if (navigator && 'permissions' in navigator) {
+          permissionStatus.value = await navigator.permissions.query(desc);
+        }
       } catch {
         permissionStatus.value = undefined;
       } finally {
