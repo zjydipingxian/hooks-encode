@@ -110,7 +110,7 @@
     "tsx": "^4.17.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.1",
-    "vitepress": "^1.2.3",
+    "vitepress": "^1.6.4",
     "vitest": "^3.2.4",
     "vue": "^3.4.38"
   },
