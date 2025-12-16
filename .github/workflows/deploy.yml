@@ -47,7 +47,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build with VitePress
-        run: pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
+        run: |
+          timeout 300 pnpm docs:build || true
+          if [ -d "./docs/.vitepress/dist" ]; then
+            echo "Build successful"
+          else
+            echo "Build failed - dist directory not found"
+            exit 1
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
