@@ -1,5 +1,11 @@
 # zhongjiayao_v3_hooks
 
+## 1.4.9
+
+### Patch Changes
+
+- 新增数字滚动动画 Hook useCountUp
+
 ## 1.4.8
 
 ### Patch Changes
