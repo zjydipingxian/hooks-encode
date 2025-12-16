@@ -29,16 +29,7 @@ export default defineConfig({
         "zhongjiayao_v3_hooks": path.resolve(__dirname, '../../packages/hooks/src/index.ts')
       }
     },
-    // 把vue 排除打包
     build: {
-      rollupOptions: {
-        external: ['vue'],
-        output: {
-          globals: {
-            vue: 'Vue'
-          },
-        }
-      },
       // 调整块大小警告限制
       chunkSizeWarningLimit: 1000 // 将警告限制从默认的500kB增加到1000kB
     }
