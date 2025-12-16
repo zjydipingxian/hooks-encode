@@ -1,6 +1,7 @@
 {
   "name": "hooks-encode",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.2.0",
   "description": "前端vue3 hooks 编码",
   "private": true,
   "type": "module",
