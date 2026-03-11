@@ -89,7 +89,7 @@ const updateComponentsEntry = async (hooksDir: string, folderName: string) => {
   // 替换原有 import 语句部分，写回 index.ts
   // 找到第一个非 import 行的位置
   const lines = code.split('\n');
-  let firstNonImportIdx = lines.findIndex((line) => !/^import\s+/.test(line));
+  let firstNonImportIdx = lines.findIndex((line: string) => !/^import\s+/.test(line));
   if (firstNonImportIdx === -1) firstNonImportIdx = lines.length;
   let newCode = [...imports, ...lines.slice(firstNonImportIdx)].join('\n');
 
@@ -125,7 +125,7 @@ const updateComponentsEntry = async (hooksDir: string, folderName: string) => {
  *
  **/
 
-const copyFileDoc = async (hooksDir, name) => {
+const copyFileDoc = async (hooksDir: string, name: string) => {
   const sourceDir = hooksDir;
   const targetDir = join('docs', name);
 
@@ -135,7 +135,7 @@ const copyFileDoc = async (hooksDir, name) => {
   // 复制目录内容，排除 index.ts
   const exclusions = ['index.ts', 'meta.json', '__tests__'];
   await fs.copy(sourceDir, targetDir, {
-    filter: (src) => {
+    filter: (src: string) => {
       // 遍历排除列表，检查文件路径是否匹配其中任何一个
       for (const exclusion of exclusions) {
         if (src.endsWith(exclusion) || src.includes(exclusion + '/')) {
